@@ -1,0 +1,214 @@
+import type { ClientCatalog } from "@/lib/types";
+
+export const demoCatalog: ClientCatalog = {
+  client: {
+    id: "11111111-1111-4111-8111-111111111111",
+    nome: "Rafael Honda",
+    slug: "rafael",
+    fotoUrl: "/assets/perfis/rafael-mobile.svg",
+    fotoDesktopUrl: "/assets/perfis/rafael-desktop.svg",
+    logoUrl: "/assets/marca/tropical-motos.svg",
+    whatsapp: "5574999679596",
+    instagramUrl:
+      "https://www.instagram.com/rafael.honda.a?igsh=MXA4MGhqN3Fuc2Yzbg==",
+    slogan: "Não importa o quão alto seja o seu sonho, a gente chega lá!",
+    corPrimaria: "#d90000",
+    corSecundaria: "#1d2b45",
+    marcaDaguaUrl: "/assets/marca/tropical-motos.svg",
+    ativo: true,
+  },
+  motorcycles: [
+    {
+      id: "22222222-2222-4222-8222-222222222221",
+      slug: "pop-110i-es",
+      nome: "POP 110i ES",
+      categoria: "Econômica • Urbana • Honda",
+      imagemUrl: "/assets/motos/pop-110i-es.svg",
+      selo: "NOVA LINHA 2027",
+      tituloDescricao: "A moto perfeita para o dia a dia",
+      descricao:
+        "A Honda POP 110i ES 2027 foi desenvolvida para oferecer economia, praticidade e conforto para quem precisa de mobilidade todos os dias. Com partida elétrica, excelente consumo e manutenção econômica, ela é ideal tanto para trabalho quanto para uso pessoal.",
+      detalhes: [
+        { rotulo: "Motor", valor: "109,5 cc" },
+        { rotulo: "Partida", valor: "Elétrica" },
+        { rotulo: "Combustível", valor: "Flex" },
+        { rotulo: "Consumo", valor: "Até 49 km/l" },
+      ],
+      beneficios: [
+        {
+          titulo: "Super econômica",
+          descricao: "Consumo de até 49 km/l.",
+          icone: "economia",
+        },
+        {
+          titulo: "Partida elétrica",
+          descricao: "Mais praticidade no dia a dia.",
+          icone: "praticidade",
+        },
+        {
+          titulo: "Ideal para a cidade",
+          descricao: "Leve, confortável e fácil de pilotar.",
+          icone: "conforto",
+        },
+      ],
+      tituloConsorcio: "Planos sem emplacamento",
+      ativo: true,
+      ordem: 1,
+      planosConsorcio: [
+        {
+          id: "33333333-3333-4333-8333-333333333311",
+          parcelas: 80,
+          valorParcela: 197.73,
+          destaque: true,
+          ordem: 1,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333312",
+          parcelas: 60,
+          valorParcela: 256.1,
+          destaque: false,
+          ordem: 2,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333313",
+          parcelas: 48,
+          valorParcela: 315.44,
+          destaque: false,
+          ordem: 3,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333314",
+          parcelas: 36,
+          valorParcela: 415.57,
+          destaque: false,
+          ordem: 4,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333315",
+          parcelas: 24,
+          valorParcela: 611.24,
+          destaque: false,
+          ordem: 5,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333316",
+          parcelas: 18,
+          valorParcela: 810.27,
+          destaque: false,
+          ordem: 6,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333317",
+          parcelas: 12,
+          valorParcela: 1208.34,
+          destaque: false,
+          ordem: 7,
+        },
+      ],
+      financiamento: {
+        id: "44444444-4444-4444-8444-444444444441",
+        titulo: "Solicite sua simulação",
+        descricao:
+          "Preencha seus dados abaixo para receber uma simulação personalizada de financiamento.",
+        observacao:
+          "A aprovação está sujeita à análise de crédito da instituição financeira.",
+      },
+    },
+    {
+      id: "22222222-2222-4222-8222-222222222222",
+      slug: "biz-125-es",
+      nome: "BIZ 125 ES",
+      categoria: "Praticidade • Economia • Honda",
+      imagemUrl: "/assets/motos/biz-125-es.svg",
+      selo: "NOVA LINHA 2027",
+      tituloDescricao: "Mais praticidade para o seu dia",
+      descricao:
+        "A Honda BIZ 125 ES 2027 combina conforto, economia e praticidade para quem busca mobilidade urbana com estilo. Com excelente consumo, espaço interno e pilotagem confortável, ela é perfeita para o trabalho, estudos e rotina diária.",
+      detalhes: [
+        { rotulo: "Motor", valor: "123,9 cc" },
+        { rotulo: "Partida", valor: "Elétrica" },
+        { rotulo: "Combustível", valor: "Flex" },
+        { rotulo: "Consumo", valor: "Até 62 km/l" },
+      ],
+      beneficios: [
+        {
+          titulo: "Baixo consumo",
+          descricao: "Economia para o dia a dia.",
+          icone: "economia",
+        },
+        {
+          titulo: "Porta-objetos",
+          descricao: "Mais praticidade e espaço.",
+          icone: "praticidade",
+        },
+        {
+          titulo: "Confortável",
+          descricao: "Ideal para trajetos urbanos.",
+          icone: "conforto",
+        },
+      ],
+      tituloConsorcio: "Planos sem emplacamento",
+      ativo: true,
+      ordem: 2,
+      planosConsorcio: [
+        {
+          id: "33333333-3333-4333-8333-333333333321",
+          parcelas: 80,
+          valorParcela: 251.87,
+          destaque: true,
+          ordem: 1,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333322",
+          parcelas: 60,
+          valorParcela: 326.23,
+          destaque: false,
+          ordem: 2,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333323",
+          parcelas: 48,
+          valorParcela: 401.83,
+          destaque: false,
+          ordem: 3,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333324",
+          parcelas: 36,
+          valorParcela: 529.38,
+          destaque: false,
+          ordem: 4,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333325",
+          parcelas: 24,
+          valorParcela: 778.64,
+          destaque: false,
+          ordem: 5,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333326",
+          parcelas: 18,
+          valorParcela: 1032.17,
+          destaque: false,
+          ordem: 6,
+        },
+        {
+          id: "33333333-3333-4333-8333-333333333327",
+          parcelas: 12,
+          valorParcela: 1539.25,
+          destaque: false,
+          ordem: 7,
+        },
+      ],
+      financiamento: {
+        id: "44444444-4444-4444-8444-444444444442",
+        titulo: "Solicite sua simulação",
+        descricao:
+          "Preencha seus dados abaixo para receber uma simulação personalizada de financiamento.",
+        observacao:
+          "A aprovação está sujeita à análise de crédito da instituição financeira.",
+      },
+    },
+  ],
+};
