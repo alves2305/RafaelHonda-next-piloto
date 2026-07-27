@@ -9,6 +9,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
+import { MotorcyclePublicPreviewLink } from "@/components/admin/MotorcyclePublicPreviewLink";
 import { getAdminSupabaseClient } from "@/lib/admin-supabase";
 
 import styles from "@/app/admin/admin.module.css";
@@ -508,10 +509,13 @@ export default function EditMotorcyclePage() {
               Vendedores
             </Link>
 
-            {form.slug ? (
-              <Link href={`/rafael/moto/${form.slug}`} target="_blank">
-                Página pública ↗
-              </Link>
+            {form.id && form.slug ? (
+              <MotorcyclePublicPreviewLink
+                motorcycleId={form.id}
+                motorcycleSlug={form.slug}
+                mode="moto"
+                children="Página pública ↗"
+              />
             ) : null}
           </div>
         ) : null}

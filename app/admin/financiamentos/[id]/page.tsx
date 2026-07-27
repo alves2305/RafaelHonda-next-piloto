@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AdminShell } from "@/components/admin/AdminShell";
+import { MotorcyclePublicPreviewLink } from "@/components/admin/MotorcyclePublicPreviewLink";
 import { getAdminSupabaseClient } from "@/lib/admin-supabase";
 
 import styles from "@/app/admin/admin.module.css";
@@ -268,12 +269,11 @@ export default function EditFinancingPage() {
         </button>
 
         {motorcycle && form.ativo && financingId ? (
-          <Link
-            href={`/rafael/financiamento/${motorcycle.slug}`}
-            target="_blank"
-          >
-            Visualizar página pública ↗
-          </Link>
+          <MotorcyclePublicPreviewLink
+            motorcycleId={motorcycle.id}
+            motorcycleSlug={motorcycle.slug}
+            mode="financiamento"
+          />
         ) : null}
       </div>
 

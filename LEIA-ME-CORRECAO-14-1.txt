@@ -1,0 +1,35 @@
+CORREÇÃO DA ENTREGA 14 — VERIFICADOR DE PUBLICAÇÃO
+
+PROBLEMA CORRIGIDO
+
+Ao abrir o arquivo verificar-publicacao.cmd, alguns computadores iniciavam o
+comando dentro de C:\Windows\System32.
+
+Por isso, o Node procurava:
+
+C:\Windows\System32\scripts\preflight-release.mjs
+
+em vez de procurar dentro da pasta do projeto.
+
+CORREÇÃO
+
+O novo arquivo executa automaticamente:
+
+cd /d "%~dp0"
+
+Isso força o terminal a entrar na mesma pasta onde o arquivo .cmd está salvo.
+
+INSTALAÇÃO
+
+1. Extraia este ZIP.
+2. Copie verificar-publicacao.cmd para a pasta principal do projeto.
+3. Confirme a substituição.
+4. Confira se, na mesma pasta, existem:
+
+package.json
+scripts\preflight-release.mjs
+
+5. Execute novamente verificar-publicacao.cmd.
+
+O Node.js v24.18.0 exibido no teste está correto, pois o projeto exige Node.js
+22 ou superior.

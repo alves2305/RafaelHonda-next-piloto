@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import "@/app/globals.css";
 import "@/app/catalog-refinements.css";
+import "@/app/responsive-refinements.css";
 
 export const metadata: Metadata = {
   title: {

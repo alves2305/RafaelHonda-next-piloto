@@ -1,0 +1,235 @@
+/* Entrega 13.3 — ajustes finais para celular, tablet e toque */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.site-frame,
+.page-container,
+.profile-hero,
+.motorcycle-card,
+.content-section,
+.plan-card,
+.form-section,
+.financing-hero,
+.motorcycle-hero {
+  min-width: 0;
+}
+
+.profile-info h1,
+.motorcycle-card h3,
+.motorcycle-hero-copy h1,
+.plan-intro h1,
+.financing-hero h1,
+.section-heading h2,
+.contact-section h2,
+.content-section h2 {
+  overflow-wrap: anywhere;
+}
+
+.installment-row strong {
+  white-space: nowrap;
+}
+
+.form-section,
+.content-section,
+.contact-section {
+  scroll-margin-top: 96px;
+}
+
+.whatsapp-float {
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+@media (hover: none) {
+  .button:hover,
+  .motorcycle-card:hover,
+  .motorcycle-card:hover .motorcycle-card-image,
+  .motorcycle-nav-card:hover,
+  .contact-button:hover,
+  .whatsapp-float:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-container {
+    width: min(100% - 16px, 1180px);
+  }
+
+  .profile-actions .button,
+  .product-actions .button,
+  .contact-actions .button,
+  .motorcycle-card-actions .button,
+  .motorcycle-card-actions .text-link {
+    width: 100%;
+  }
+
+  .profile-actions,
+  .product-actions,
+  .contact-actions,
+  .motorcycle-card-actions {
+    width: 100%;
+  }
+
+  .lead-form input,
+  .lead-form select {
+    font-size: 16px;
+  }
+
+  .subpage-header {
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .back-link {
+    min-width: 0;
+    line-height: 1.25;
+  }
+
+  .mini-brand {
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+
+  .mini-brand span {
+    max-width: min(105px, 28vw);
+  }
+
+  .motorcycle-card h3 {
+    font-size: clamp(1.35rem, 7vw, 1.8rem);
+  }
+
+  .motorcycle-card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycle-card-actions .text-link {
+    grid-column: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .plan-card,
+  .form-section,
+  .content-section,
+  .contact-section {
+    max-width: 100%;
+  }
+
+  .installment-row {
+    min-width: 0;
+  }
+
+  .installment-row strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .privacy-note,
+  .analysis-note,
+  .plan-note {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 480px) {
+  .motorcycle-navigation {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycle-nav-card {
+    min-height: 92px;
+  }
+
+  .profile-hero {
+    width: calc(100% - 16px);
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .profile-info h1 {
+    font-size: clamp(1.7rem, 9vw, 2rem);
+  }
+
+  .section-heading h2,
+  .contact-section h2,
+  .content-section h2,
+  .steps-section h2 {
+    font-size: clamp(1.65rem, 9vw, 2rem);
+  }
+
+  .motorcycle-card,
+  .content-section,
+  .form-section {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .financing-hero,
+  .motorcycle-hero,
+  .plan-layout {
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 400px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card {
+    min-height: 88px;
+  }
+
+  .subpage-header {
+    padding: 11px 10px;
+  }
+
+  .back-link {
+    font-size: 0.76rem;
+  }
+
+  .mini-brand span {
+    max-width: 82px;
+    font-size: 0.72rem;
+  }
+
+  .consortium-page .installment-row {
+    grid-template-columns: 39px minmax(0, 1fr);
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .consortium-page .installment-row strong {
+    font-size: 0.91rem;
+  }
+
+  .empty-state {
+    padding: 29px 18px;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+  }
+
+  .motorcycle-hero-visual,
+  .financing-hero img {
+    min-height: 0;
+    height: 220px;
+  }
+}

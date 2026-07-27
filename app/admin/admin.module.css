@@ -5959,3 +5959,262 @@
     width: 100%;
   }
 }
+
+
+/* Entrega 13.3 — revisão responsiva e acabamento final */
+
+.adminApp,
+.adminMain,
+.adminContent {
+  max-width: 100%;
+}
+
+.topbarHeading h1,
+.topbarHeading p,
+.editClientSectionHeading h2,
+.editClientSectionHeading p,
+.motorcycleSetupIdentity h2,
+.motorcycleClientHero h2,
+.financingAdminHero h2,
+.plansHero h2,
+.motorcyclesAdminHero h2,
+.clientsHero h2 {
+  overflow-wrap: anywhere;
+}
+
+@media (hover: none) {
+  .quickActionCard:hover,
+  .financingMotorcycleCard:hover,
+  .planMotorcycleCard:hover,
+  .motorcycleAdminCard:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .adminTopbar {
+    min-height: 76px;
+    padding-top: max(15px, env(safe-area-inset-top));
+  }
+
+  .adminContent {
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(45px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+  }
+
+  .adminSidebar {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .editClientTopbarActions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .editClientTopbarActions a,
+  .editClientTopbarActions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .adminSearchField {
+    width: 100%;
+  }
+
+  .adminSearchField input,
+  .editClientFields input,
+  .editClientFields textarea,
+  .colorFields input,
+  .financingEditFields input,
+  .financingEditFields textarea,
+  .motorcycleDynamicRow input,
+  .motorcycleBenefitRow input,
+  .motorcycleBenefitRow select,
+  .planEditorRow input,
+  .imageUploadControls > input:not(.imageUploadFileInput) {
+    font-size: 16px;
+  }
+
+  .editClientTopbar button,
+  .editClientTopbar a,
+  .primaryAdminButton,
+  .statusFilters button,
+  .financingStatusFilters button,
+  .motorcycleOrderActions button,
+  .motorcycleClientToolbar button,
+  .motorcycleClientFooter button,
+  .planEditorFooter button,
+  .editClientActions button,
+  .imageUploadButton,
+  .publishMotorcycleButton,
+  .unpublishMotorcycleButton {
+    min-height: 44px;
+  }
+
+  .newClientStep,
+  .newMotorcycleStep {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .motorcycleDynamicRow,
+  .motorcycleBenefitRow,
+  .planEditorRow {
+    padding: 14px 12px;
+  }
+
+  .motorcycleDynamicOrder {
+    justify-content: space-between;
+  }
+
+  .motorcycleDynamicOrder > div {
+    margin-left: auto;
+  }
+
+  .motorcycleClientCard {
+    min-height: 132px;
+  }
+
+  .motorcycleClientCard strong {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .financingMotorcycleContent > p {
+    max-height: none;
+  }
+
+  .adminErrorBox button,
+  .adminErrorBox a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .adminTopbar {
+    gap: 11px;
+  }
+
+  .mobileMenuButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .topbarHeading h1 {
+    font-size: 1.02rem;
+  }
+
+  .topbarHeading p {
+    max-width: min(190px, 53vw);
+    font-size: 0.68rem;
+  }
+
+  .statusFilters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .statusFilters button {
+    padding: 0 5px;
+    font-size: 0.62rem;
+  }
+
+  .financingStatusFilters {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adminClientActions,
+  .motorcycleAdminRowActions,
+  .motorcycleOrderActions,
+  .motorcycleClientToolbar > div {
+    grid-template-columns: 1fr;
+  }
+
+  .adminClientActions a,
+  .adminClientActions button,
+  .motorcycleAdminRowActions a,
+  .motorcycleAdminRowActions button,
+  .motorcycleOrderActions button {
+    grid-column: auto;
+  }
+
+  .motorcycleAdminRow {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleAdminIdentity,
+  .motorcycleAdminUsage,
+  .motorcycleAdminRow > .clientStatusActive,
+  .motorcycleAdminRow > .clientStatusInactive,
+  .motorcycleAdminRowActions {
+    grid-column: 1;
+  }
+
+  .motorcycleAdminIdentity img {
+    width: 100%;
+    height: 118px;
+  }
+
+  .motorcycleAdminIdentity > div {
+    min-width: 0;
+  }
+
+  .motorcycleAdminIdentity strong {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .imagePositionHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .imagePositionHeading > button {
+    width: 100%;
+    min-height: 40px;
+  }
+
+  .imagePositionPreviewRectangle {
+    height: 150px;
+  }
+
+  .imageUploadPreview {
+    height: 155px;
+  }
+
+  .motorcycleSetupCard {
+    padding: 17px 14px;
+  }
+
+  .motorcycleSetupCard > span {
+    width: 31px;
+    height: 31px;
+  }
+
+  .motorcycleClientHero,
+  .motorcycleSetupHero,
+  .motorcyclePublishPanel,
+  .financingAdminHero,
+  .plansHero,
+  .planEditorHero,
+  .motorcyclesAdminHero,
+  .clientsHero {
+    border-radius: 18px;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .adminSidebar {
+    overflow-y: auto;
+  }
+
+  .adminTopbar {
+    position: relative;
+  }
+}

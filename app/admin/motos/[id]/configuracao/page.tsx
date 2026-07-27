@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AdminShell } from "@/components/admin/AdminShell";
+import { MotorcyclePublicPreviewLink } from "@/components/admin/MotorcyclePublicPreviewLink";
 import { getAdminSupabaseClient } from "@/lib/admin-supabase";
 
 import styles from "@/app/admin/admin.module.css";
@@ -114,14 +115,10 @@ export default function MotorcycleSetupPage() {
   const readyToActivate =
     hasCommercialOption && data.selectedClients > 0;
 
-  const completedSteps = useMemo(() => {
+  const completedRequiredSteps = useMemo(() => {
     let total = 1;
 
-    if (data.activePlans > 0) {
-      total += 1;
-    }
-
-    if (data.financingActive) {
+    if (hasCommercialOption) {
       total += 1;
     }
 
@@ -130,11 +127,7 @@ export default function MotorcycleSetupPage() {
     }
 
     return total;
-  }, [
-    data.activePlans,
-    data.financingActive,
-    data.selectedClients,
-  ]);
+  }, [hasCommercialOption, data.selectedClients]);
 
   async function toggleActivation() {
     if (!data.motorcycle) {
@@ -235,9 +228,11 @@ export default function MotorcycleSetupPage() {
         <Link href="/admin/motos">← Voltar para motos</Link>
 
         {motorcycle.ativo ? (
-          <Link href={`/rafael/moto/${motorcycle.slug}`} target="_blank">
-            Visualizar página pública ↗
-          </Link>
+          <MotorcyclePublicPreviewLink
+            motorcycleId={motorcycle.id}
+            motorcycleSlug={motorcycle.slug}
+            mode="moto"
+          />
         ) : null}
       </div>
 
@@ -260,10 +255,14 @@ export default function MotorcycleSetupPage() {
 
         <div className={styles.motorcycleSetupProgress}>
           <span>Progresso</span>
-          <strong>{completedSteps}/4 etapas</strong>
+          <strong>{completedRequiredSteps}/3 obrigatórias</strong>
 
           <div>
-            <i style={{ width: `${completedSteps * 25}%` }} />
+            <i
+              style={{
+                width: `${(completedRequiredSteps / 3) * 100}%`,
+              }}
+            />
           </div>
 
           <small>

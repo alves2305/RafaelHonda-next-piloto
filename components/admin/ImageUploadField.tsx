@@ -6,16 +6,19 @@ import type { ChangeEvent } from "react";
 import { useRef, useState } from "react";
 
 import { getAdminSupabaseClient } from "@/lib/admin-supabase";
+import {
+  optimizeImageForUpload,
+  type OptimizedImage,
+} from "@/lib/image-optimization";
 
 import styles from "@/app/admin/admin.module.css";
 
 const STORAGE_BUCKET = "catalogo-assets";
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
-const ACCEPTED_TYPES = new Map<string, string>([
-  ["image/jpeg", "jpg"],
-  ["image/png", "png"],
-  ["image/webp", "webp"],
+const ACCEPTED_TYPES = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
 ]);
 
 type ImageUploadFieldProps = {
@@ -46,14 +49,33 @@ function normalizeFolder(folder: string) {
     .join("/");
 }
 
-function createFilePath(folder: string, extension: string) {
+function createFilePath(folder: string) {
   const safeFolder = normalizeFolder(folder) || "outros";
   const uniquePart =
     typeof crypto !== "undefined" && "randomUUID" in crypto
       ? crypto.randomUUID()
       : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-  return `${safeFolder}/${Date.now()}-${uniquePart}.${extension}`;
+  return `${safeFolder}/${Date.now()}-${uniquePart}.webp`;
+}
+
+function formatFileSize(bytes: number) {
+  if (bytes < 1024) {
+    return `${bytes} B`;
+  }
+
+  if (bytes < 1024 * 1024) {
+    return `${Math.round(bytes / 1024)} KB`;
+  }
+
+  return `${(bytes / (1024 * 1024)).toFixed(1).replace(".", ",")} MB`;
+}
+
+function getOptimizationMessage(result: OptimizedImage) {
+  const originalSize = formatFileSize(result.originalSize);
+  const optimizedSize = formatFileSize(result.optimizedSize);
+
+  return `Imagem otimizada: ${originalSize} → ${optimizedSize} • ${result.width} × ${result.height}px. Salve o formulário para concluir.`;
 }
 
 export function ImageUploadField({
@@ -81,16 +103,8 @@ export function ImageUploadField({
     setMessage("");
     setError("");
 
-    const extension = ACCEPTED_TYPES.get(file.type);
-
-    if (!extension) {
+    if (!ACCEPTED_TYPES.has(file.type)) {
       setError("Use uma imagem JPG, PNG ou WebP.");
-      event.target.value = "";
-      return;
-    }
-
-    if (file.size > MAX_FILE_SIZE) {
-      setError("A imagem precisa ter no máximo 5 MB.");
       event.target.value = "";
       return;
     }
@@ -98,14 +112,15 @@ export function ImageUploadField({
     setUploading(true);
 
     try {
+      const optimizedImage = await optimizeImageForUpload(file, folder);
       const supabase = getAdminSupabaseClient();
-      const filePath = createFilePath(folder, extension);
+      const filePath = createFilePath(folder);
 
       const { error: uploadError } = await supabase.storage
         .from(STORAGE_BUCKET)
-        .upload(filePath, file, {
-          cacheControl: "3600",
-          contentType: file.type,
+        .upload(filePath, optimizedImage.file, {
+          cacheControl: "31536000",
+          contentType: "image/webp",
           upsert: false,
         });
 
@@ -118,11 +133,17 @@ export function ImageUploadField({
         .getPublicUrl(filePath);
 
       onChange(data.publicUrl);
-      setMessage("Imagem enviada. Salve o formulário para concluir.");
+      setMessage(getOptimizationMessage(optimizedImage));
     } catch (uploadError) {
       console.error(uploadError);
+
+      const errorMessage =
+        uploadError instanceof Error
+          ? uploadError.message
+          : "Não foi possível otimizar e enviar a imagem.";
+
       setError(
-        "Não foi possível enviar a imagem. Confirme o SQL do Storage e sua sessão administrativa.",
+        `${errorMessage} Confirme também o SQL do Storage e sua sessão administrativa.`,
       );
     } finally {
       setUploading(false);
@@ -193,10 +214,14 @@ export function ImageUploadField({
             disabled={uploading}
             onClick={() => inputRef.current?.click()}
           >
-            {uploading ? "Enviando..." : "Selecionar imagem"}
+            {uploading
+              ? "Otimizando e enviando..."
+              : "Selecionar imagem"}
           </button>
 
-          <small>JPG, PNG ou WebP • máximo de 5 MB</small>
+          <small>
+            JPG, PNG ou WebP • original de até 12 MB • otimização automática
+          </small>
         </div>
       </div>
 

@@ -66,7 +66,8 @@ export default async function MotorcyclePage({
             <p>{motorcycle.descricao}</p>
 
             <div className="product-actions">
-              {result.client.vendeConsorcio ? (
+              {result.client.vendeConsorcio &&
+              motorcycle.planosConsorcio.length > 0 ? (
                 <Link
                   className="button button-primary"
                   href={`/${result.client.slug}/consorcio/${motorcycle.slug}`}
@@ -79,7 +80,8 @@ export default async function MotorcyclePage({
               motorcycle.financiamento ? (
                 <Link
                   className={`button ${
-                    result.client.vendeConsorcio
+                    result.client.vendeConsorcio &&
+                    motorcycle.planosConsorcio.length > 0
                       ? "button-light"
                       : "button-primary"
                   }`}

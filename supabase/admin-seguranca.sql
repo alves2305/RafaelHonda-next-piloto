@@ -111,7 +111,7 @@ to authenticated;
 
 do $$
 declare
-  admin_email text := 'raffa.alves.souza@gmail.com';
+  admin_email text := 'COLOQUE_SEU_EMAIL_AQUI';
   admin_user_id uuid;
 begin
   if admin_email = 'COLOQUE_SEU_EMAIL_AQUI' then

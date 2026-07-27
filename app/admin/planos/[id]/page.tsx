@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import { AdminShell } from "@/components/admin/AdminShell";
+import { MotorcyclePublicPreviewLink } from "@/components/admin/MotorcyclePublicPreviewLink";
 import { getAdminSupabaseClient } from "@/lib/admin-supabase";
 
 import styles from "@/app/admin/admin.module.css";
@@ -397,10 +398,12 @@ export default function EditMotorcyclePlansPage() {
           ← Voltar para planos
         </button>
 
-        {motorcycle ? (
-          <Link href={`/rafael/consorcio/${motorcycle.slug}`} target="_blank">
-            Visualizar página pública ↗
-          </Link>
+        {motorcycle && activePlansCount > 0 ? (
+          <MotorcyclePublicPreviewLink
+            motorcycleId={motorcycle.id}
+            motorcycleSlug={motorcycle.slug}
+            mode="consorcio"
+          />
         ) : null}
       </div>
 

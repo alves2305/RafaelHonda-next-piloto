@@ -283,9 +283,29 @@ export async function getClientMotorcycle(
         ]
       : null;
 
+  const consortiumMotorcycles = catalog.motorcycles.filter(
+    (item) => item.planosConsorcio.length > 0,
+  );
+
+  const consortiumMotorcycleIndex = consortiumMotorcycles.findIndex(
+    (item) => item.slug === motorcycleSlug,
+  );
+
+  const nextConsortiumMotorcycle =
+    motorcycle &&
+    motorcycle.planosConsorcio.length > 0 &&
+    consortiumMotorcycleIndex >= 0 &&
+    consortiumMotorcycles.length > 1
+      ? consortiumMotorcycles[
+          (consortiumMotorcycleIndex + 1) %
+            consortiumMotorcycles.length
+        ]
+      : null;
+
   return {
     client: catalog.client,
     motorcycle,
     nextMotorcycle,
+    nextConsortiumMotorcycle,
   };
 }
