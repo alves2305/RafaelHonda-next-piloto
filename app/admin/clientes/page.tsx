@@ -112,7 +112,11 @@ export default function AdminClientsPage() {
   }, []);
 
   useEffect(() => {
-    void loadClients();
+    const timer = window.setTimeout(() => {
+      void loadClients();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadClients]);
 
   useEffect(() => {

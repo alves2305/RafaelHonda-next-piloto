@@ -1,9 +1,10 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, statSync } from "node:fs";
-import { extname, relative, resolve } from "node:path";
+import { extname, resolve } from "node:path";
 import process from "node:process";
 
 const projectRoot = process.cwd();
+const scannerFile = "scripts/preflight-release.mjs";
 
 const requiredFiles = [
   "package.json",
@@ -130,6 +131,14 @@ for (const forbiddenFile of forbiddenTrackedFiles) {
 const suspiciousFiles = [];
 
 for (const trackedFile of trackedFiles) {
+  /*
+   * O próprio verificador contém os nomes dos padrões que procura.
+   * Ele precisa ser ignorado para não sinalizar suas próprias expressões.
+   */
+  if (trackedFile.replaceAll("\\", "/") === scannerFile) {
+    continue;
+  }
+
   const absolutePath = resolve(projectRoot, trackedFile);
 
   if (

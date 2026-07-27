@@ -126,7 +126,11 @@ export default function ClientMotorcyclesPage() {
   }, [params.id]);
 
   useEffect(() => {
-    void loadData();
+    const timer = window.setTimeout(() => {
+      void loadData();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadData]);
 
   const categories = useMemo(() => {

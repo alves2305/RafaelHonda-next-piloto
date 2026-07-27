@@ -94,7 +94,11 @@ export default function AdminFinancingPage() {
   }, []);
 
   useEffect(() => {
-    void loadFinancing();
+    const timer = window.setTimeout(() => {
+      void loadFinancing();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadFinancing]);
 
   const filteredMotorcycles = useMemo(() => {

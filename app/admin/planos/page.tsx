@@ -128,7 +128,11 @@ export default function AdminPlansPage() {
   }, []);
 
   useEffect(() => {
-    void loadPlans();
+    const timer = window.setTimeout(() => {
+      void loadPlans();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadPlans]);
 
   const filteredMotorcycles = useMemo(() => {

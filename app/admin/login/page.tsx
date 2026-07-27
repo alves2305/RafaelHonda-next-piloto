@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { SupabaseClient } from "@supabase/supabase-js";
 
 import styles from "@/app/admin/admin.module.css";
 import {
@@ -28,27 +27,17 @@ function translateAuthError(message: string) {
   return "Não foi possível entrar. Confira os dados e tente novamente.";
 }
 
-async function userHasAdminAccess(supabase: SupabaseClient) {
-  const { data, error } = await supabase.rpc("usuario_e_admin");
-
-  if (error) {
-    throw error;
-  }
-
-  return data === true;
-}
-
 export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [checkingSession, setCheckingSession] = useState(true);
+  const supabaseConfigured = isAdminSupabaseConfigured();
+  const [checkingSession, setCheckingSession] = useState(supabaseConfigured);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!isAdminSupabaseConfigured()) {
-      setCheckingSession(false);
+    if (!supabaseConfigured) {
       return;
     }
 
@@ -64,34 +53,12 @@ export default function AdminLoginPage() {
         return;
       }
 
-      if (!session) {
-        setCheckingSession(false);
+      if (session) {
+        router.replace("/admin/dashboard");
         return;
       }
 
-      try {
-        const isAdmin = await userHasAdminAccess(supabase);
-
-        if (!active) {
-          return;
-        }
-
-        if (isAdmin) {
-          router.replace("/admin/dashboard");
-          return;
-        }
-
-        await supabase.auth.signOut();
-        setError("Este usuário não possui permissão administrativa.");
-      } catch {
-        setError(
-          "A segurança administrativa ainda não foi configurada no Supabase.",
-        );
-      }
-
-      if (active) {
-        setCheckingSession(false);
-      }
+      setCheckingSession(false);
     }
 
     void checkExistingSession();
@@ -99,7 +66,7 @@ export default function AdminLoginPage() {
     return () => {
       active = false;
     };
-  }, [router]);
+  }, [router, supabaseConfigured]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -131,20 +98,10 @@ export default function AdminLoginPage() {
         return;
       }
 
-      const isAdmin = await userHasAdminAccess(supabase);
-
-      if (!isAdmin) {
-        await supabase.auth.signOut();
-        setError("Este usuário não possui permissão administrativa.");
-        return;
-      }
-
       router.replace("/admin/dashboard");
       router.refresh();
     } catch {
-      setError(
-        "Não foi possível validar sua permissão. Execute o SQL da Entrega 3 no Supabase.",
-      );
+      setError("Não foi possível conectar ao Supabase.");
     } finally {
       setSubmitting(false);
     }
@@ -208,7 +165,7 @@ export default function AdminLoginPage() {
           </div>
 
           <p className={styles.loginDescription}>
-            Entre com um usuário autorizado como administrador.
+            Entre com o usuário administrador criado no Supabase.
           </p>
 
           <form className={styles.loginForm} onSubmit={handleSubmit}>
@@ -247,16 +204,16 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={submitting}
             >
-              {submitting ? "Validando acesso..." : "Entrar no painel"}
+              {submitting ? "Entrando..." : "Entrar no painel"}
               <span aria-hidden="true">{submitting ? "…" : "→"}</span>
             </button>
           </form>
 
           <div className={styles.previewNotice}>
-            <strong>Acesso administrativo protegido</strong>
+            <strong>Acesso protegido pelo Supabase</strong>
             <p>
-              Além da senha correta, o usuário precisa estar autorizado na
-              tabela de administradores.
+              O painel agora exige um usuário válido. A sessão permanece ativa
+              até você clicar em Sair.
             </p>
           </div>
         </div>

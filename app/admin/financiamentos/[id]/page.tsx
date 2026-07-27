@@ -127,7 +127,11 @@ export default function EditFinancingPage() {
   }, [params.id]);
 
   useEffect(() => {
-    void loadFinancing();
+    const timer = window.setTimeout(() => {
+      void loadFinancing();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadFinancing]);
 
   const hasChanges = useMemo(

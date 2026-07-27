@@ -161,7 +161,11 @@ export default function EditMotorcyclePlansPage() {
   }, [params.id]);
 
   useEffect(() => {
-    void loadPlans();
+    const timer = window.setTimeout(() => {
+      void loadPlans();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadPlans]);
 
   const hasChanges = useMemo(

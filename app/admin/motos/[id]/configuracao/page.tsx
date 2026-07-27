@@ -106,7 +106,11 @@ export default function MotorcycleSetupPage() {
   }, [params.id]);
 
   useEffect(() => {
-    void loadSetup();
+    const timer = window.setTimeout(() => {
+      void loadSetup();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadSetup]);
 
   const hasCommercialOption =

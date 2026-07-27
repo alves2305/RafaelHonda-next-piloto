@@ -199,7 +199,11 @@ export default function EditMotorcyclePage() {
   }, [params.id]);
 
   useEffect(() => {
-    void loadMotorcycle();
+    const timer = window.setTimeout(() => {
+      void loadMotorcycle();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [loadMotorcycle]);
 
   const hasChanges = useMemo(
@@ -514,8 +518,9 @@ export default function EditMotorcyclePage() {
                 motorcycleId={form.id}
                 motorcycleSlug={form.slug}
                 mode="moto"
-                children="Página pública ↗"
-              />
+              >
+                Página pública ↗
+              </MotorcyclePublicPreviewLink>
             ) : null}
           </div>
         ) : null}

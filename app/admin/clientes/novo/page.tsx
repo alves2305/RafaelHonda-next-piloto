@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import type { CSSProperties, FormEvent } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
