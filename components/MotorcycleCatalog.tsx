@@ -7,13 +7,19 @@ import { useMemo, useState } from "react";
 import { normalizeSearch } from "@/lib/format";
 import type { Motorcycle } from "@/lib/types";
 
+type MotorcycleCatalogProps = {
+  clientSlug: string;
+  motorcycles: Motorcycle[];
+  vendeConsorcio: boolean;
+  vendeFinanciamento: boolean;
+};
+
 export function MotorcycleCatalog({
   clientSlug,
   motorcycles,
-}: {
-  clientSlug: string;
-  motorcycles: Motorcycle[];
-}) {
+  vendeConsorcio,
+  vendeFinanciamento,
+}: MotorcycleCatalogProps) {
   const [query, setQuery] = useState("");
 
   const visibleMotorcycles = useMemo(() => {
@@ -24,12 +30,19 @@ export function MotorcycleCatalog({
     );
   }, [motorcycles, query]);
 
+  const catalogDescription =
+    vendeConsorcio && vendeFinanciamento
+      ? "Consulte detalhes, planos e simulação em um só lugar."
+      : vendeConsorcio
+        ? "Consulte os detalhes e os planos de consórcio disponíveis."
+        : "Consulte os detalhes e solicite sua simulação de financiamento.";
+
   return (
     <section className="catalog-section" aria-labelledby="catalog-title">
       <div className="section-heading">
         <p className="eyebrow">Catálogo atualizado</p>
         <h2 id="catalog-title">Escolha sua próxima Honda</h2>
-        <p>Consulte detalhes, planos e simulação em um só lugar.</p>
+        <p>{catalogDescription}</p>
       </div>
 
       <label className="search-field">
@@ -68,18 +81,29 @@ export function MotorcycleCatalog({
                 >
                   Detalhes da moto
                 </Link>
-                <Link
-                  className="button button-light"
-                  href={`/${clientSlug}/consorcio/${motorcycle.slug}`}
-                >
-                  Planos de consórcio
-                </Link>
-                <Link
-                  className="text-link"
-                  href={`/${clientSlug}/financiamento/${motorcycle.slug}`}
-                >
-                  Simular financiamento <span aria-hidden="true">→</span>
-                </Link>
+
+                {vendeConsorcio ? (
+                  <Link
+                    className="button button-light"
+                    href={`/${clientSlug}/consorcio/${motorcycle.slug}`}
+                  >
+                    Planos de consórcio
+                  </Link>
+                ) : null}
+
+                {vendeFinanciamento && motorcycle.financiamento ? (
+                  <Link
+                    className={
+                      vendeConsorcio ? "text-link" : "button button-light"
+                    }
+                    href={`/${clientSlug}/financiamento/${motorcycle.slug}`}
+                  >
+                    Simular financiamento{" "}
+                    {vendeConsorcio ? (
+                      <span aria-hidden="true">→</span>
+                    ) : null}
+                  </Link>
+                ) : null}
               </div>
             </article>
           ))}

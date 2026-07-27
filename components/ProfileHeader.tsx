@@ -18,6 +18,9 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
             height={240}
             priority
             unoptimized
+            style={{
+              objectPosition: `${client.fotoPosicaoX}% ${client.fotoPosicaoY}%`,
+            }}
           />
 
           <Image
@@ -28,6 +31,9 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
             height={440}
             priority
             unoptimized
+            style={{
+              objectPosition: `${client.fotoDesktopPosicaoX}% ${client.fotoDesktopPosicaoY}%`,
+            }}
           />
         </div>
 

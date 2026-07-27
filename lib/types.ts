@@ -4,6 +4,10 @@ export type ClientProfile = {
   slug: string;
   fotoUrl: string;
   fotoDesktopUrl: string | null;
+  fotoPosicaoX: number;
+  fotoPosicaoY: number;
+  fotoDesktopPosicaoX: number;
+  fotoDesktopPosicaoY: number;
   logoUrl: string | null;
   whatsapp: string;
   instagramUrl: string | null;
@@ -11,6 +15,8 @@ export type ClientProfile = {
   corPrimaria: string;
   corSecundaria: string;
   marcaDaguaUrl: string | null;
+  vendeConsorcio: boolean;
+  vendeFinanciamento: boolean;
   ativo: boolean;
 };
 

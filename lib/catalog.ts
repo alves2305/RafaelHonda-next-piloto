@@ -18,6 +18,10 @@ type ClientRow = {
   slug: string;
   foto_url: string;
   foto_desktop_url: string | null;
+  foto_posicao_x: number;
+  foto_posicao_y: number;
+  foto_desktop_posicao_x: number;
+  foto_desktop_posicao_y: number;
   logo_url: string | null;
   whatsapp: string;
   instagram_url: string | null;
@@ -25,6 +29,8 @@ type ClientRow = {
   cor_primaria: string;
   cor_secundaria: string;
   marca_dagua_url: string | null;
+  vende_consorcio: boolean;
+  vende_financiamento: boolean;
   ativo: boolean;
 };
 
@@ -73,6 +79,10 @@ function toClient(row: ClientRow): ClientProfile {
     slug: row.slug,
     fotoUrl: row.foto_url,
     fotoDesktopUrl: row.foto_desktop_url,
+    fotoPosicaoX: row.foto_posicao_x,
+    fotoPosicaoY: row.foto_posicao_y,
+    fotoDesktopPosicaoX: row.foto_desktop_posicao_x,
+    fotoDesktopPosicaoY: row.foto_desktop_posicao_y,
     logoUrl: row.logo_url,
     whatsapp: row.whatsapp,
     instagramUrl: row.instagram_url,
@@ -80,6 +90,8 @@ function toClient(row: ClientRow): ClientProfile {
     corPrimaria: row.cor_primaria,
     corSecundaria: row.cor_secundaria,
     marcaDaguaUrl: row.marca_dagua_url,
+    vendeConsorcio: row.vende_consorcio,
+    vendeFinanciamento: row.vende_financiamento,
     ativo: row.ativo,
   };
 }
@@ -132,7 +144,7 @@ export const getCatalogByClientSlug = cache(
     const { data: clientData, error: clientError } = await supabase
       .from("clientes")
       .select(
-        "id,nome,slug,foto_url,foto_desktop_url,logo_url,whatsapp,instagram_url,slogan,cor_primaria,cor_secundaria,marca_dagua_url,ativo",
+        "id,nome,slug,foto_url,foto_desktop_url,foto_posicao_x,foto_posicao_y,foto_desktop_posicao_x,foto_desktop_posicao_y,logo_url,whatsapp,instagram_url,slogan,cor_primaria,cor_secundaria,marca_dagua_url,vende_consorcio,vende_financiamento,ativo",
       )
       .eq("slug", slug)
       .maybeSingle<ClientRow>();

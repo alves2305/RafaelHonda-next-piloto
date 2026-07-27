@@ -46,10 +46,14 @@ export default async function ClientPage({ params }: ClientPageProps) {
     <ProfileFrame client={catalog.client}>
       <main className="page-container">
         <ProfileHeader client={catalog.client} />
+
         <MotorcycleCatalog
           clientSlug={catalog.client.slug}
           motorcycles={catalog.motorcycles}
+          vendeConsorcio={catalog.client.vendeConsorcio}
+          vendeFinanciamento={catalog.client.vendeFinanciamento}
         />
+
         <ContactSection client={catalog.client} />
       </main>
     </ProfileFrame>

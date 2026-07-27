@@ -1,3 +1,4 @@
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { createWhatsAppUrl } from "@/lib/format";
 import type { ClientProfile } from "@/lib/types";
 
@@ -91,15 +92,7 @@ export function ContactSection({ client }: { client: ClientProfile }) {
         </p>
       </footer>
 
-      <a
-        className="whatsapp-float"
-        href={createWhatsAppUrl(client.whatsapp)}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Falar com ${client.nome} no WhatsApp`}
-      >
-        <span aria-hidden="true">↗</span>
-      </a>
+      <FloatingWhatsApp client={client} />
     </>
   );
 }

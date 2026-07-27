@@ -1,0 +1,282 @@
+:root {
+  --font-accent: "Trebuchet MS", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+}
+
+.eyebrow,
+.benefit-number,
+.step-card > span,
+.product-badge {
+  font-family: var(--font-accent);
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.consortium-page .plan-layout {
+  align-items: start;
+}
+
+.consortium-page .plan-intro {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.consortium-page .plan-intro h1 {
+  font-size: clamp(2.4rem, 4.6vw, 4.4rem);
+  line-height: 1;
+}
+
+.consortium-page .plan-intro img {
+  margin-top: 16px;
+}
+
+.watermark-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 92px 75px;
+  opacity: 0.085;
+  pointer-events: none;
+}
+
+.consortium-page .installment-row {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.motorcycle-navigation {
+  width: min(760px, 100%);
+  margin: 42px auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.motorcycle-nav-card {
+  min-height: 122px;
+  padding: 18px 46px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  color: var(--brand-secondary);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.motorcycle-nav-card:hover {
+  border-color: color-mix(in srgb, var(--brand-primary) 25%, var(--border));
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.motorcycle-nav-card:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-primary) 28%, transparent);
+  outline-offset: 3px;
+}
+
+.motorcycle-nav-label {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.motorcycle-nav-card strong {
+  margin-top: 8px;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.motorcycle-nav-arrow {
+  position: absolute;
+  color: var(--brand-secondary);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.motorcycle-nav-card.previous .motorcycle-nav-arrow {
+  top: 18px;
+  left: 18px;
+}
+
+.motorcycle-nav-card.next .motorcycle-nav-arrow {
+  right: 18px;
+  bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .consortium-page .plan-intro {
+    text-align: center;
+  }
+
+  .consortium-page .plan-intro .eyebrow {
+    margin-bottom: 4px;
+  }
+
+  .consortium-page .plan-intro h1 {
+    font-size: clamp(1.9rem, 9vw, 2.65rem);
+    letter-spacing: -0.04em;
+  }
+
+  .consortium-page .plan-intro img {
+    height: 230px;
+    margin-top: 4px;
+  }
+
+  .watermark-pattern {
+    background-size: 78px auto;
+    opacity: 0.08;
+  }
+
+  .motorcycle-navigation {
+    margin-top: 28px;
+    gap: 12px;
+  }
+
+  .motorcycle-nav-card {
+    min-height: 118px;
+    padding: 16px 28px;
+    border-radius: 18px;
+  }
+
+  .motorcycle-nav-label {
+    font-size: 0.9rem;
+  }
+
+  .motorcycle-nav-card strong {
+    font-size: 1.05rem;
+  }
+
+  .motorcycle-nav-arrow {
+    font-size: 1.5rem;
+  }
+
+  .motorcycle-nav-card.previous .motorcycle-nav-arrow {
+    top: 16px;
+    left: 14px;
+  }
+
+  .motorcycle-nav-card.next .motorcycle-nav-arrow {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+/* Botão flutuante de WhatsApp com foto do vendedor */
+
+.whatsapp-widget {
+  max-width: calc(100vw - 32px);
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 30;
+}
+
+.whatsapp-widget-link {
+  min-height: 66px;
+  padding: 8px 22px 8px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25b98b;
+  box-shadow: 0 12px 30px rgba(16, 125, 91, 0.3);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.whatsapp-widget-link:hover {
+  background: #20ad80;
+  box-shadow: 0 16px 34px rgba(16, 125, 91, 0.38);
+  transform: translateY(-3px);
+}
+
+.whatsapp-widget-link:focus-visible,
+.whatsapp-widget-close:focus-visible {
+  outline: 3px solid rgba(37, 185, 139, 0.3);
+  outline-offset: 3px;
+}
+
+.whatsapp-widget-link span {
+  white-space: nowrap;
+}
+
+.whatsapp-widget-avatar {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.58);
+  border-radius: 50%;
+  flex: 0 0 auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.whatsapp-widget-close {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  position: absolute;
+  top: -7px;
+  right: 5px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #52cfae;
+  box-shadow: 0 4px 12px rgba(16, 125, 91, 0.22);
+  color: #ffffff;
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.whatsapp-widget-close:hover {
+  background: #39c29d;
+}
+
+@media (max-width: 640px) {
+  .whatsapp-widget {
+    right: 12px;
+    bottom: 14px;
+  }
+
+  .whatsapp-widget-link {
+    min-height: 58px;
+    padding: 7px 17px 7px 7px;
+    gap: 8px;
+    font-size: 0.88rem;
+  }
+
+  .whatsapp-widget-avatar {
+    width: 43px;
+    height: 43px;
+  }
+
+  .whatsapp-widget-close {
+    width: 23px;
+    height: 23px;
+    top: -6px;
+    right: 3px;
+    font-size: 1.05rem;
+  }
+}

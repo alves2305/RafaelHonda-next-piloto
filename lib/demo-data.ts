@@ -7,6 +7,10 @@ export const demoCatalog: ClientCatalog = {
     slug: "rafael",
     fotoUrl: "/assets/perfis/rafael-mobile.svg",
     fotoDesktopUrl: "/assets/perfis/rafael-desktop.svg",
+    fotoPosicaoX: 50,
+    fotoPosicaoY: 50,
+    fotoDesktopPosicaoX: 50,
+    fotoDesktopPosicaoY: 50,
     logoUrl: "/assets/marca/tropical-motos.svg",
     whatsapp: "5574999679596",
     instagramUrl:
@@ -15,6 +19,8 @@ export const demoCatalog: ClientCatalog = {
     corPrimaria: "#d90000",
     corSecundaria: "#1d2b45",
     marcaDaguaUrl: "/assets/marca/tropical-motos.svg",
+    vendeConsorcio: true,
+    vendeFinanciamento: true,
     ativo: true,
   },
   motorcycles: [

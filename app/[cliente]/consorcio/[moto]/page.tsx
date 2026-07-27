@@ -24,9 +24,10 @@ export async function generateMetadata({
   const result = await getClientMotorcycle(cliente, moto);
 
   return {
-    title: result?.motorcycle
-      ? `Consórcio ${result.motorcycle.nome}`
-      : "Plano não encontrado",
+    title:
+      result?.motorcycle && result.client.vendeConsorcio
+        ? `Consórcio ${result.motorcycle.nome}`
+        : "Plano não encontrado",
   };
 }
 
@@ -42,6 +43,10 @@ export default async function ConsortiumPage({
 
   if (!result.client.ativo) {
     return <SuspendedProfile client={result.client} />;
+  }
+
+  if (!result.client.vendeConsorcio) {
+    notFound();
   }
 
   if (!result.motorcycle) {

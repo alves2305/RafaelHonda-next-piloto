@@ -64,19 +64,30 @@ export default async function MotorcyclePage({
             <p className="eyebrow">{motorcycle.categoria}</p>
             <h1>{motorcycle.nome}</h1>
             <p>{motorcycle.descricao}</p>
+
             <div className="product-actions">
-              <Link
-                className="button button-primary"
-                href={`/${result.client.slug}/consorcio/${motorcycle.slug}`}
-              >
-                Ver planos de consórcio
-              </Link>
-              <Link
-                className="button button-light"
-                href={`/${result.client.slug}/financiamento/${motorcycle.slug}`}
-              >
-                Simular financiamento
-              </Link>
+              {result.client.vendeConsorcio ? (
+                <Link
+                  className="button button-primary"
+                  href={`/${result.client.slug}/consorcio/${motorcycle.slug}`}
+                >
+                  Ver planos de consórcio
+                </Link>
+              ) : null}
+
+              {result.client.vendeFinanciamento &&
+              motorcycle.financiamento ? (
+                <Link
+                  className={`button ${
+                    result.client.vendeConsorcio
+                      ? "button-light"
+                      : "button-primary"
+                  }`}
+                  href={`/${result.client.slug}/financiamento/${motorcycle.slug}`}
+                >
+                  Simular financiamento
+                </Link>
+              ) : null}
             </div>
           </div>
 

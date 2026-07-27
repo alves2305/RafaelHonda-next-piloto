@@ -1,0 +1,5961 @@
+.loginPage {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(420px, 1.05fr) minmax(440px, 0.95fr);
+  background: #f4f6f9;
+  color: #172033;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.loginBrandPanel {
+  min-height: 100vh;
+  padding: 72px clamp(42px, 7vw, 110px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.13), transparent 24rem),
+    linear-gradient(145deg, #a90000, #d90000 55%, #f02b2b);
+  color: #ffffff;
+}
+
+.loginBrandPanel::before,
+.loginBrandPanel::after {
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.loginBrandPanel::before {
+  width: 440px;
+  height: 440px;
+  top: -240px;
+  right: -150px;
+}
+
+.loginBrandPanel::after {
+  width: 310px;
+  height: 310px;
+  bottom: -190px;
+  left: -100px;
+}
+
+.loginBrandContent {
+  max-width: 650px;
+  position: relative;
+  z-index: 1;
+}
+
+.adminBadge {
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.loginBrandContent > h1 {
+  max-width: 620px;
+  margin: 30px 0 0;
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.loginBrandContent > p {
+  max-width: 570px;
+  margin: 25px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.loginBenefits {
+  margin-top: 54px;
+  display: grid;
+  gap: 15px;
+}
+
+.loginBenefits > div {
+  padding: 17px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  column-gap: 13px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.loginBenefits span {
+  grid-row: 1 / 3;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.loginBenefits strong {
+  font-size: 0.96rem;
+}
+
+.loginBenefits p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.69);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.loginFormPanel {
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginCard {
+  width: min(470px, 100%);
+  padding: 44px;
+  border: 1px solid #e1e5eb;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(29, 43, 69, 0.12);
+}
+
+.loginHeading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.loginIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: #d90000;
+  box-shadow: 0 12px 25px rgba(217, 0, 0, 0.22);
+  color: #ffffff;
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.loginHeading p,
+.loginHeading h2 {
+  margin: 0;
+}
+
+.loginHeading p {
+  margin-bottom: 4px;
+  color: #d90000;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.loginHeading h2 {
+  color: #17233a;
+  font-size: 1.72rem;
+  letter-spacing: -0.035em;
+}
+
+.loginDescription {
+  margin: 27px 0 0;
+  color: #70798c;
+  line-height: 1.6;
+}
+
+.loginForm {
+  margin-top: 27px;
+  display: grid;
+  gap: 18px;
+}
+
+.loginForm label {
+  display: grid;
+  gap: 8px;
+  color: #1d2b45;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.loginForm input {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid #dfe3e9;
+  border-radius: 14px;
+  background: #f7f8fa;
+  color: #172033;
+  font: inherit;
+  outline: 0;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.loginForm input:focus {
+  border-color: rgba(217, 0, 0, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.08);
+}
+
+.loginError {
+  margin: -5px 0 0;
+  color: #b42318;
+  font-size: 0.82rem;
+}
+
+.loginButton {
+  min-height: 55px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d90000;
+  box-shadow: 0 12px 25px rgba(217, 0, 0, 0.2);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.loginButton:hover {
+  background: #bd0000;
+  box-shadow: 0 16px 29px rgba(217, 0, 0, 0.27);
+  transform: translateY(-2px);
+}
+
+.loginButton span {
+  font-size: 1.35rem;
+}
+
+.previewNotice {
+  margin-top: 25px;
+  padding: 15px 17px;
+  border: 1px solid #e3e6eb;
+  border-radius: 15px;
+  background: #f7f8fa;
+}
+
+.previewNotice strong {
+  color: #1d2b45;
+  font-size: 0.81rem;
+}
+
+.previewNotice p {
+  margin: 5px 0 0;
+  color: #737b8e;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Aplicação administrativa */
+
+.adminApp {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  background: #f4f6f9;
+  color: #172033;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.adminSidebar {
+  width: 272px;
+  height: 100vh;
+  padding: 24px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 50;
+  background: #17233a;
+  color: #ffffff;
+}
+
+.sidebarBrand {
+  min-height: 62px;
+  padding: 0 7px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebarBrand > span {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: #d90000;
+  box-shadow: 0 9px 22px rgba(217, 0, 0, 0.26);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.sidebarBrand div {
+  display: grid;
+  gap: 3px;
+}
+
+.sidebarBrand strong {
+  font-size: 0.94rem;
+}
+
+.sidebarBrand small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.71rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebarClose {
+  display: none;
+}
+
+.sidebarNavigation {
+  margin-top: 27px;
+  display: grid;
+  gap: 6px;
+}
+
+.sidebarNavigation > p {
+  margin: 0 12px 10px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sidebarLink {
+  min-height: 47px;
+  padding: 0 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.sidebarLink:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.sidebarLinkActive {
+  background: rgba(217, 0, 0, 0.95);
+  box-shadow: 0 10px 22px rgba(217, 0, 0, 0.18);
+  color: #ffffff;
+}
+
+.sidebarLinkDisabled {
+  color: rgba(255, 255, 255, 0.34);
+  cursor: not-allowed;
+}
+
+.sidebarLinkDisabled:hover {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.sidebarLink small {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.adminIcon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebarUser {
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebarUser > span {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.11);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.sidebarUser div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.sidebarUser strong {
+  overflow: hidden;
+  font-size: 0.81rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebarUser small {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.68rem;
+}
+
+.sidebarFooter > button {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 10px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.56);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sidebarFooter > button:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.adminMain {
+  min-width: 0;
+  grid-column: 2;
+}
+
+.adminTopbar {
+  min-height: 93px;
+  padding: 19px clamp(24px, 4vw, 52px);
+  border-bottom: 1px solid #e2e5ea;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(15px);
+}
+
+.topbarHeading {
+  min-width: 0;
+}
+
+.topbarHeading h1,
+.topbarHeading p {
+  margin: 0;
+}
+
+.topbarHeading h1 {
+  color: #18243b;
+  font-size: 1.47rem;
+  letter-spacing: -0.03em;
+}
+
+.topbarHeading p {
+  margin-top: 5px;
+  color: #737c8f;
+  font-size: 0.8rem;
+}
+
+.topbarStatus {
+  margin-left: auto;
+  padding: 8px 12px;
+  border: 1px solid #dfe5e2;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #ffffff;
+  color: #557064;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.topbarStatus span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1aaa67;
+  box-shadow: 0 0 0 4px rgba(26, 170, 103, 0.12);
+}
+
+.mobileMenuButton {
+  display: none;
+}
+
+.adminContent {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+  padding: 34px clamp(24px, 4vw, 52px) 60px;
+}
+
+.welcomePanel {
+  padding: 31px 34px;
+  border: 1px solid #e0e4e9;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  align-items: center;
+  gap: 35px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(217, 0, 0, 0.065), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 13px 36px rgba(29, 43, 69, 0.055);
+}
+
+.sectionEyebrow {
+  color: #d90000;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.welcomePanel h2 {
+  margin: 9px 0 0;
+  color: #17233a;
+  font-size: clamp(1.75rem, 3vw, 2.55rem);
+  letter-spacing: -0.045em;
+}
+
+.welcomePanel p {
+  max-width: 690px;
+  margin: 13px 0 0;
+  color: #6f788b;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.welcomeProgress {
+  padding: 20px 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  display: grid;
+  background: rgba(248, 249, 251, 0.9);
+}
+
+.welcomeProgress > span {
+  color: #7c8495;
+  font-size: 0.69rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.welcomeProgress strong {
+  margin-top: 5px;
+  color: #1b2942;
+  font-size: 0.93rem;
+}
+
+.welcomeProgress > div {
+  height: 8px;
+  margin-top: 16px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e4e7eb;
+}
+
+.welcomeProgress i {
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  display: block;
+  background: linear-gradient(90deg, #d90000, #f13c3c);
+}
+
+.welcomeProgress small {
+  margin-top: 9px;
+  color: #868e9e;
+  font-size: 0.67rem;
+}
+
+.summaryGrid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.summaryCard {
+  min-width: 0;
+  padding: 21px;
+  border: 1px solid #e1e4e9;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(29, 43, 69, 0.045);
+}
+
+.summaryIcon {
+  width: 45px;
+  height: 45px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: rgba(217, 0, 0, 0.07);
+  color: #d90000;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.summaryCard > div {
+  min-width: 0;
+  display: grid;
+}
+
+.summaryCard p,
+.summaryCard strong,
+.summaryCard small {
+  margin: 0;
+}
+
+.summaryCard p {
+  color: #7c8495;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.summaryCard strong {
+  margin-top: 2px;
+  color: #17233a;
+  font-size: 1.55rem;
+  letter-spacing: -0.04em;
+}
+
+.summaryCard small {
+  margin-top: 2px;
+  overflow: hidden;
+  color: #9298a5;
+  font-size: 0.65rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboardColumns {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(310px, 0.75fr);
+  gap: 20px;
+}
+
+.dashboardPanel {
+  min-width: 0;
+  padding: 27px;
+  border: 1px solid #e1e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.panelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.panelHeading h2 {
+  margin: 6px 0 0;
+  color: #17233a;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.panelHeading > button {
+  min-height: 39px;
+  padding: 0 14px;
+  border: 1px solid #e0e3e8;
+  border-radius: 11px;
+  background: #f8f9fa;
+  color: #9399a6;
+  font: inherit;
+  font-size: 0.73rem;
+  font-weight: 750;
+  cursor: not-allowed;
+}
+
+.clientList {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.clientRow {
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #e7e9ed;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: auto minmax(140px, 1fr) auto auto auto;
+  align-items: center;
+  gap: 14px;
+  background: #fbfbfc;
+}
+
+.clientAvatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17233a;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.clientInfo {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.clientInfo strong {
+  overflow: hidden;
+  color: #1b2941;
+  font-size: 0.84rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clientInfo span {
+  color: #8b92a0;
+  font-size: 0.69rem;
+}
+
+.clientMotorcycles {
+  display: grid;
+  text-align: center;
+}
+
+.clientMotorcycles strong {
+  color: #25324a;
+  font-size: 0.88rem;
+}
+
+.clientMotorcycles span {
+  color: #9298a5;
+  font-size: 0.61rem;
+}
+
+.activeStatus {
+  padding: 6px 9px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(26, 170, 103, 0.08);
+  color: #188354;
+  font-size: 0.65rem;
+  font-weight: 750;
+}
+
+.activeStatus i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1aaa67;
+}
+
+.clientRow > button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #e1e4e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #a0a5af;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 750;
+  cursor: not-allowed;
+}
+
+.timeline {
+  margin-top: 23px;
+  display: grid;
+  gap: 2px;
+}
+
+.timeline > div {
+  min-height: 69px;
+  padding-bottom: 12px;
+  display: grid;
+  grid-template-columns: 31px 1fr;
+  gap: 12px;
+  position: relative;
+}
+
+.timeline > div:not(:last-child)::after {
+  content: "";
+  width: 1px;
+  height: calc(100% - 34px);
+  position: absolute;
+  top: 32px;
+  left: 15px;
+  background: #e1e4e8;
+}
+
+.timeline > div > span {
+  width: 31px;
+  height: 31px;
+  border: 1px solid #dde1e6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  background: #f6f7f9;
+  color: #8d94a1;
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.timelineActive > span {
+  border-color: rgba(217, 0, 0, 0.15) !important;
+  background: #d90000 !important;
+  box-shadow: 0 7px 16px rgba(217, 0, 0, 0.18);
+  color: #ffffff !important;
+}
+
+.timeline strong {
+  color: #253149;
+  font-size: 0.8rem;
+}
+
+.timeline p {
+  margin: 4px 0 0;
+  color: #8b92a0;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.quickActionsSection {
+  margin-top: 22px;
+  padding: 27px;
+  border: 1px solid #e1e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.quickActionsGrid {
+  margin-top: 21px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.quickActionCard {
+  padding: 21px;
+  border: 1px solid #e6e8ec;
+  border-radius: 17px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(217, 0, 0, 0.045), transparent 10rem),
+    #fafbfc;
+}
+
+.quickActionCard > span {
+  color: #d90000;
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quickActionCard h3 {
+  margin: 14px 0 0;
+  color: #1c2941;
+  font-size: 0.93rem;
+}
+
+.quickActionCard p {
+  min-height: 43px;
+  margin: 8px 0 0;
+  color: #7f8797;
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.quickActionCard button {
+  width: 100%;
+  min-height: 39px;
+  margin-top: 17px;
+  padding: 0 12px;
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  color: #a0a5b0;
+  font: inherit;
+  font-size: 0.69rem;
+  font-weight: 750;
+  cursor: not-allowed;
+}
+
+.quickActionCard button i {
+  font-style: normal;
+  font-size: 1rem;
+}
+
+.adminLoading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f4f6f9;
+  color: #737c8e;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.adminLoadingMark {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d90000;
+  box-shadow: 0 12px 26px rgba(217, 0, 0, 0.22);
+  color: #ffffff;
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.adminLoading p {
+  margin: 15px 0 0;
+  font-size: 0.83rem;
+}
+
+.sidebarBackdrop {
+  display: none;
+}
+
+@media (max-width: 1120px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboardColumns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .loginPage {
+    grid-template-columns: 1fr;
+  }
+
+  .loginBrandPanel {
+    min-height: auto;
+    padding: 58px 30px;
+  }
+
+  .loginBrandContent > h1 {
+    font-size: clamp(2.6rem, 9vw, 4.2rem);
+  }
+
+  .loginBenefits {
+    display: none;
+  }
+
+  .loginFormPanel {
+    min-height: auto;
+    padding: 38px 20px 60px;
+  }
+
+  .adminApp {
+    display: block;
+  }
+
+  .adminSidebar {
+    transform: translateX(-105%);
+    transition: transform 190ms ease;
+  }
+
+  .adminSidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarBackdrop {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    background: rgba(12, 18, 30, 0.52);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 190ms ease;
+  }
+
+  .sidebarBackdropVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebarClose {
+    width: 37px;
+    height: 37px;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+  }
+
+  .adminMain {
+    grid-column: auto;
+  }
+
+  .mobileMenuButton {
+    width: 41px;
+    height: 41px;
+    padding: 0;
+    border: 1px solid #e0e3e8;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background: #ffffff;
+    color: #26334a;
+    cursor: pointer;
+  }
+
+  .adminTopbar {
+    min-height: 82px;
+  }
+}
+
+@media (max-width: 700px) {
+  .loginCard {
+    padding: 29px 22px;
+    border-radius: 22px;
+  }
+
+  .loginBrandPanel {
+    padding: 46px 22px;
+  }
+
+  .loginBrandContent > p {
+    font-size: 0.95rem;
+  }
+
+  .adminTopbar {
+    padding: 15px 15px;
+  }
+
+  .topbarHeading h1 {
+    font-size: 1.15rem;
+  }
+
+  .topbarHeading p {
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .topbarStatus {
+    display: none;
+  }
+
+  .adminContent {
+    padding: 20px 12px 45px;
+  }
+
+  .welcomePanel {
+    padding: 24px 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    border-radius: 20px;
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .summaryCard {
+    padding: 16px 13px;
+    border-radius: 16px;
+    align-items: flex-start;
+  }
+
+  .summaryIcon {
+    width: 37px;
+    height: 37px;
+    border-radius: 11px;
+  }
+
+  .summaryCard strong {
+    font-size: 1.25rem;
+  }
+
+  .dashboardPanel,
+  .quickActionsSection {
+    padding: 20px 15px;
+    border-radius: 19px;
+  }
+
+  .clientRow {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .clientMotorcycles,
+  .clientRow > button {
+    display: none;
+  }
+
+  .quickActionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryCard {
+    align-items: center;
+  }
+
+  .adminSidebar {
+    width: min(300px, 86vw);
+  }
+}
+
+
+/* Estados da autenticação real */
+
+.loginForm input:disabled,
+.loginButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.loginButton:disabled:hover {
+  background: #d90000;
+  box-shadow: 0 12px 25px rgba(217, 0, 0, 0.2);
+  transform: none;
+}
+
+.sidebarUser small {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* Estados da autenticação real */
+
+.loginForm input:disabled,
+.loginButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.loginButton:disabled:hover {
+  background: #d90000;
+  box-shadow: 0 12px 25px rgba(217, 0, 0, 0.2);
+  transform: none;
+}
+
+.sidebarUser small {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Gestão de clientes */
+
+.clientsHero {
+  padding: 30px 32px;
+  border: 1px solid #e0e4e9;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(217, 0, 0, 0.06), transparent 15rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.clientsHero h2 {
+  margin: 8px 0 0;
+  color: #17233a;
+  font-size: clamp(1.7rem, 3vw, 2.45rem);
+  letter-spacing: -0.045em;
+}
+
+.clientsHero p {
+  max-width: 690px;
+  margin: 12px 0 0;
+  color: #717a8d;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.primaryAdminButton {
+  min-width: 165px;
+  min-height: 48px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 13px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 9px;
+  background: #d90000;
+  box-shadow: 0 10px 22px rgba(217, 0, 0, 0.16);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.79rem;
+  font-weight: 800;
+}
+
+.primaryAdminButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.primaryAdminButton > span {
+  grid-row: 1 / 3;
+  font-size: 1.25rem;
+}
+
+.primaryAdminButton small {
+  color: rgba(255, 255, 255, 0.63);
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.clientStatsGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.clientStatsGrid article {
+  padding: 20px 22px;
+  border: 1px solid #e1e4e9;
+  border-radius: 18px;
+  display: grid;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(29, 43, 69, 0.04);
+}
+
+.clientStatsGrid span {
+  color: #7d8595;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.clientStatsGrid strong {
+  margin-top: 4px;
+  color: #19263e;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+}
+
+.clientStatsGrid small {
+  margin-top: 2px;
+  color: #9299a6;
+  font-size: 0.65rem;
+}
+
+.clientsPanel {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.clientsToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.adminSearchField {
+  width: min(520px, 100%);
+  min-height: 46px;
+  padding: 0 15px;
+  border: 1px solid #dfe3e8;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7f8fa;
+  color: #9298a5;
+}
+
+.adminSearchField span {
+  font-size: 1.2rem;
+}
+
+.adminSearchField input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1b2941;
+  font: inherit;
+  font-size: 0.79rem;
+}
+
+.adminSearchField input::placeholder {
+  color: #9ba1ac;
+}
+
+.statusFilters {
+  padding: 4px;
+  border: 1px solid #e0e4e8;
+  border-radius: 12px;
+  display: flex;
+  background: #f6f7f9;
+}
+
+.statusFilters button {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #7f8795;
+  font: inherit;
+  font-size: 0.69rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.statusFilters .statusFilterActive {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(29, 43, 69, 0.08);
+  color: #1e2b43;
+}
+
+.adminSuccessMessage {
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(26, 170, 103, 0.18);
+  border-radius: 12px;
+  background: rgba(26, 170, 103, 0.07);
+  color: #177c51;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.adminErrorBox {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: rgba(180, 35, 24, 0.055);
+}
+
+.adminErrorBox p {
+  margin: 0;
+  color: #a62d23;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.adminErrorBox button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  border-radius: 9px;
+  background: #ffffff;
+  color: #9f2e25;
+  font: inherit;
+  font-size: 0.67rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.adminListLoading {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8a92a1;
+}
+
+.adminListLoading span {
+  width: 31px;
+  height: 31px;
+  border: 3px solid #e3e6ea;
+  border-top-color: #d90000;
+  border-radius: 50%;
+  animation: adminSpin 700ms linear infinite;
+}
+
+.adminListLoading p {
+  margin: 13px 0 0;
+  font-size: 0.75rem;
+}
+
+@keyframes adminSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.clientsTable {
+  margin-top: 20px;
+  border: 1px solid #e3e6ea;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.clientsTableHeader,
+.adminClientRow {
+  display: grid;
+  grid-template-columns:
+    minmax(210px, 1.35fr)
+    minmax(170px, 1fr)
+    minmax(90px, 0.55fr)
+    minmax(100px, 0.62fr)
+    minmax(205px, 1fr);
+  align-items: center;
+  gap: 15px;
+}
+
+.clientsTableHeader {
+  min-height: 43px;
+  padding: 0 17px;
+  border-bottom: 1px solid #e4e7eb;
+  background: #f6f7f9;
+  color: #8a92a0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.adminClientRow {
+  min-height: 82px;
+  padding: 13px 17px;
+  background: #ffffff;
+}
+
+.adminClientRow:not(:last-child) {
+  border-bottom: 1px solid #eceef1;
+}
+
+.adminClientRow:hover {
+  background: #fcfcfd;
+}
+
+.adminClientIdentity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adminClientIdentity img {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ffffff;
+  border-radius: 14px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  box-shadow: 0 7px 17px rgba(29, 43, 69, 0.11);
+}
+
+.adminClientIdentity div,
+.adminClientContact,
+.adminClientCatalogCount {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.adminClientIdentity strong,
+.adminClientContact strong {
+  overflow: hidden;
+  color: #1e2b43;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminClientIdentity span,
+.adminClientContact span,
+.adminClientCatalogCount span {
+  overflow: hidden;
+  color: #9299a6;
+  font-size: 0.64rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminClientCatalogCount strong {
+  color: #233149;
+  font-size: 0.9rem;
+}
+
+.clientStatusActive,
+.clientStatusInactive,
+.dashboardInactiveStatus {
+  width: fit-content;
+  padding: 6px 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.64rem;
+  font-weight: 750;
+}
+
+.clientStatusActive {
+  background: rgba(26, 170, 103, 0.08);
+  color: #188354;
+}
+
+.clientStatusInactive,
+.dashboardInactiveStatus {
+  background: rgba(180, 35, 24, 0.075);
+  color: #a4372d;
+}
+
+.clientStatusActive i,
+.clientStatusInactive i,
+.dashboardInactiveStatus i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.clientStatusActive i {
+  background: #1aaa67;
+}
+
+.clientStatusInactive i,
+.dashboardInactiveStatus i {
+  background: #c44538;
+}
+
+.adminClientActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.adminClientActions a,
+.adminClientActions button {
+  min-height: 35px;
+  padding: 0 11px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.adminClientActions a {
+  border: 1px solid #dfe3e8;
+  background: #ffffff;
+  color: #26334a;
+}
+
+.adminClientActions button {
+  cursor: pointer;
+}
+
+.adminClientActions button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.blockClientButton {
+  border: 1px solid rgba(180, 35, 24, 0.17);
+  background: rgba(180, 35, 24, 0.055);
+  color: #a1352b;
+}
+
+.activateClientButton {
+  border: 1px solid rgba(26, 170, 103, 0.19);
+  background: rgba(26, 170, 103, 0.065);
+  color: #187e52;
+}
+
+.adminEmptyState {
+  min-height: 180px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8c93a1;
+  text-align: center;
+}
+
+.adminEmptyState strong {
+  color: #344057;
+  font-size: 0.85rem;
+}
+
+.adminEmptyState p {
+  margin: 7px 0 0;
+  font-size: 0.72rem;
+}
+
+.panelTextLink {
+  color: #d90000;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.dashboardManageLink {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #e1e4e8;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #4b566a;
+  font-size: 0.66rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.quickActionLink {
+  width: 100%;
+  min-height: 39px;
+  margin-top: 17px;
+  padding: 0 12px;
+  border: 1px solid rgba(217, 0, 0, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(217, 0, 0, 0.045);
+  color: #c50000;
+  font-size: 0.69rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.quickActionLink i {
+  font-style: normal;
+  font-size: 1rem;
+}
+
+@media (max-width: 1050px) {
+  .clientsTableHeader {
+    display: none;
+  }
+
+  .clientsTable {
+    border: 0;
+    border-radius: 0;
+    display: grid;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .adminClientRow {
+    min-height: auto;
+    padding: 17px;
+    border: 1px solid #e2e5e9 !important;
+    border-radius: 15px;
+    grid-template-columns: minmax(220px, 1fr) auto auto;
+    gap: 16px;
+    box-shadow: 0 7px 20px rgba(29, 43, 69, 0.035);
+  }
+
+  .adminClientContact {
+    grid-column: 1;
+    padding-left: 62px;
+  }
+
+  .adminClientCatalogCount {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .adminClientRow > .clientStatusActive,
+  .adminClientRow > .clientStatusInactive {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .adminClientActions {
+    grid-column: 2 / 4;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .clientsHero {
+    padding: 24px 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .primaryAdminButton {
+    width: 100%;
+  }
+
+  .clientStatsGrid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .clientStatsGrid article {
+    padding: 16px 18px;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .clientStatsGrid strong {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .clientsPanel {
+    padding: 16px 12px;
+  }
+
+  .clientsToolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .statusFilters {
+    width: 100%;
+  }
+
+  .statusFilters button {
+    flex: 1;
+    padding: 0 7px;
+  }
+
+  .adminErrorBox {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .adminClientRow {
+    grid-template-columns: 1fr auto;
+  }
+
+  .adminClientContact {
+    padding-left: 0;
+  }
+
+  .adminClientCatalogCount {
+    display: none;
+  }
+
+  .adminClientRow > .clientStatusActive,
+  .adminClientRow > .clientStatusInactive {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .adminClientActions {
+    grid-column: 1 / 3;
+    grid-row: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adminClientActions a,
+  .adminClientActions button {
+    width: 100%;
+  }
+}
+
+/* Ajuste da lista resumida do dashboard */
+
+.dashboardPanel .clientRow {
+  grid-template-columns: auto minmax(140px, 1fr) auto auto;
+}
+
+@media (max-width: 700px) {
+  .dashboardPanel .clientRow {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .dashboardPanel .dashboardManageLink {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+
+/* Edição do perfil do cliente */
+
+.editClientTopbar {
+  margin-bottom: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.editClientTopbar button,
+.editClientTopbar a {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #4a566b;
+  font: inherit;
+  font-size: 0.69rem;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.editClientLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.editClientFormPanel,
+.clientPreviewPanel {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.editClientSectionHeading h2 {
+  margin: 7px 0 0;
+  color: #19263e;
+  font-size: 1.24rem;
+  letter-spacing: -0.035em;
+}
+
+.editClientSectionHeading p {
+  margin: 8px 0 0;
+  color: #858d9c;
+  font-size: 0.71rem;
+  line-height: 1.5;
+}
+
+.editClientFields {
+  margin-top: 21px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+}
+
+.editClientFields label,
+.colorFields label {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  color: #27344b;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.editClientFields input,
+.editClientFields textarea,
+.colorFields input[type="text"],
+.colorFields input:not([type]) {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  background: #f7f8fa;
+  color: #1c2941;
+  font: inherit;
+  outline: 0;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.editClientFields input {
+  min-height: 47px;
+  padding: 0 13px;
+}
+
+.editClientFields textarea {
+  padding: 12px 13px;
+  resize: vertical;
+}
+
+.editClientFields input:focus,
+.editClientFields textarea:focus,
+.colorFields input:focus {
+  border-color: rgba(217, 0, 0, 0.42);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.065);
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.lockedInput {
+  min-height: 47px;
+  padding: 0 10px 0 13px;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  background: #f1f3f5;
+  color: #8a92a0;
+}
+
+.lockedInput input {
+  min-height: 42px;
+  padding: 0 5px;
+  border: 0;
+  background: transparent;
+  color: #7c8494;
+}
+
+.lockedInput small {
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: #e4e7eb;
+  color: #7d8595;
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.editClientDivider {
+  height: 1px;
+  margin: 29px 0;
+  background: #e8eaed;
+}
+
+.colorFields {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+}
+
+.colorFields label > div {
+  min-height: 47px;
+  padding: 5px 6px;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  gap: 8px;
+  background: #f7f8fa;
+}
+
+.colorFields input[type="color"] {
+  width: 38px;
+  height: 35px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+}
+
+.colorFields input:not([type="color"]) {
+  min-height: 35px;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+}
+
+.editClientError,
+.editClientSuccess {
+  margin: 22px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.editClientError {
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  background: rgba(180, 35, 24, 0.055);
+  color: #a42e25;
+}
+
+.editClientSuccess {
+  border: 1px solid rgba(26, 170, 103, 0.18);
+  background: rgba(26, 170, 103, 0.07);
+  color: #177c51;
+}
+
+.editClientActions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e7e9ed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.editClientActions button {
+  min-height: 43px;
+  padding: 0 15px;
+  border: 1px solid #dfe3e8;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #566176;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.editClientActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.editClientActions .saveClientButton {
+  border-color: #d90000;
+  background: #d90000;
+  box-shadow: 0 9px 21px rgba(217, 0, 0, 0.16);
+  color: #ffffff;
+}
+
+.previewSticky {
+  position: sticky;
+  top: 120px;
+}
+
+.clientProfilePreview {
+  margin-top: 20px;
+  border: 1px solid #e1e4e8;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f5f6f8;
+}
+
+.clientPreviewBanner {
+  height: 94px;
+  background:
+    radial-gradient(circle at 72% 0, rgba(255, 255, 255, 0.22), transparent 9rem),
+    var(--preview-primary);
+}
+
+.clientPreviewCard {
+  width: calc(100% - 28px);
+  margin: -39px auto 14px;
+  padding: 0 19px 21px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0 13px 30px rgba(29, 43, 69, 0.12);
+  text-align: center;
+}
+
+.clientPreviewPhoto {
+  width: 82px;
+  height: 82px;
+  margin: -41px auto 10px;
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #eef0f3;
+  box-shadow: 0 9px 20px rgba(29, 43, 69, 0.14);
+  color: #8a92a0;
+  font-size: 0.62rem;
+}
+
+.clientPreviewPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clientPreviewLogo {
+  max-width: 105px;
+  height: 35px;
+  margin: 0 auto 8px;
+  object-fit: contain;
+}
+
+.clientPreviewCard h3 {
+  margin: 0;
+  color: var(--preview-secondary);
+  font-size: 1.22rem;
+  letter-spacing: -0.035em;
+}
+
+.clientPreviewCard p {
+  min-height: 39px;
+  margin: 9px 0 0;
+  color: #7c8494;
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.clientPreviewButton {
+  min-height: 38px;
+  margin-top: 15px;
+  padding: 0 15px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--preview-primary);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.previewInfoBox {
+  margin-top: 15px;
+  padding: 14px 15px;
+  border: 1px solid #e3e6ea;
+  border-radius: 13px;
+  background: #f7f8fa;
+}
+
+.previewInfoBox strong {
+  color: #344057;
+  font-size: 0.7rem;
+}
+
+.previewInfoBox p {
+  margin: 5px 0 0;
+  color: #858d9c;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 1100px) {
+  .editClientLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .previewSticky {
+    position: static;
+  }
+
+  .clientPreviewPanel {
+    order: -1;
+  }
+
+  .clientProfilePreview {
+    width: min(430px, 100%);
+  }
+}
+
+@media (max-width: 700px) {
+  .editClientTopbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .editClientTopbar button,
+  .editClientTopbar a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .editClientFormPanel,
+  .clientPreviewPanel {
+    padding: 21px 15px;
+    border-radius: 19px;
+  }
+
+  .editClientFields,
+  .colorFields {
+    grid-template-columns: 1fr;
+  }
+
+  .fullField {
+    grid-column: auto;
+  }
+
+  .editClientActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .editClientActions button {
+    width: 100%;
+  }
+}
+
+/* A listagem passa a ter três ações. */
+
+@media (min-width: 1051px) {
+  .clientsTableHeader,
+  .adminClientRow {
+    grid-template-columns:
+      minmax(190px, 1.25fr)
+      minmax(155px, 0.9fr)
+      minmax(85px, 0.48fr)
+      minmax(95px, 0.55fr)
+      minmax(285px, 1.35fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .adminClientActions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adminClientActions button {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* Cadastro de novo cliente */
+
+.primaryAdminButton {
+  text-decoration: none;
+}
+
+.primaryAdminButton small {
+  display: block;
+}
+
+.newClientStep {
+  padding: 8px 11px;
+  border: 1px solid rgba(217, 0, 0, 0.13);
+  border-radius: 999px;
+  background: rgba(217, 0, 0, 0.045);
+  color: #c80000;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.slugInput {
+  min-height: 47px;
+  padding: 0 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 5px;
+  background: #f7f8fa;
+  color: #8a92a0;
+}
+
+.slugInput:focus-within {
+  border-color: rgba(217, 0, 0, 0.42);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.065);
+}
+
+.slugInput input {
+  min-height: 43px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none !important;
+}
+
+.fieldHint {
+  margin-top: -2px;
+  color: #969ca8;
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+.clientActiveField {
+  grid-column: 1 / -1;
+  min-height: 62px;
+  padding: 12px 14px;
+  border: 1px solid #e1e4e8;
+  border-radius: 13px;
+  display: flex !important;
+  align-items: flex-start;
+  gap: 11px !important;
+  background: #f8f9fa;
+  cursor: pointer;
+}
+
+.clientActiveField > input {
+  width: 18px;
+  height: 18px;
+  min-height: auto;
+  margin-top: 2px;
+  accent-color: #d90000;
+}
+
+.clientActiveField > span {
+  display: grid;
+  gap: 4px;
+}
+
+.clientActiveField strong {
+  color: #28354c;
+  font-size: 0.72rem;
+}
+
+.clientActiveField small {
+  color: #8b92a0;
+  font-size: 0.63rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .newClientStep {
+    text-align: center;
+  }
+}
+
+
+/* Motos por cliente */
+
+.editClientTopbarActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.motorcycleManagerHero {
+  padding: 28px 31px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(217, 0, 0, 0.06), transparent 15rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.motorcycleManagerHero h2 {
+  margin: 8px 0 0;
+  color: #17233a;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  letter-spacing: -0.045em;
+}
+
+.motorcycleManagerHero p {
+  max-width: 720px;
+  margin: 11px 0 0;
+  color: #737c8e;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.motorcycleManagerSummary {
+  min-width: 165px;
+  padding: 17px 20px;
+  border: 1px solid #e2e5e9;
+  border-radius: 17px;
+  display: grid;
+  background: #f8f9fa;
+}
+
+.motorcycleManagerSummary span {
+  color: #858d9c;
+  font-size: 0.65rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.motorcycleManagerSummary strong {
+  margin-top: 2px;
+  color: #d90000;
+  font-size: 1.75rem;
+  letter-spacing: -0.04em;
+}
+
+.motorcycleManagerSummary small {
+  color: #969ca8;
+  font-size: 0.61rem;
+}
+
+.motorcycleManagerPanel {
+  margin-top: 18px;
+  padding: 23px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.motorcycleManagerToolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(190px, auto) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.motorcycleCategorySelect {
+  min-height: 46px;
+  padding: 0 38px 0 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 13px;
+  background: #f7f8fa;
+  color: #445066;
+  font: inherit;
+  font-size: 0.72rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.motorcycleCategorySelect:focus {
+  border-color: rgba(217, 0, 0, 0.42);
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.065);
+}
+
+.motorcycleBulkActions {
+  display: flex;
+  gap: 7px;
+}
+
+.motorcycleBulkActions button {
+  min-height: 39px;
+  padding: 0 11px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #536075;
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 750;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.motorcycleSelectionGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.motorcycleSelectionCard {
+  min-width: 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 17px;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.motorcycleSelectionCard:hover {
+  border-color: rgba(217, 0, 0, 0.28);
+  box-shadow: 0 10px 25px rgba(29, 43, 69, 0.075);
+  transform: translateY(-2px);
+}
+
+.motorcycleSelectionCard > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.motorcycleSelectionCardActive {
+  border-color: rgba(217, 0, 0, 0.62);
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.065);
+}
+
+.motorcycleSelectionCardDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.motorcycleSelectionCardDisabled:hover {
+  border-color: #e1e4e8;
+  box-shadow: none;
+  transform: none;
+}
+
+.motorcycleSelectionCheck {
+  width: 27px;
+  height: 27px;
+  border: 2px solid #d7dbe1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.94);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.motorcycleSelectionCardActive .motorcycleSelectionCheck {
+  border-color: #d90000;
+  background: #d90000;
+}
+
+.motorcycleSelectionImage {
+  height: 150px;
+  padding: 12px 15px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 80%, rgba(29, 43, 69, 0.055), transparent 7rem),
+    #f7f8fa;
+}
+
+.motorcycleSelectionImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.motorcycleSelectionInfo {
+  min-height: 112px;
+  padding: 14px;
+  border-top: 1px solid #ebedf0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.motorcycleSelectionInfo > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.motorcycleSelectionInfo strong {
+  overflow: hidden;
+  color: #1d2a42;
+  font-size: 0.77rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.motorcycleSelectionInfo span {
+  overflow: hidden;
+  color: #8c93a1;
+  font-size: 0.61rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.motorcycleSelectionInfo small {
+  margin-top: auto;
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgba(217, 0, 0, 0.055);
+  color: #c60000;
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.motorcycleSelectionInfo em {
+  margin-top: auto;
+  color: #a13a30;
+  font-size: 0.58rem;
+  font-style: normal;
+}
+
+.motorcycleManagerFooter {
+  margin-top: 22px;
+  padding: 18px 0 0;
+  border-top: 1px solid #e6e9ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.motorcycleManagerFooter > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.motorcycleManagerFooter strong {
+  color: #26334a;
+  font-size: 0.76rem;
+}
+
+.motorcycleManagerFooter span {
+  color: #8a92a0;
+  font-size: 0.64rem;
+}
+
+.motorcycleManagerFooter > div:last-child {
+  display: flex;
+  gap: 9px;
+}
+
+.motorcycleManagerFooter button {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #dfe3e8;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #566176;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.motorcycleManagerFooter button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.motorcycleManagerFooter .saveClientButton {
+  border-color: #d90000;
+  background: #d90000;
+  box-shadow: 0 9px 21px rgba(217, 0, 0, 0.16);
+  color: #ffffff;
+}
+
+/* Quatro ações na listagem de clientes */
+
+@media (min-width: 1051px) {
+  .clientsTableHeader,
+  .adminClientRow {
+    grid-template-columns:
+      minmax(180px, 1.15fr)
+      minmax(145px, 0.83fr)
+      minmax(80px, 0.45fr)
+      minmax(90px, 0.52fr)
+      minmax(360px, 1.7fr);
+  }
+}
+
+@media (max-width: 1250px) {
+  .motorcycleSelectionGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .motorcycleManagerToolbar {
+    grid-template-columns: minmax(260px, 1fr) minmax(190px, auto);
+  }
+
+  .motorcycleBulkActions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .motorcycleSelectionGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .editClientTopbarActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleManagerHero {
+    padding: 23px 19px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleManagerSummary {
+    width: 100%;
+  }
+
+  .motorcycleManagerPanel {
+    padding: 16px 12px;
+  }
+
+  .motorcycleManagerToolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleBulkActions {
+    grid-column: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .motorcycleSelectionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleSelectionImage {
+    height: 180px;
+  }
+
+  .motorcycleManagerFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleManagerFooter > div:last-child {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleManagerFooter button {
+    width: 100%;
+  }
+
+  .adminClientActions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adminClientActions button {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* Gestão centralizada de planos */
+
+.plansHero {
+  padding: 30px 32px;
+  border: 1px solid #e0e4e9;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 91% 0, rgba(217, 0, 0, 0.07), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.plansHero h2 {
+  margin: 8px 0 0;
+  color: #17233a;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.045em;
+}
+
+.plansHero p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: #717a8d;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.centralUpdateBadge {
+  min-width: 215px;
+  padding: 18px 20px;
+  border: 1px solid rgba(217, 0, 0, 0.13);
+  border-radius: 17px;
+  display: grid;
+  background: rgba(217, 0, 0, 0.045);
+}
+
+.centralUpdateBadge span {
+  color: #c90000;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.centralUpdateBadge strong {
+  margin-top: 4px;
+  color: #213049;
+  font-size: 0.94rem;
+}
+
+.centralUpdateBadge small {
+  margin-top: 3px;
+  color: #8d94a1;
+  font-size: 0.61rem;
+}
+
+.planStatsGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.planStatsGrid article {
+  padding: 20px 22px;
+  border: 1px solid #e1e4e9;
+  border-radius: 18px;
+  display: grid;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(29, 43, 69, 0.04);
+}
+
+.planStatsGrid span {
+  color: #7d8595;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.planStatsGrid strong {
+  margin-top: 4px;
+  color: #19263e;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+}
+
+.planStatsGrid small {
+  margin-top: 2px;
+  color: #9299a6;
+  font-size: 0.65rem;
+}
+
+.plansPanel {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.planMotorcycleGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.planMotorcycleCard {
+  min-width: 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.planMotorcycleCard:hover {
+  border-color: rgba(217, 0, 0, 0.25);
+  box-shadow: 0 13px 30px rgba(29, 43, 69, 0.08);
+  transform: translateY(-3px);
+}
+
+.planMotorcycleCardInactive {
+  opacity: 0.64;
+}
+
+.planMotorcycleImage {
+  height: 165px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 75%, rgba(29, 43, 69, 0.06), transparent 8rem),
+    #f6f7f9;
+}
+
+.planMotorcycleImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.planMotoActiveBadge,
+.planMotoInactiveBadge {
+  padding: 5px 8px;
+  border-radius: 999px;
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  font-size: 0.55rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.planMotoActiveBadge {
+  background: rgba(26, 170, 103, 0.1);
+  color: #168052;
+}
+
+.planMotoInactiveBadge {
+  background: rgba(180, 35, 24, 0.08);
+  color: #a2382e;
+}
+
+.planMotorcycleContent {
+  padding: 16px;
+}
+
+.planMotorcycleContent > span {
+  color: #9399a6;
+  font-size: 0.59rem;
+}
+
+.planMotorcycleContent h3 {
+  min-height: 38px;
+  margin: 5px 0 0;
+  color: #1d2a42;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.planMotorcycleNumbers {
+  margin-top: 15px;
+  padding: 12px 0;
+  border-top: 1px solid #eceef1;
+  border-bottom: 1px solid #eceef1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.planMotorcycleNumbers > div {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.planMotorcycleNumbers strong {
+  overflow: hidden;
+  color: #253249;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.planMotorcycleNumbers span {
+  color: #969ca8;
+  font-size: 0.57rem;
+}
+
+.planMotorcycleContent > a {
+  min-height: 39px;
+  margin-top: 14px;
+  padding: 0 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d90000;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* Editor de planos */
+
+.planEditorHero {
+  padding: 27px 30px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background:
+    radial-gradient(circle at 91% 0, rgba(217, 0, 0, 0.065), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.planEditorHero h2 {
+  margin: 7px 0 0;
+  color: #17233a;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  letter-spacing: -0.045em;
+}
+
+.planEditorHero p {
+  margin: 7px 0 0;
+  color: #858d9c;
+  font-size: 0.72rem;
+}
+
+.planEditorSummary {
+  min-width: 300px;
+  padding: 16px 18px;
+  border: 1px solid #e2e5e9;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  background: #f8f9fa;
+}
+
+.planEditorSummary > div {
+  display: grid;
+  gap: 4px;
+}
+
+.planEditorSummary span {
+  color: #858d9c;
+  font-size: 0.6rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.planEditorSummary strong {
+  color: #223048;
+  font-size: 1rem;
+}
+
+.planEditorPanel {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.planEditorNotice {
+  padding: 14px 16px;
+  border: 1px solid rgba(26, 170, 103, 0.17);
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  background: rgba(26, 170, 103, 0.065);
+}
+
+.planEditorNotice > span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: #1aaa67;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.planEditorNotice strong {
+  color: #19794f;
+  font-size: 0.75rem;
+}
+
+.planEditorNotice p {
+  margin: 4px 0 0;
+  color: #4e7966;
+  font-size: 0.67rem;
+  line-height: 1.45;
+}
+
+.planEditorHeading {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.planEditorHeading h3 {
+  margin: 6px 0 0;
+  color: #26334a;
+  font-size: 1rem;
+}
+
+.planEditorHeading > button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid rgba(217, 0, 0, 0.17);
+  border-radius: 10px;
+  background: rgba(217, 0, 0, 0.05);
+  color: #c80000;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.planEditorTable {
+  margin-top: 17px;
+  border: 1px solid #e2e5e9;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.planEditorTableHeader,
+.planEditorRow {
+  display: grid;
+  grid-template-columns:
+    92px
+    minmax(105px, 0.7fr)
+    minmax(155px, 1fr)
+    minmax(120px, 0.8fr)
+    minmax(105px, 0.65fr)
+    80px;
+  align-items: center;
+  gap: 12px;
+}
+
+.planEditorTableHeader {
+  min-height: 43px;
+  padding: 0 15px;
+  border-bottom: 1px solid #e4e7eb;
+  background: #f6f7f9;
+  color: #8a92a0;
+  font-size: 0.59rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.planEditorRow {
+  min-height: 76px;
+  padding: 11px 15px;
+  background: #ffffff;
+}
+
+.planEditorRow:not(:last-child) {
+  border-bottom: 1px solid #eceef1;
+}
+
+.planEditorRowInactive {
+  background: #f8f9fa;
+  opacity: 0.7;
+}
+
+.planOrderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.planOrderActions > span {
+  width: 29px;
+  height: 29px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef0f3;
+  color: #596478;
+  font-size: 0.67rem;
+  font-weight: 850;
+}
+
+.planOrderActions > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.planOrderActions button {
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #6d7688;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+
+.planOrderActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.planEditorRow > label {
+  display: grid;
+  gap: 5px;
+}
+
+.planEditorRow > label > span {
+  display: none;
+}
+
+.planEditorRow input[type="number"],
+.planValueInput > div {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #f8f9fa;
+}
+
+.planEditorRow input[type="number"] {
+  padding: 0 11px;
+  color: #26334a;
+  font: inherit;
+  font-size: 0.74rem;
+  outline: 0;
+}
+
+.planValueInput > div {
+  padding: 0 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.planValueInput strong {
+  color: #798193;
+  font-size: 0.67rem;
+}
+
+.planValueInput input {
+  min-width: 0;
+  min-height: 38px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #26334a;
+  font: inherit;
+  font-size: 0.74rem;
+  outline: 0;
+}
+
+.planEditorRow input:focus,
+.planValueInput > div:focus-within {
+  border-color: rgba(217, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.06);
+}
+
+.planHighlightButton {
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #768092;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.planHighlightButtonActive {
+  border-color: rgba(217, 0, 0, 0.18);
+  background: rgba(217, 0, 0, 0.055);
+  color: #c90000;
+}
+
+.planHighlightButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.planActiveToggle {
+  grid-template-columns: auto auto !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px !important;
+  cursor: pointer;
+}
+
+.planActiveToggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.planActiveToggle > span {
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  display: block !important;
+  position: relative;
+  background: #cdd2da;
+  transition: background-color 150ms ease;
+}
+
+.planActiveToggle > span::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(29, 43, 69, 0.2);
+  transition: transform 150ms ease;
+}
+
+.planActiveToggle input:checked + span {
+  background: #1aaa67;
+}
+
+.planActiveToggle input:checked + span::after {
+  transform: translateX(16px);
+}
+
+.planActiveToggle small {
+  color: #6f788a;
+  font-size: 0.61rem;
+}
+
+.planRowActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.planRowActions button {
+  min-height: 33px;
+  padding: 0 9px;
+  border: 1px solid rgba(180, 35, 24, 0.16);
+  border-radius: 8px;
+  background: rgba(180, 35, 24, 0.05);
+  color: #a2372d;
+  font: inherit;
+  font-size: 0.59rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.planRowActions span {
+  color: #9aa0ab;
+  font-size: 0.58rem;
+}
+
+.planEditorFooter {
+  margin-top: 22px;
+  padding-top: 19px;
+  border-top: 1px solid #e6e9ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.planEditorFooter > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.planEditorFooter strong {
+  color: #26334a;
+  font-size: 0.75rem;
+}
+
+.planEditorFooter span {
+  color: #8a92a0;
+  font-size: 0.63rem;
+}
+
+.planEditorFooter > div:last-child {
+  display: flex;
+  gap: 9px;
+}
+
+.planEditorFooter button {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #dfe3e8;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #566176;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.planEditorFooter button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.planEditorFooter .saveClientButton {
+  border-color: #d90000;
+  background: #d90000;
+  box-shadow: 0 9px 21px rgba(217, 0, 0, 0.16);
+  color: #ffffff;
+}
+
+@media (max-width: 1250px) {
+  .planMotorcycleGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1050px) {
+  .planEditorTable {
+    border: 0;
+    display: grid;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .planEditorTableHeader {
+    display: none;
+  }
+
+  .planEditorRow {
+    min-height: auto;
+    padding: 17px;
+    border: 1px solid #e2e5e9 !important;
+    border-radius: 14px;
+    grid-template-columns: 86px 1fr 1fr;
+    gap: 14px;
+  }
+
+  .planEditorRow > label > span {
+    display: block;
+    color: #8c93a1;
+    font-size: 0.57rem;
+    font-weight: 750;
+    text-transform: uppercase;
+  }
+
+  .planHighlightButton,
+  .planActiveToggle,
+  .planRowActions {
+    grid-row: 2;
+  }
+
+  .planRowActions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .planMotorcycleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .plansHero,
+  .planEditorHero {
+    padding: 23px 19px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .centralUpdateBadge,
+  .planEditorSummary {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .planStatsGrid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .plansPanel,
+  .planEditorPanel {
+    padding: 16px 12px;
+  }
+
+  .planMotorcycleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .planMotorcycleImage {
+    height: 190px;
+  }
+
+  .planEditorHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .planEditorHeading > button {
+    width: 100%;
+  }
+
+  .planEditorRow {
+    grid-template-columns: 1fr;
+  }
+
+  .planHighlightButton,
+  .planActiveToggle,
+  .planRowActions {
+    grid-row: auto;
+  }
+
+  .planActiveToggle {
+    min-height: 38px;
+  }
+
+  .planEditorFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .planEditorFooter > div:last-child {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .planEditorFooter button {
+    width: 100%;
+  }
+}
+
+
+/* Gestão central de motos */
+
+.motorcyclesAdminHero {
+  padding: 30px 32px;
+  border: 1px solid #e0e4e9;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(217, 0, 0, 0.065), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.motorcyclesAdminHero h2 {
+  margin: 8px 0 0;
+  color: #17233a;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.045em;
+}
+
+.motorcyclesAdminHero p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: #717a8d;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.motorcycleAdminStats {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.motorcycleAdminStats article {
+  padding: 20px 22px;
+  border: 1px solid #e1e4e9;
+  border-radius: 18px;
+  display: grid;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(29, 43, 69, 0.04);
+}
+
+.motorcycleAdminStats span {
+  color: #7d8595;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.motorcycleAdminStats strong {
+  margin-top: 4px;
+  color: #19263e;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+}
+
+.motorcycleAdminStats small {
+  margin-top: 2px;
+  color: #9299a6;
+  font-size: 0.65rem;
+}
+
+.motorcyclesAdminPanel {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.motorcyclesAdminToolbar {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) auto auto;
+  align-items: center;
+  gap: 13px;
+}
+
+.motorcycleOrderActions {
+  display: flex;
+  gap: 8px;
+}
+
+.motorcycleOrderActions button {
+  min-height: 38px;
+  padding: 0 11px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #657084;
+  font: inherit;
+  font-size: 0.63rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.motorcycleOrderActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.motorcycleOrderActions .saveMotorcycleOrderButton {
+  border-color: rgba(217, 0, 0, 0.16);
+  background: rgba(217, 0, 0, 0.05);
+  color: #c70000;
+}
+
+.motorcycleOrderNotice {
+  margin: 14px 0 0;
+  color: #8a92a0;
+  font-size: 0.65rem;
+}
+
+.motorcycleAdminTable {
+  margin-top: 19px;
+  border: 1px solid #e3e6ea;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.motorcycleAdminTableHeader,
+.motorcycleAdminRow {
+  display: grid;
+  grid-template-columns:
+    94px
+    minmax(280px, 1.6fr)
+    minmax(155px, 0.75fr)
+    minmax(95px, 0.55fr)
+    minmax(265px, 1.15fr);
+  align-items: center;
+  gap: 14px;
+}
+
+.motorcycleAdminTableHeader {
+  min-height: 43px;
+  padding: 0 17px;
+  border-bottom: 1px solid #e4e7eb;
+  background: #f6f7f9;
+  color: #8a92a0;
+  font-size: 0.61rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.motorcycleAdminRow {
+  min-height: 100px;
+  padding: 12px 17px;
+  background: #ffffff;
+}
+
+.motorcycleAdminRow:not(:last-child) {
+  border-bottom: 1px solid #eceef1;
+}
+
+.motorcycleAdminRow:hover {
+  background: #fcfcfd;
+}
+
+.motorcycleAdminOrder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.motorcycleAdminOrder > strong {
+  width: 31px;
+  height: 31px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef0f3;
+  color: #596478;
+  font-size: 0.68rem;
+}
+
+.motorcycleAdminOrder > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.motorcycleAdminOrder button {
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #6d7688;
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+
+.motorcycleAdminOrder button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.motorcycleAdminIdentity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.motorcycleAdminIdentity img {
+  width: 105px;
+  height: 72px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.motorcycleAdminIdentity > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.motorcycleAdminIdentity small {
+  width: fit-content;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(217, 0, 0, 0.055);
+  color: #c60000;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.motorcycleAdminIdentity strong {
+  overflow: hidden;
+  color: #1e2b43;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.motorcycleAdminIdentity span {
+  overflow: hidden;
+  color: #8e95a3;
+  font-size: 0.63rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.motorcycleAdminUsage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.motorcycleAdminUsage > div {
+  display: grid;
+  gap: 2px;
+}
+
+.motorcycleAdminUsage strong {
+  color: #28354c;
+  font-size: 0.79rem;
+}
+
+.motorcycleAdminUsage span {
+  color: #9299a6;
+  font-size: 0.59rem;
+}
+
+.motorcycleAdminRowActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.motorcycleAdminRowActions a,
+.motorcycleAdminRowActions button {
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.motorcycleAdminRowActions a {
+  border: 1px solid #dfe3e8;
+  background: #ffffff;
+  color: #26334a;
+}
+
+.motorcycleAdminRowActions button {
+  cursor: pointer;
+}
+
+.motorcycleAdminRowActions button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+/* Editor central de uma moto */
+
+.motorcycleEditLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.55fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.motorcycleEditPanel,
+.motorcyclePreviewPanel {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.motorcycleDynamicHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.motorcycleDynamicHeading > button {
+  min-height: 39px;
+  padding: 0 12px;
+  border: 1px solid rgba(217, 0, 0, 0.16);
+  border-radius: 10px;
+  background: rgba(217, 0, 0, 0.05);
+  color: #c80000;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.motorcycleDynamicList,
+.motorcycleBenefitEditor {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.motorcycleDynamicRow {
+  padding: 13px;
+  border: 1px solid #e2e5e9;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 78px 1fr 1fr auto;
+  align-items: end;
+  gap: 12px;
+  background: #fafbfc;
+}
+
+.motorcycleDynamicOrder {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.motorcycleDynamicOrder > span {
+  width: 29px;
+  height: 29px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9ecf0;
+  color: #5f6a7e;
+  font-size: 0.67rem;
+  font-weight: 850;
+}
+
+.motorcycleDynamicOrder > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.motorcycleDynamicOrder button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #687286;
+  font-size: 0.62rem;
+  cursor: pointer;
+}
+
+.motorcycleDynamicOrder button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.motorcycleDynamicRow label,
+.motorcycleBenefitRow label {
+  display: grid;
+  gap: 6px;
+  color: #3a465c;
+  font-size: 0.64rem;
+  font-weight: 750;
+}
+
+.motorcycleDynamicRow input,
+.motorcycleBenefitRow input,
+.motorcycleBenefitRow select {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 11px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #26334a;
+  font: inherit;
+  font-size: 0.7rem;
+  outline: 0;
+}
+
+.motorcycleDynamicRow input:focus,
+.motorcycleBenefitRow input:focus,
+.motorcycleBenefitRow select:focus {
+  border-color: rgba(217, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.06);
+}
+
+.removeDynamicButton {
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid rgba(180, 35, 24, 0.15);
+  border-radius: 9px;
+  background: rgba(180, 35, 24, 0.045);
+  color: #a2382e;
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.motorcycleBenefitRow {
+  padding: 13px;
+  border: 1px solid #e2e5e9;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 78px minmax(120px, 0.65fr) 1fr 1.35fr auto;
+  align-items: end;
+  gap: 12px;
+  background: #fafbfc;
+}
+
+.motorcycleBenefitDescription {
+  min-width: 0;
+}
+
+.motorcycleAdminPreview {
+  margin-top: 19px;
+  border: 1px solid #e1e4e8;
+  border-radius: 19px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.motorcycleAdminPreviewImage {
+  height: 230px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 75%, rgba(29, 43, 69, 0.06), transparent 9rem),
+    #f6f7f9;
+}
+
+.motorcycleAdminPreviewImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.motorcycleAdminPreviewImage > span {
+  color: #9299a6;
+  font-size: 0.7rem;
+}
+
+.motorcycleAdminPreviewImage small {
+  padding: 6px 8px;
+  border-radius: 999px;
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  background: #d90000;
+  color: #ffffff;
+  font-size: 0.54rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.motorcycleAdminPreviewContent {
+  padding: 18px;
+}
+
+.motorcycleAdminPreviewContent > span {
+  color: #8c93a1;
+  font-size: 0.62rem;
+}
+
+.motorcycleAdminPreviewContent h3 {
+  margin: 5px 0 0;
+  color: #1d2a42;
+  font-size: 1.15rem;
+  letter-spacing: -0.035em;
+}
+
+.motorcycleAdminPreviewContent h4 {
+  margin: 15px 0 0;
+  color: #2d394f;
+  font-size: 0.78rem;
+}
+
+.motorcycleAdminPreviewContent > p {
+  max-height: 100px;
+  margin: 8px 0 0;
+  overflow: hidden;
+  color: #7f8797;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.motorcyclePreviewDetails {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.motorcyclePreviewDetails > div {
+  padding: 9px 10px;
+  border: 1px solid #e7e9ed;
+  border-radius: 10px;
+  display: grid;
+  gap: 3px;
+  background: #f8f9fa;
+}
+
+.motorcyclePreviewDetails span {
+  color: #969ca8;
+  font-size: 0.55rem;
+}
+
+.motorcyclePreviewDetails strong {
+  color: #354157;
+  font-size: 0.66rem;
+}
+
+@media (max-width: 1250px) {
+  .motorcyclesAdminToolbar {
+    grid-template-columns: minmax(260px, 1fr) auto;
+  }
+
+  .motorcycleOrderActions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  .motorcycleEditLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcyclePreviewPanel {
+    order: -1;
+  }
+
+  .motorcyclePreviewPanel .previewSticky {
+    position: static;
+  }
+
+  .motorcycleAdminPreview {
+    width: min(430px, 100%);
+  }
+}
+
+@media (max-width: 1080px) {
+  .motorcycleAdminTableHeader {
+    display: none;
+  }
+
+  .motorcycleAdminTable {
+    border: 0;
+    display: grid;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .motorcycleAdminRow {
+    min-height: auto;
+    padding: 16px;
+    border: 1px solid #e2e5e9 !important;
+    border-radius: 15px;
+    grid-template-columns: 86px minmax(240px, 1fr) auto;
+    gap: 15px;
+  }
+
+  .motorcycleAdminUsage {
+    grid-column: 2;
+  }
+
+  .motorcycleAdminRow > .clientStatusActive,
+  .motorcycleAdminRow > .clientStatusInactive {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .motorcycleAdminRowActions {
+    grid-column: 2 / 4;
+    justify-content: flex-start;
+  }
+
+  .motorcycleBenefitRow {
+    grid-template-columns: 78px minmax(130px, 0.7fr) 1fr;
+  }
+
+  .motorcycleBenefitDescription {
+    grid-column: 2 / 4;
+  }
+
+  .motorcycleBenefitRow .removeDynamicButton {
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 700px) {
+  .motorcyclesAdminHero {
+    padding: 23px 19px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleAdminStats {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .motorcyclesAdminPanel,
+  .motorcycleEditPanel,
+  .motorcyclePreviewPanel {
+    padding: 16px 12px;
+  }
+
+  .motorcyclesAdminToolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleOrderActions {
+    grid-column: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .motorcycleAdminRow {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .motorcycleAdminIdentity img {
+    width: 82px;
+    height: 62px;
+  }
+
+  .motorcycleAdminUsage {
+    grid-column: 2;
+  }
+
+  .motorcycleAdminRow > .clientStatusActive,
+  .motorcycleAdminRow > .clientStatusInactive {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .motorcycleAdminRowActions {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .motorcycleAdminRowActions button {
+    grid-column: 1 / -1;
+  }
+
+  .motorcycleDynamicHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleDynamicHeading > button {
+    width: 100%;
+  }
+
+  .motorcycleDynamicRow,
+  .motorcycleBenefitRow {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleBenefitDescription,
+  .motorcycleBenefitRow .removeDynamicButton {
+    grid-column: auto;
+  }
+
+  .motorcycleAdminPreviewImage {
+    height: 190px;
+  }
+}
+
+
+/* Modalidades comercializadas pelo vendedor */
+
+.salesModeGrid {
+  margin-top: 19px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.salesModeGrid label {
+  min-height: 128px;
+  padding: 16px;
+  border: 1px solid #e0e4e8;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.salesModeGrid label:hover {
+  border-color: rgba(217, 0, 0, 0.25);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.salesModeGrid input {
+  width: 18px;
+  height: 18px;
+  min-height: auto;
+  margin: 0 0 13px;
+  accent-color: #d90000;
+}
+
+.salesModeGrid strong {
+  color: #28354c;
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.salesModeGrid span {
+  margin-top: 6px;
+  color: #858d9c;
+  font-size: 0.63rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.salesModeGrid .salesModeCardActive {
+  border-color: rgba(217, 0, 0, 0.55);
+  background: rgba(217, 0, 0, 0.035);
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.055);
+}
+
+.salesModeGrid .salesModeCardActive::after {
+  content: "Selecionado";
+  padding: 4px 6px;
+  border-radius: 999px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #d90000;
+  color: #ffffff;
+  font-size: 0.48rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.clientPreviewModes {
+  margin-top: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.clientPreviewModes span {
+  padding: 5px 8px;
+  border: 1px solid #e3e6ea;
+  border-radius: 999px;
+  background: #f7f8fa;
+  color: #596478;
+  font-size: 0.57rem;
+  font-weight: 750;
+}
+
+@media (max-width: 900px) {
+  .salesModeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .salesModeGrid label {
+    min-height: auto;
+  }
+}
+
+
+/* Gestão centralizada de financiamentos */
+
+@media (min-width: 1001px) {
+  .quickActionsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.financingAdminHero {
+  padding: 30px 32px;
+  border: 1px solid #e0e4e9;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(217, 0, 0, 0.065), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.financingAdminHero h2 {
+  margin: 8px 0 0;
+  color: #17233a;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.045em;
+}
+
+.financingAdminHero p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: #717a8d;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.financingSharedBadge {
+  min-width: 235px;
+  padding: 18px 20px;
+  border: 1px solid rgba(217, 0, 0, 0.13);
+  border-radius: 17px;
+  display: grid;
+  background: rgba(217, 0, 0, 0.045);
+}
+
+.financingSharedBadge span {
+  color: #c90000;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.financingSharedBadge strong {
+  margin-top: 4px;
+  color: #213049;
+  font-size: 0.9rem;
+}
+
+.financingSharedBadge small {
+  margin-top: 4px;
+  color: #8d94a1;
+  font-size: 0.59rem;
+  line-height: 1.4;
+}
+
+.financingAdminStats {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.financingAdminStats article {
+  padding: 20px 22px;
+  border: 1px solid #e1e4e9;
+  border-radius: 18px;
+  display: grid;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(29, 43, 69, 0.04);
+}
+
+.financingAdminStats span {
+  color: #7d8595;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.financingAdminStats strong {
+  margin-top: 4px;
+  color: #19263e;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+}
+
+.financingAdminStats small {
+  margin-top: 2px;
+  color: #9299a6;
+  font-size: 0.65rem;
+}
+
+.financingAdminPanel {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.financingAdminToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.financingStatusFilters {
+  padding: 4px;
+  border: 1px solid #e0e4e8;
+  border-radius: 12px;
+  display: flex;
+  background: #f6f7f9;
+}
+
+.financingStatusFilters button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #7f8795;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.financingStatusFilters .financingStatusFilterActive {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(29, 43, 69, 0.08);
+  color: #1e2b43;
+}
+
+.financingMotorcycleGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.financingMotorcycleCard {
+  min-width: 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.financingMotorcycleCard:hover {
+  border-color: rgba(217, 0, 0, 0.25);
+  box-shadow: 0 13px 30px rgba(29, 43, 69, 0.08);
+  transform: translateY(-3px);
+}
+
+.financingMotorcycleCardDisabled {
+  opacity: 0.62;
+}
+
+.financingMotorcycleImage {
+  height: 165px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 75%, rgba(29, 43, 69, 0.06), transparent 8rem),
+    #f6f7f9;
+}
+
+.financingMotorcycleImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.financingActiveBadge,
+.financingInactiveBadge,
+.financingMissingBadge {
+  padding: 5px 8px;
+  border-radius: 999px;
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  font-size: 0.53rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.financingActiveBadge {
+  background: rgba(26, 170, 103, 0.1);
+  color: #168052;
+}
+
+.financingInactiveBadge {
+  background: rgba(180, 35, 24, 0.08);
+  color: #a2382e;
+}
+
+.financingMissingBadge {
+  background: rgba(104, 114, 134, 0.1);
+  color: #5f697d;
+}
+
+.financingMotorcycleContent {
+  min-height: 250px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.financingMotorcycleContent > span {
+  color: #9399a6;
+  font-size: 0.59rem;
+}
+
+.financingMotorcycleContent h3 {
+  margin: 5px 0 0;
+  color: #1d2a42;
+  font-size: 0.86rem;
+}
+
+.financingMotorcycleContent > strong {
+  margin-top: 16px;
+  color: #2e3a50;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.financingMotorcycleContent > p {
+  max-height: 62px;
+  margin: 7px 0 0;
+  overflow: hidden;
+  color: #858d9c;
+  font-size: 0.63rem;
+  line-height: 1.5;
+}
+
+.financingMotorcycleActions {
+  margin-top: auto;
+  padding-top: 15px;
+  display: grid;
+  gap: 7px;
+}
+
+.financingMotorcycleActions a {
+  min-height: 38px;
+  padding: 0 11px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.financingMotorcycleActions a:first-child {
+  background: #d90000;
+  color: #ffffff;
+}
+
+.financingMotorcycleActions a:not(:first-child) {
+  border: 1px solid #e0e4e8;
+  background: #ffffff;
+  color: #526075;
+}
+
+/* Editor */
+
+.financingEditLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.financingEditPanel,
+.financingPreviewPanel {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.financingEditFields {
+  margin-top: 22px;
+  display: grid;
+  gap: 17px;
+}
+
+.financingEditFields label {
+  display: grid;
+  gap: 8px;
+  color: #27344b;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.financingEditFields input,
+.financingEditFields textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  background: #f7f8fa;
+  color: #1c2941;
+  font: inherit;
+  outline: 0;
+}
+
+.financingEditFields input {
+  min-height: 47px;
+  padding: 0 13px;
+}
+
+.financingEditFields textarea {
+  padding: 12px 13px;
+  resize: vertical;
+}
+
+.financingEditFields input:focus,
+.financingEditFields textarea:focus {
+  border-color: rgba(217, 0, 0, 0.42);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.065);
+}
+
+.financingActiveField {
+  min-height: 68px;
+  padding: 13px 14px;
+  border: 1px solid #e1e4e8;
+  border-radius: 13px;
+  display: flex !important;
+  align-items: flex-start;
+  gap: 11px !important;
+  background: #f8f9fa;
+  cursor: pointer;
+}
+
+.financingActiveField > input {
+  width: 18px;
+  height: 18px;
+  min-height: auto;
+  margin-top: 2px;
+  accent-color: #d90000;
+}
+
+.financingActiveField > span {
+  display: grid;
+  gap: 4px;
+}
+
+.financingActiveField strong {
+  color: #28354c;
+  font-size: 0.72rem;
+}
+
+.financingActiveField small {
+  color: #8b92a0;
+  font-size: 0.63rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.financingAdminPreview {
+  margin-top: 19px;
+  border: 1px solid #e1e4e8;
+  border-radius: 19px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.financingAdminPreviewImage {
+  height: 230px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 75%, rgba(29, 43, 69, 0.06), transparent 9rem),
+    #f6f7f9;
+}
+
+.financingAdminPreviewImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.financingAdminPreviewContent {
+  padding: 18px;
+}
+
+.financingAdminPreviewContent > span {
+  color: #d90000;
+  font-size: 0.59rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.financingAdminPreviewContent h3 {
+  margin: 6px 0 0;
+  color: #1d2a42;
+  font-size: 1.1rem;
+}
+
+.financingAdminPreviewContent h4 {
+  margin: 15px 0 0;
+  color: #2d394f;
+  font-size: 0.8rem;
+}
+
+.financingAdminPreviewContent > p {
+  margin: 8px 0 0;
+  color: #7f8797;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.financingAdminPreviewContent > div {
+  min-height: 48px;
+  margin-top: 17px;
+  padding: 0 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d90000;
+  color: #ffffff;
+}
+
+.financingAdminPreviewContent > div strong {
+  font-size: 0.68rem;
+}
+
+.financingAdminPreviewContent > div small {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.55rem;
+}
+
+@media (max-width: 1250px) {
+  .financingMotorcycleGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .financingEditLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .financingPreviewPanel {
+    order: -1;
+  }
+
+  .financingPreviewPanel .previewSticky {
+    position: static;
+  }
+
+  .financingAdminPreview {
+    width: min(430px, 100%);
+  }
+}
+
+@media (max-width: 1000px) {
+  .financingAdminToolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .financingStatusFilters {
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .financingMotorcycleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .financingAdminHero {
+    padding: 23px 19px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .financingSharedBadge {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .financingAdminStats {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .financingAdminPanel,
+  .financingEditPanel,
+  .financingPreviewPanel {
+    padding: 16px 12px;
+  }
+
+  .financingStatusFilters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .financingMotorcycleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .financingMotorcycleImage {
+    height: 190px;
+  }
+
+  .financingAdminPreviewImage {
+    height: 190px;
+  }
+}
+
+
+/* Upload de imagens pelo Supabase Storage */
+
+.imageUploadGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.imageUploadField {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #e0e4e8;
+  border-radius: 15px;
+  background: #f8f9fa;
+}
+
+.imageUploadHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.imageUploadHeading > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.imageUploadHeading strong {
+  color: #27344b;
+  font-size: 0.72rem;
+}
+
+.imageUploadHeading span {
+  color: #8b92a0;
+  font-size: 0.6rem;
+  line-height: 1.4;
+}
+
+.imageUploadHeading > button {
+  min-height: 27px;
+  padding: 0 8px;
+  border: 1px solid rgba(180, 35, 24, 0.14);
+  border-radius: 8px;
+  background: rgba(180, 35, 24, 0.045);
+  color: #a2382e;
+  font: inherit;
+  font-size: 0.56rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.imageUploadContent {
+  margin-top: 13px;
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 12px;
+}
+
+.imageUploadPreview {
+  width: 108px;
+  height: 108px;
+  border: 1px dashed #ccd2da;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    linear-gradient(45deg, #f1f3f5 25%, transparent 25%),
+    linear-gradient(-45deg, #f1f3f5 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f1f3f5 75%),
+    linear-gradient(-45deg, transparent 75%, #f1f3f5 75%),
+    #ffffff;
+  background-position:
+    0 0,
+    0 6px,
+    6px -6px,
+    -6px 0;
+  background-size: 12px 12px;
+}
+
+.imageUploadPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageUploadPreviewContain img {
+  padding: 8px;
+  object-fit: contain;
+}
+
+.imageUploadPreview span {
+  padding: 8px;
+  color: #969ca8;
+  font-size: 0.58rem;
+  text-align: center;
+}
+
+.imageUploadControls {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+}
+
+.imageUploadControls > input:not(.imageUploadFileInput) {
+  width: 100%;
+  min-width: 0;
+  min-height: 39px;
+  padding: 0 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #26334a;
+  font: inherit;
+  font-size: 0.63rem;
+  outline: 0;
+}
+
+.imageUploadControls > input:not(.imageUploadFileInput):focus {
+  border-color: rgba(217, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.06);
+}
+
+.imageUploadFileInput {
+  display: none;
+}
+
+.imageUploadButton {
+  min-height: 38px;
+  padding: 0 11px;
+  border: 1px solid rgba(217, 0, 0, 0.17);
+  border-radius: 9px;
+  background: rgba(217, 0, 0, 0.05);
+  color: #c80000;
+  font: inherit;
+  font-size: 0.63rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.imageUploadButton:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.imageUploadControls small {
+  color: #969ca8;
+  font-size: 0.54rem;
+  line-height: 1.35;
+}
+
+.imageUploadSuccess,
+.imageUploadError {
+  margin: 10px 0 0;
+  padding: 8px 9px;
+  border-radius: 9px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.imageUploadSuccess {
+  border: 1px solid rgba(26, 170, 103, 0.16);
+  background: rgba(26, 170, 103, 0.06);
+  color: #177c51;
+}
+
+.imageUploadError {
+  border: 1px solid rgba(180, 35, 24, 0.16);
+  background: rgba(180, 35, 24, 0.05);
+  color: #a32f26;
+}
+
+@media (max-width: 900px) {
+  .imageUploadGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .imageUploadContent {
+    grid-template-columns: 1fr;
+  }
+
+  .imageUploadPreview {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+
+/* Ajuste do ponto de foco das fotos */
+
+.imagePositionGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 15px;
+}
+
+.imagePositionField {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e0e4e8;
+  border-radius: 16px;
+  background: #f8f9fa;
+}
+
+.imagePositionHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.imagePositionHeading > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.imagePositionHeading strong {
+  color: #27344b;
+  font-size: 0.74rem;
+}
+
+.imagePositionHeading span {
+  color: #8b92a0;
+  font-size: 0.6rem;
+  line-height: 1.4;
+}
+
+.imagePositionHeading > button {
+  min-height: 29px;
+  padding: 0 9px;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #5e697d;
+  font: inherit;
+  font-size: 0.57rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.imagePositionHeading > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.imagePositionPreview {
+  margin: 15px auto 0;
+  border: 4px solid #ffffff;
+  position: relative;
+  overflow: hidden;
+  background: #e9ecf0;
+  box-shadow: 0 12px 27px rgba(29, 43, 69, 0.13);
+}
+
+.imagePositionPreviewCircle {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+}
+
+.imagePositionPreviewRectangle {
+  width: 100%;
+  height: 190px;
+  border-radius: 17px;
+}
+
+.imagePositionPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePositionPreview > span {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8d95a3;
+  font-size: 0.64rem;
+  text-align: center;
+}
+
+.imagePositionPreview > i::before,
+.imagePositionPreview > i::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 0 0 1px rgba(29, 43, 69, 0.08);
+}
+
+.imagePositionPreview > i::before {
+  width: 1px;
+  height: 20px;
+  top: calc(50% - 10px);
+  left: 50%;
+}
+
+.imagePositionPreview > i::after {
+  width: 20px;
+  height: 1px;
+  top: 50%;
+  left: calc(50% - 10px);
+}
+
+.imagePositionControls {
+  margin-top: 18px;
+  display: grid;
+  gap: 15px;
+}
+
+.imagePositionControls label {
+  display: grid;
+  gap: 7px;
+}
+
+.imagePositionControls label > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #536075;
+  font-size: 0.63rem;
+  font-weight: 750;
+}
+
+.imagePositionControls label > span strong {
+  min-width: 39px;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: rgba(217, 0, 0, 0.055);
+  color: #c70000;
+  font-size: 0.58rem;
+  text-align: center;
+}
+
+.imagePositionControls input[type="range"] {
+  width: 100%;
+  accent-color: #d90000;
+  cursor: ew-resize;
+}
+
+.imagePositionControls input[type="range"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.imagePositionControls small {
+  display: flex;
+  justify-content: space-between;
+  color: #9aa0ab;
+  font-size: 0.52rem;
+}
+
+@media (max-width: 900px) {
+  .imagePositionGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .imagePositionPreviewCircle {
+    width: 165px;
+    height: 165px;
+  }
+
+  .imagePositionPreviewRectangle {
+    height: 180px;
+  }
+}
+
+
+/* Cadastro completo de nova moto */
+
+.newMotorcycleStep {
+  padding: 8px 11px;
+  border: 1px solid rgba(217, 0, 0, 0.13);
+  border-radius: 999px;
+  background: rgba(217, 0, 0, 0.045);
+  color: #c80000;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.motorcycleSetupHero {
+  padding: 25px 28px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(217, 0, 0, 0.06), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.motorcycleSetupIdentity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.motorcycleSetupIdentity img {
+  width: 160px;
+  height: 110px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.motorcycleSetupIdentity h2 {
+  margin: 7px 0 0;
+  color: #17233a;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  letter-spacing: -0.04em;
+}
+
+.motorcycleSetupIdentity p {
+  margin: 7px 0 0;
+  color: #858d9c;
+  font-size: 0.71rem;
+}
+
+.motorcycleSetupProgress {
+  min-width: 230px;
+  display: grid;
+  gap: 5px;
+}
+
+.motorcycleSetupProgress > span {
+  color: #858d9c;
+  font-size: 0.59rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.motorcycleSetupProgress > strong {
+  color: #26334a;
+  font-size: 0.9rem;
+}
+
+.motorcycleSetupProgress > div {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e7e9ed;
+}
+
+.motorcycleSetupProgress i {
+  height: 100%;
+  border-radius: inherit;
+  display: block;
+  background: #d90000;
+  transition: width 220ms ease;
+}
+
+.motorcycleSetupProgress small {
+  color: #9299a6;
+  font-size: 0.59rem;
+}
+
+.motorcycleSetupGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.motorcycleSetupCard {
+  min-height: 190px;
+  padding: 20px;
+  border: 1px solid #e1e4e9;
+  border-radius: 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 13px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(29, 43, 69, 0.04);
+}
+
+.motorcycleSetupCard > span {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-row: 1 / 3;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.motorcycleSetupCardDone {
+  background: rgba(26, 170, 103, 0.1);
+  color: #178253;
+}
+
+.motorcycleSetupCardPending {
+  background: rgba(217, 0, 0, 0.07);
+  color: #c80000;
+}
+
+.motorcycleSetupCardOptional {
+  background: #eef0f3;
+  color: #657084;
+}
+
+.motorcycleSetupCard small {
+  color: #9299a6;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.motorcycleSetupCard h3 {
+  margin: 5px 0 0;
+  color: #26334a;
+  font-size: 0.91rem;
+}
+
+.motorcycleSetupCard p {
+  margin: 8px 0 0;
+  color: #858d9c;
+  font-size: 0.67rem;
+  line-height: 1.48;
+}
+
+.motorcycleSetupCard > a {
+  min-height: 38px;
+  margin-top: 16px;
+  padding: 0 11px;
+  border: 1px solid #e0e4e8;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  background: #f8f9fa;
+  color: #c70000;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.motorcyclePublishPanel {
+  margin-top: 18px;
+  padding: 24px 27px;
+  border: 1px solid #e0e4e9;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: #ffffff;
+  box-shadow: 0 9px 27px rgba(29, 43, 69, 0.045);
+}
+
+.motorcyclePublishPanel h2 {
+  margin: 7px 0 0;
+  color: #26334a;
+  font-size: 1.15rem;
+}
+
+.motorcyclePublishPanel p {
+  max-width: 690px;
+  margin: 8px 0 0;
+  color: #858d9c;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.publishMotorcycleButton,
+.unpublishMotorcycleButton {
+  min-width: 160px;
+  min-height: 44px;
+  padding: 0 15px;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.publishMotorcycleButton {
+  border: 1px solid #d90000;
+  background: #d90000;
+  box-shadow: 0 9px 21px rgba(217, 0, 0, 0.16);
+  color: #ffffff;
+}
+
+.unpublishMotorcycleButton {
+  border: 1px solid rgba(180, 35, 24, 0.17);
+  background: rgba(180, 35, 24, 0.055);
+  color: #a1352b;
+}
+
+.publishMotorcycleButton:disabled,
+.unpublishMotorcycleButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.motorcycleSetupRefresh {
+  min-height: 36px;
+  margin: 13px auto 0;
+  padding: 0 11px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  display: block;
+  background: #ffffff;
+  color: #657084;
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+/* Vendedores vinculados à moto */
+
+.motorcycleClientHero {
+  padding: 27px 30px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(217, 0, 0, 0.055), transparent 16rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.motorcycleClientHero h2 {
+  margin: 7px 0 0;
+  color: #17233a;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  letter-spacing: -0.04em;
+}
+
+.motorcycleClientHero p {
+  max-width: 720px;
+  margin: 9px 0 0;
+  color: #858d9c;
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.motorcycleClientHero > div:last-child {
+  min-width: 160px;
+  padding: 15px 18px;
+  border: 1px solid #e2e5e9;
+  border-radius: 15px;
+  display: grid;
+  background: #f8f9fa;
+}
+
+.motorcycleClientHero > div:last-child span {
+  color: #858d9c;
+  font-size: 0.59rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.motorcycleClientHero > div:last-child strong {
+  margin-top: 2px;
+  color: #d90000;
+  font-size: 1.55rem;
+}
+
+.motorcycleClientHero > div:last-child small {
+  color: #969ca8;
+  font-size: 0.58rem;
+}
+
+.motorcycleClientPanel {
+  margin-top: 18px;
+  padding: 23px;
+  border: 1px solid #e0e4e9;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(29, 43, 69, 0.045);
+}
+
+.motorcycleClientToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.motorcycleClientToolbar > div {
+  display: flex;
+  gap: 7px;
+}
+
+.motorcycleClientToolbar > div button {
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #5c687c;
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.motorcycleClientGrid {
+  margin-top: 19px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.motorcycleClientCard {
+  min-width: 0;
+  min-height: 145px;
+  padding: 16px;
+  border: 1px solid #e1e4e8;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.motorcycleClientCard > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.motorcycleClientCardSelected {
+  border-color: rgba(217, 0, 0, 0.55);
+  background: rgba(217, 0, 0, 0.035);
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.05);
+}
+
+.motorcycleClientCheck {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #d4d9df;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  background: #ffffff;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.motorcycleClientCardSelected .motorcycleClientCheck {
+  border-color: #d90000;
+  background: #d90000;
+}
+
+.motorcycleClientCard > div {
+  min-width: 0;
+  padding-right: 34px;
+  display: grid;
+  gap: 4px;
+}
+
+.motorcycleClientCard strong {
+  overflow: hidden;
+  color: #27344b;
+  font-size: 0.76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.motorcycleClientCard span:not(.motorcycleClientCheck) {
+  color: #89919f;
+  font-size: 0.62rem;
+}
+
+.motorcycleClientCard small {
+  color: #969ca8;
+  font-size: 0.58rem;
+}
+
+.motorcycleClientCard em {
+  width: fit-content;
+  margin-top: auto;
+  padding: 5px 7px;
+  border-radius: 999px;
+  font-size: 0.54rem;
+  font-style: normal;
+  font-weight: 750;
+}
+
+.motorcycleClientActive {
+  background: rgba(26, 170, 103, 0.08);
+  color: #188354;
+}
+
+.motorcycleClientInactive {
+  background: rgba(180, 35, 24, 0.07);
+  color: #a4372d;
+}
+
+.motorcycleClientFooter {
+  margin-top: 21px;
+  padding-top: 18px;
+  border-top: 1px solid #e6e9ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.motorcycleClientFooter > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.motorcycleClientFooter strong {
+  color: #26334a;
+  font-size: 0.73rem;
+}
+
+.motorcycleClientFooter span {
+  color: #8a92a0;
+  font-size: 0.62rem;
+}
+
+.motorcycleClientFooter > div:last-child {
+  display: flex;
+  gap: 8px;
+}
+
+.motorcycleClientFooter button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #566176;
+  font: inherit;
+  font-size: 0.67rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.motorcycleClientFooter .saveClientButton {
+  border-color: #d90000;
+  background: #d90000;
+  color: #ffffff;
+}
+
+.motorcycleClientFooter button:disabled {
+  cursor: not-allowed;
+  opacity: 0.47;
+}
+
+@media (max-width: 950px) {
+  .motorcycleClientGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .newMotorcycleStep {
+    text-align: center;
+  }
+
+  .motorcycleSetupHero,
+  .motorcycleClientHero,
+  .motorcyclePublishPanel {
+    padding: 21px 17px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleSetupIdentity {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .motorcycleSetupIdentity img {
+    width: 100%;
+    height: 150px;
+  }
+
+  .motorcycleSetupProgress {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .motorcycleSetupGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcyclePublishPanel button {
+    width: 100%;
+  }
+
+  .motorcycleClientHero > div:last-child {
+    width: 100%;
+  }
+
+  .motorcycleClientPanel {
+    padding: 16px 12px;
+  }
+
+  .motorcycleClientToolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleClientToolbar > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .motorcycleClientGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleClientFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .motorcycleClientFooter > div:last-child {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .motorcycleClientFooter button {
+    width: 100%;
+  }
+}
