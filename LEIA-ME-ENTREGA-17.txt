@@ -1,0 +1,94 @@
+ENTREGA 17 — FINALIZAÇÃO DO PAINEL ADMINISTRATIVO
+
+OBJETIVO
+
+Remover os últimos sinais de ambiente em desenvolvimento e transformar a
+Visão geral em um painel operacional para uso diário.
+
+ALTERAÇÕES
+
+1. VISÃO GERAL ATUALIZADA
+
+Removidos:
+
+- Fase atual;
+- Gestão central de motos;
+- Desenvolvimento;
+- Próximas entregas;
+- lista de funcionalidades que já estavam concluídas.
+
+Adicionados:
+
+- Sistema operacional;
+- Catálogo Honda 1.0;
+- barra de conclusão em 100%;
+- status real dos módulos do sistema.
+
+2. SAUDAÇÃO AUTOMÁTICA
+
+A saudação agora considera o horário do dispositivo:
+
+- Bom dia;
+- Boa tarde;
+- Boa noite.
+
+O nome vem do usuário conectado ao Supabase. O sistema utiliza primeiro os
+metadados do usuário e, caso não existam, formata o nome presente no e-mail.
+
+3. CLIENTES DO DASHBOARD
+
+- o endereço /slug agora abre o catálogo público;
+- o botão Gerenciar abre diretamente o cliente correto;
+- não é mais necessário voltar para a listagem e procurar o vendedor.
+
+4. MENU LATERAL
+
+A opção Configurações — Em breve foi removida.
+
+O menu agora apresenta somente áreas existentes e funcionais:
+
+- Visão geral;
+- Clientes;
+- Motos;
+- Planos;
+- Financiamentos.
+
+5. SEGURANÇA PRESERVADA
+
+A verificação usuario_e_admin continua obrigatória dentro do AdminShell.
+Usuários autenticados sem permissão administrativa continuam sendo
+desconectados e enviados para o login.
+
+ARQUIVOS
+
+app/admin/dashboard/page.tsx
+components/admin/AdminShell.tsx
+
+INSTALAÇÃO
+
+1. Extraia o ZIP na pasta principal do projeto.
+2. Confirme a substituição dos dois arquivos.
+3. Não execute SQL.
+4. Não altere variáveis da Vercel.
+5. Execute:
+
+npm run typecheck
+npm run lint
+npm run build
+
+6. Quando os três comandos forem aprovados:
+
+git add .
+git commit -m "Finaliza painel administrativo"
+git push origin main
+
+TESTE
+
+1. Abra /admin/login.
+2. Entre com o administrador.
+3. Confirme a saudação conforme o horário.
+4. Confirme que Configurações não aparece no menu.
+5. Clique no slug de um cliente e verifique o catálogo público.
+6. Clique em Gerenciar e confirme que abre o cliente correto.
+7. Teste Clientes, Motos, Planos e Financiamentos.
+8. Teste o menu pelo celular.

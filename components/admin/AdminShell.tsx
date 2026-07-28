@@ -18,10 +18,14 @@ type IconName =
   | "motorcycles"
   | "plans"
   | "financing"
-  | "settings"
   | "logout"
   | "menu"
   | "close";
+
+type AdminRenderContext = {
+  user: User;
+  userName: string;
+};
 
 function AdminIcon({ name }: { name: IconName }) {
   const paths: Record<IconName, ReactNode> = {
@@ -71,12 +75,6 @@ function AdminIcon({ name }: { name: IconName }) {
         <path d="M3 21h18" />
       </>
     ),
-    settings: (
-      <>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.55V20.3h-3v-.09a1.7 1.7 0 0 0-1.04-1.55 1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7 15a1.7 1.7 0 0 0-1.55-1.04H5.3v-3h.15A1.7 1.7 0 0 0 7 9.92a1.7 1.7 0 0 0-.34-1.88L6.6 7.98l2.12-2.12.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 11.7 4.7V4.6h3v.1a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.55 1.04h.15v3h-.15A1.7 1.7 0 0 0 19.4 15Z" />
-      </>
-    ),
     logout: (
       <>
         <path d="M10 17l5-5-5-5" />
@@ -120,48 +118,64 @@ const navigation = [
     label: "Visão geral",
     href: "/admin/dashboard",
     icon: "dashboard" as const,
-    enabled: true,
   },
   {
     label: "Clientes",
     href: "/admin/clientes",
     icon: "clients" as const,
-    enabled: true,
   },
   {
     label: "Motos",
     href: "/admin/motos",
     icon: "motorcycles" as const,
-    enabled: true,
   },
   {
     label: "Planos",
     href: "/admin/planos",
     icon: "plans" as const,
-    enabled: true,
   },
   {
     label: "Financiamentos",
     href: "/admin/financiamentos",
     icon: "financing" as const,
-    enabled: true,
-  },
-  {
-    label: "Configurações",
-    href: "/admin/configuracoes",
-    icon: "settings" as const,
-    enabled: false,
   },
 ];
 
-function getUserDisplayName(user: User) {
-  const metadataName = user.user_metadata?.full_name;
+function titleCaseName(value: string) {
+  return value
+    .split(/[\s._-]+/)
+    .filter(Boolean)
+    .map(
+      (part) =>
+        part.charAt(0).toLocaleUpperCase("pt-BR") +
+        part.slice(1).toLocaleLowerCase("pt-BR"),
+    )
+    .join(" ");
+}
 
-  if (typeof metadataName === "string" && metadataName.trim()) {
+function getUserDisplayName(user: User) {
+  const possibleMetadataNames = [
+    user.user_metadata?.full_name,
+    user.user_metadata?.name,
+    user.user_metadata?.display_name,
+  ];
+
+  const metadataName = possibleMetadataNames.find(
+    (value): value is string =>
+      typeof value === "string" && value.trim().length > 0,
+  );
+
+  if (metadataName) {
     return metadataName.trim();
   }
 
-  return user.email?.split("@")[0] || "Administrador";
+  const emailName = user.email?.split("@")[0];
+
+  if (emailName) {
+    return titleCaseName(emailName);
+  }
+
+  return "Administrador";
 }
 
 function getUserInitials(name: string) {
@@ -180,7 +194,7 @@ export function AdminShell({
 }: {
   title: string;
   description: string;
-  children: ReactNode;
+  children: ReactNode | ((context: AdminRenderContext) => ReactNode);
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -292,6 +306,14 @@ export function AdminShell({
     );
   }
 
+  const renderedChildren =
+    typeof children === "function"
+      ? children({
+          user,
+          userName,
+        })
+      : children;
+
   return (
     <div className={styles.adminApp}>
       <button
@@ -328,35 +350,22 @@ export function AdminShell({
         <nav className={styles.sidebarNavigation}>
           <p>Gerenciamento</p>
 
-          {navigation.map((item) =>
-            item.enabled ? (
-              <Link
-                className={`${styles.sidebarLink} ${
-                  pathname === item.href ||
-                  pathname.startsWith(`${item.href}/`)
-                    ? styles.sidebarLinkActive
-                    : ""
-                }`}
-                href={item.href}
-                key={item.href}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <AdminIcon name={item.icon} />
-                <span>{item.label}</span>
-              </Link>
-            ) : (
-              <div
-                className={`${styles.sidebarLink} ${styles.sidebarLinkDisabled}`}
-                key={item.href}
-                aria-disabled="true"
-                title="Disponível nas próximas etapas"
-              >
-                <AdminIcon name={item.icon} />
-                <span>{item.label}</span>
-                <small>Em breve</small>
-              </div>
-            ),
-          )}
+          {navigation.map((item) => (
+            <Link
+              className={`${styles.sidebarLink} ${
+                pathname === item.href ||
+                pathname.startsWith(`${item.href}/`)
+                  ? styles.sidebarLinkActive
+                  : ""
+              }`}
+              href={item.href}
+              key={item.href}
+              onClick={() => setSidebarOpen(false)}
+            >
+              <AdminIcon name={item.icon} />
+              <span>{item.label}</span>
+            </Link>
+          ))}
         </nav>
 
         <div className={styles.sidebarFooter}>
@@ -397,7 +406,7 @@ export function AdminShell({
           </div>
         </header>
 
-        <main className={styles.adminContent}>{children}</main>
+        <main className={styles.adminContent}>{renderedChildren}</main>
       </div>
     </div>
   );
