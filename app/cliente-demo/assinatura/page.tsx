@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton";
+import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
+
 import {
   DEFAULT_DEMO_BILLING,
   type DemoBillingClient,
@@ -25,13 +28,14 @@ function getTodayPtBr() {
 }
 
 export default function ClientSubscriptionDemoPage() {
+  const access = useClientAccess();
   const [billingData, setBillingData] =
     useState<DemoBillingData>(DEFAULT_DEMO_BILLING);
   const [modal, setModal] = useState<PaymentModal>(null);
   const [copied, setCopied] = useState(false);
   const [message, setMessage] = useState("");
   const [cardNumber, setCardNumber] = useState("4242 4242 4242 4242");
-  const [cardName, setCardName] = useState("GD HONDA");
+  const [cardName, setCardName] = useState(access.clientName.toUpperCase());
   const [cardExpiry, setCardExpiry] = useState("12/30");
   const [cardCvv, setCardCvv] = useState("123");
 
@@ -124,9 +128,16 @@ export default function ClientSubscriptionDemoPage() {
         </div>
 
         <div className={styles.clientIdentity}>
-          <span>GD</span>
+          <span>
+            {access.clientName
+              .trim()
+              .split(/\s+/)
+              .slice(0, 2)
+              .map((part) => part.charAt(0).toUpperCase())
+              .join("")}
+          </span>
           <div>
-            <strong>GD Honda</strong>
+            <strong>{access.clientName}</strong>
             <small>Catálogo ativo</small>
           </div>
         </div>
@@ -152,10 +163,7 @@ export default function ClientSubscriptionDemoPage() {
           </p>
         </div>
 
-        <Link className={styles.logoutLink} href="/cliente-demo/login">
-          <span>↩</span>
-          Sair
-        </Link>
+        <ClientLogoutButton className={styles.logoutLink} />
       </aside>
 
       <div className={styles.subscriptionMain}>
@@ -166,10 +174,7 @@ export default function ClientSubscriptionDemoPage() {
           </div>
 
           <div>
-            <Link href="/cliente-demo/admin-cobranca">
-              Simular valor no admin
-            </Link>
-            <Link href="/gd" target="_blank">
+            <Link href={`/${access.clientSlug}`} target="_blank">
               Abrir catálogo ↗
             </Link>
           </div>

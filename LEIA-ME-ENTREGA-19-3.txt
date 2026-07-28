@@ -1,0 +1,131 @@
+ENTREGA 19.3 — LOGIN REAL DO PRIMEIRO CLIENTE
+
+ANTES DE INSTALAR
+
+Confirme a branch:
+
+git branch --show-current
+
+Resultado obrigatório:
+
+feature/painel-clientes
+
+ARQUIVOS PRINCIPAIS
+
+lib/client-supabase.ts
+lib/client-access.ts
+components/client-demo/ClientAccessGuard.tsx
+components/client-demo/ClientLogoutButton.tsx
+components/client-demo/client-access.module.css
+app/cliente-demo/login/page.tsx
+app/cliente-demo/dashboard/layout.tsx
+app/cliente-demo/dashboard/page.tsx
+app/cliente-demo/assinatura/layout.tsx
+app/cliente-demo/assinatura/page.tsx
+app/cliente-demo/cliente-demo.module.css
+supabase/painel-clientes-vincular-gd.sql
+supabase/painel-clientes-verificar-gd.sql
+docs/entrega-19-3-login-real.md
+
+PASSO 1 — EXTRAIR
+
+Extraia este ZIP dentro da pasta principal do projeto e confirme a substituição
+dos arquivos do protótipo.
+
+PASSO 2 — TESTAR O CÓDIGO
+
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd run build
+
+Não faça commit ainda.
+
+PASSO 3 — CRIAR A CONTA DE TESTE
+
+No Supabase usado pelo Catálogo Honda:
+
+Authentication
+→ Users
+→ criar uma nova conta
+
+Utilize uma conta separada da sua conta administrativa.
+
+Defina:
+
+- um e-mail válido para a GD Honda;
+- uma senha temporária forte;
+- e-mail confirmado.
+
+Não coloque a senha em SQL, GitHub, prints ou mensagens.
+
+PASSO 4 — VINCULAR À GD HONDA
+
+Abra:
+
+supabase/painel-clientes-vincular-gd.sql
+
+Substitua somente:
+
+COLOQUE_EMAIL_GD_AQUI
+
+pelo e-mail criado no Supabase Auth.
+
+Copie todo o SQL, cole no SQL Editor e execute.
+
+O resultado precisa mostrar:
+
+cliente_slug: gd
+usuario_ativo: true
+cliente_ativo: true
+acesso_liberado: true
+
+PASSO 5 — TESTAR NO LOCALHOST
+
+npm.cmd run dev
+
+Abra:
+
+http://localhost:3000/cliente-demo/login
+
+Entre com o e-mail e a senha da conta da GD Honda.
+
+Confirme:
+
+1. login abre o dashboard;
+2. aparece GD Honda;
+3. Abrir catálogo leva para /gd;
+4. Minha assinatura abre normalmente;
+5. Sair encerra a sessão;
+6. acessar /cliente-demo/dashboard sem login volta ao login.
+
+PASSO 6 — TESTAR O BLOQUEIO
+
+No Supabase, abra Table Editor:
+
+cliente_usuarios
+→ conta da GD Honda
+→ altere ativo para false
+
+Tente entrar novamente. O acesso deve ser recusado.
+
+Depois volte ativo para true.
+
+Não altere clientes.ativo durante este teste.
+
+PASSO 7 — COMMIT
+
+Somente após os testes:
+
+git add .
+git commit -m "Cria login real do primeiro vendedor"
+git push origin feature/painel-clientes
+
+IMPORTANTE
+
+Não faça merge para main.
+
+Não crie tag.
+
+Não use a conta administrativa como conta de vendedor.
+
+As edições e pagamentos continuam simulados nesta entrega.

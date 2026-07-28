@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton";
+import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
+
 import styles from "../cliente-demo.module.css";
 
 type Section = "overview" | "profile" | "motorcycles";
@@ -42,12 +45,22 @@ function NavigationIcon({ children }: { children: string }) {
   return <span className={styles.navigationIcon}>{children}</span>;
 }
 
+function getInitials(value: string) {
+  return value
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("") || "H";
+}
+
 export default function ClientDemoDashboardPage() {
+  const access = useClientAccess();
   const [section, setSection] = useState<Section>("overview");
   const [menuOpen, setMenuOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const [profile, setProfile] = useState({
-    name: "GD Honda",
+    name: access.clientName,
     whatsapp: "5574999999999",
     instagram: "@gdhonda",
     slogan: "Número 01 em contemplações de consórcio",
@@ -125,9 +138,9 @@ export default function ClientDemoDashboardPage() {
         </div>
 
         <div className={styles.clientIdentity}>
-          <span>GD</span>
+          <span>{getInitials(access.clientName)}</span>
           <div>
-            <strong>GD Honda</strong>
+            <strong>{access.clientName}</strong>
             <small>Catálogo ativo</small>
           </div>
         </div>
@@ -181,10 +194,7 @@ export default function ClientDemoDashboardPage() {
           </p>
         </div>
 
-        <Link className={styles.logoutLink} href="/cliente-demo/login">
-          <span>↩</span>
-          Sair
-        </Link>
+        <ClientLogoutButton className={styles.logoutLink} />
       </aside>
 
       <div className={styles.clientMain}>
@@ -203,7 +213,7 @@ export default function ClientDemoDashboardPage() {
             <p>{sectionCopy[section].description}</p>
           </div>
 
-          <Link className={styles.openCatalogButton} href="/gd" target="_blank">
+          <Link className={styles.openCatalogButton} href={`/${access.clientSlug}`} target="_blank">
             Abrir catálogo ↗
           </Link>
         </header>
@@ -214,7 +224,7 @@ export default function ClientDemoDashboardPage() {
               <section className={styles.clientWelcome}>
                 <div>
                   <span>Área exclusiva do vendedor</span>
-                  <h2>Boa noite, GD Honda! 👋</h2>
+                  <h2>Olá, {access.clientName}! 👋</h2>
                   <p>
                     Seu catálogo está funcionando normalmente. Use os atalhos
                     para atualizar o perfil ou escolher os modelos exibidos.
@@ -237,7 +247,7 @@ export default function ClientDemoDashboardPage() {
                   <span className={styles.statusDot} />
                   <small>Status do catálogo</small>
                   <strong>Ativo e publicado</strong>
-                  <p>catalogo-honda.vercel.app/gd</p>
+                  <p>catalogo-honda.vercel.app/{access.clientSlug}</p>
                 </div>
               </section>
 
@@ -310,7 +320,7 @@ export default function ClientDemoDashboardPage() {
                       <i>→</i>
                     </Link>
 
-                    <Link href="/gd" target="_blank">
+                    <Link href={`/${access.clientSlug}`} target="_blank">
                       <span>04</span>
                       <div>
                         <strong>Conferir catálogo</strong>
@@ -419,7 +429,7 @@ export default function ClientDemoDashboardPage() {
 
                   <div className={styles.imageFields}>
                     <article>
-                      <span className={styles.profileDemoAvatar}>GD</span>
+                      <span className={styles.profileDemoAvatar}>{getInitials(access.clientName)}</span>
                       <div>
                         <strong>Foto do perfil</strong>
                         <p>Imagem usada no celular e no botão de WhatsApp.</p>
@@ -521,7 +531,7 @@ export default function ClientDemoDashboardPage() {
                 }}
               >
                 <small>Prévia do perfil</small>
-                <span className={styles.previewAvatar}>GD</span>
+                <span className={styles.previewAvatar}>{getInitials(profile.name)}</span>
                 <h2>{profile.name || "Nome do vendedor"}</h2>
                 <p>{profile.slogan || "Seu slogan aparecerá aqui."}</p>
                 <div>
@@ -538,7 +548,7 @@ export default function ClientDemoDashboardPage() {
               <div className={styles.motorcycleHeading}>
                 <div>
                   <span className={styles.panelEyebrow}>Catálogo individual</span>
-                  <h2>Modelos liberados para GD Honda</h2>
+                  <h2>Modelos liberados para {access.clientName}</h2>
                   <p>
                     Você pode ocultar ou exibir os modelos abaixo. Cadastro,
                     textos e preços continuam sob controle do administrador.
