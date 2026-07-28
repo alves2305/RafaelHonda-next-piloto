@@ -1,0 +1,46 @@
+ENTREGA 18.1 — PROTÓTIPO VISUAL DO PAINEL DO VENDEDOR
+
+ROTAS
+
+/cliente-demo
+/cliente-demo/login
+/cliente-demo/dashboard
+
+INSTALAÇÃO
+
+1. Extraia o ZIP na pasta principal do projeto.
+2. O pacote cria apenas a pasta app/cliente-demo.
+3. Não substitui nenhum arquivo atual.
+4. Não execute SQL.
+5. Não altere variáveis da Vercel.
+6. Execute:
+
+npm run typecheck
+npm run lint
+npm run build
+
+7. Quando os três comandos forem aprovados:
+
+git add .
+git commit -m "Adiciona prototipo visual do painel do vendedor"
+git push origin main
+
+8. Depois do deployment, abra:
+
+https://catalogo-honda.vercel.app/cliente-demo/login
+
+LOGIN DE DEMONSTRAÇÃO
+
+E-mail: gd@demo.com
+Senha: 123456
+
+Os campos já estarão preenchidos.
+
+IMPORTANTE
+
+- não usa Supabase;
+- não cria usuário;
+- não salva alterações;
+- não altera motos reais;
+- não modifica o painel administrativo principal;
+- serve somente para avaliar o visual e a experiência.

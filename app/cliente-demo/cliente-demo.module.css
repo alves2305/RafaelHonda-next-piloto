@@ -1,0 +1,2848 @@
+.loginPage,
+.clientApp {
+  min-height: 100vh;
+  color: #172033;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.loginPage {
+  display: grid;
+  grid-template-columns: minmax(440px, 1.05fr) minmax(420px, 0.95fr);
+  background: #f4f6f9;
+}
+
+.loginBrand {
+  min-height: 100vh;
+  padding: 64px clamp(40px, 7vw, 108px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 15%, rgba(255, 255, 255, 0.14), transparent 23rem),
+    linear-gradient(145deg, #131f34, #1f304f 58%, #263d64);
+  color: #ffffff;
+}
+
+.loginBrand::before,
+.loginBrand::after {
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.loginBrand::before {
+  width: 430px;
+  height: 430px;
+  top: -235px;
+  right: -145px;
+}
+
+.loginBrand::after {
+  width: 300px;
+  height: 300px;
+  bottom: -180px;
+  left: -110px;
+}
+
+.brandMark {
+  width: 54px;
+  height: 54px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  background: #d90000;
+  box-shadow: 0 14px 28px rgba(217, 0, 0, 0.28);
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.prototypeBadge {
+  width: fit-content;
+  margin-top: 30px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.loginBrand > h1 {
+  max-width: 650px;
+  margin: 25px 0 0;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(3rem, 5.4vw, 5.6rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+}
+
+.loginBrand > p {
+  max-width: 620px;
+  margin: 26px 0 0;
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.67);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.loginBenefits {
+  max-width: 650px;
+  margin-top: 45px;
+  display: grid;
+  gap: 11px;
+  position: relative;
+  z-index: 1;
+}
+
+.loginBenefits article {
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 17px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.loginBenefits article > span {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.69rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.loginBenefits strong {
+  font-size: 0.9rem;
+}
+
+.loginBenefits p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.loginFormArea {
+  min-height: 100vh;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginCard {
+  width: min(470px, 100%);
+  padding: 42px;
+  border: 1px solid #e0e4e9;
+  border-radius: 27px;
+  display: grid;
+  gap: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(29, 43, 69, 0.11);
+}
+
+.loginCardHeading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.loginCardHeading > span {
+  width: 54px;
+  height: 54px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d90000;
+  box-shadow: 0 12px 25px rgba(217, 0, 0, 0.2);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.loginCardHeading small {
+  color: #d90000;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.loginCardHeading h2 {
+  margin: 4px 0 0;
+  color: #17233a;
+  font-size: 1.68rem;
+  letter-spacing: -0.04em;
+}
+
+.loginIntro {
+  margin: 5px 0 2px;
+  color: #727b8d;
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.loginCard label,
+.profileFields label {
+  display: grid;
+  gap: 8px;
+  color: #25324a;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.loginCard input,
+.profileFields input,
+.profileFields textarea {
+  width: 100%;
+  border: 1px solid #dfe3e8;
+  border-radius: 13px;
+  background: #f7f8fa;
+  color: #172033;
+  font: inherit;
+  outline: 0;
+}
+
+.loginCard input,
+.profileFields input {
+  min-height: 51px;
+  padding: 0 15px;
+}
+
+.profileFields textarea {
+  min-height: 100px;
+  padding: 14px 15px;
+  resize: vertical;
+}
+
+.loginCard input:focus,
+.profileFields input:focus,
+.profileFields textarea:focus {
+  border-color: rgba(217, 0, 0, 0.45);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.07);
+}
+
+.loginCard > button {
+  min-height: 54px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d90000;
+  box-shadow: 0 12px 24px rgba(217, 0, 0, 0.2);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.81rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.loginCard > button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.loginCard > button strong {
+  font-size: 1.25rem;
+}
+
+.demoNotice {
+  padding: 14px 15px;
+  border: 1px solid #e2e5e9;
+  border-radius: 13px;
+  background: #f7f8fa;
+}
+
+.demoNotice strong {
+  color: #26334a;
+  font-size: 0.72rem;
+}
+
+.demoNotice p {
+  margin: 5px 0 0;
+  color: #858d9c;
+  font-size: 0.67rem;
+  line-height: 1.5;
+}
+
+.clientApp {
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  background: #f4f6f9;
+}
+
+.clientSidebar {
+  width: 272px;
+  height: 100vh;
+  padding: 23px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 50;
+  background: #17233a;
+  color: #ffffff;
+}
+
+.sidebarBrand {
+  min-height: 62px;
+  padding: 0 7px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebarBrand > span {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d90000;
+  box-shadow: 0 9px 22px rgba(217, 0, 0, 0.25);
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.sidebarBrand div {
+  display: grid;
+  gap: 3px;
+}
+
+.sidebarBrand strong {
+  font-size: 0.88rem;
+}
+
+.sidebarBrand small {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.closeMenu {
+  display: none;
+}
+
+.clientIdentity {
+  margin-top: 22px;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.clientIdentity > span {
+  width: 39px;
+  height: 39px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #17233a;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.clientIdentity div {
+  display: grid;
+  gap: 3px;
+}
+
+.clientIdentity strong {
+  font-size: 0.79rem;
+}
+
+.clientIdentity small {
+  color: #60d39c;
+  font-size: 0.62rem;
+}
+
+.clientNavigation {
+  margin-top: 25px;
+  display: grid;
+  gap: 6px;
+}
+
+.clientNavigation > p {
+  margin: 0 12px 8px;
+  color: rgba(255, 255, 255, 0.33);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.clientNavigation button,
+.clientNavigation a {
+  min-height: 47px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.68);
+  font: inherit;
+  font-size: 0.81rem;
+  font-weight: 650;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.clientNavigation button:hover,
+.clientNavigation a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.clientNavigation .navigationActive {
+  background: #d90000;
+  box-shadow: 0 9px 21px rgba(217, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.navigationIcon {
+  width: 21px;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.sidebarRestriction {
+  margin-top: auto;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.sidebarRestriction span {
+  color: #62d59f;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebarRestriction p {
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.43);
+  font-size: 0.64rem;
+  line-height: 1.5;
+}
+
+.logoutLink {
+  min-height: 43px;
+  margin-top: 12px;
+  padding: 0 11px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.clientMain {
+  min-width: 0;
+  grid-column: 2;
+}
+
+.clientTopbar {
+  min-height: 86px;
+  padding: 0 clamp(24px, 4vw, 52px);
+  border-bottom: 1px solid #e0e4e9;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+}
+
+.clientTopbar h1 {
+  margin: 0;
+  color: #18243b;
+  font-size: 1.42rem;
+  letter-spacing: -0.035em;
+}
+
+.clientTopbar p {
+  margin: 4px 0 0;
+  color: #778092;
+  font-size: 0.76rem;
+}
+
+.openCatalogButton {
+  min-height: 40px;
+  margin-left: auto;
+  padding: 0 14px;
+  border: 1px solid #dfe3e8;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #26334a;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.menuButton,
+.mobileBackdrop {
+  display: none;
+}
+
+.clientContent {
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 32px clamp(22px, 4vw, 48px) 55px;
+}
+
+.clientWelcome {
+  padding: 31px 33px;
+  border: 1px solid #e0e4e9;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 330px);
+  align-items: center;
+  gap: 34px;
+  background:
+    radial-gradient(circle at 90% 5%, rgba(217, 0, 0, 0.06), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 13px 36px rgba(29, 43, 69, 0.05);
+}
+
+.clientWelcome > div:first-child > span,
+.panelEyebrow,
+.panelHeading span {
+  color: #d90000;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.clientWelcome h2 {
+  margin: 9px 0 0;
+  color: #17233a;
+  font-size: clamp(1.8rem, 3.4vw, 2.75rem);
+  letter-spacing: -0.05em;
+}
+
+.clientWelcome > div:first-child > p {
+  max-width: 700px;
+  margin: 13px 0 0;
+  color: #70798b;
+  font-size: 0.88rem;
+  line-height: 1.62;
+}
+
+.welcomeActions {
+  margin-top: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.welcomeActions button {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #e0e3e8;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #25324a;
+  font: inherit;
+  font-size: 0.71rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.welcomeActions button:first-child {
+  border-color: #d90000;
+  background: #d90000;
+  color: #ffffff;
+}
+
+.catalogStatusCard {
+  padding: 22px;
+  border: 1px solid #e2e6e9;
+  border-radius: 18px;
+  display: grid;
+  background: #f8faf9;
+}
+
+.statusDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #1aaa67;
+  box-shadow: 0 0 0 5px rgba(26, 170, 103, 0.11);
+}
+
+.catalogStatusCard small {
+  margin-top: 17px;
+  color: #7c8594;
+  font-size: 0.65rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.catalogStatusCard strong {
+  margin-top: 5px;
+  color: #187c51;
+  font-size: 1.08rem;
+}
+
+.catalogStatusCard p {
+  margin: 7px 0 0;
+  overflow: hidden;
+  color: #8b92a0;
+  font-size: 0.65rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clientSummaryGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.clientSummaryGrid article {
+  padding: 20px;
+  border: 1px solid #e1e4e9;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  box-shadow: 0 9px 25px rgba(29, 43, 69, 0.04);
+}
+
+.summarySymbol {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(217, 0, 0, 0.065);
+  color: #d90000;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.clientSummaryGrid article > div {
+  min-width: 0;
+  display: grid;
+}
+
+.clientSummaryGrid small {
+  color: #818998;
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.clientSummaryGrid strong {
+  margin-top: 2px;
+  overflow: hidden;
+  color: #18253d;
+  font-size: 1.05rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clientSummaryGrid p {
+  margin: 3px 0 0;
+  color: #969ca8;
+  font-size: 0.62rem;
+}
+
+.overviewColumns {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.7fr);
+  gap: 18px;
+}
+
+.clientPanel,
+.editorPanel {
+  padding: 26px;
+  border: 1px solid #e1e4e9;
+  border-radius: 21px;
+  background: #ffffff;
+  box-shadow: 0 10px 29px rgba(29, 43, 69, 0.04);
+}
+
+.panelHeading h2 {
+  margin: 6px 0 0;
+  color: #18253d;
+  font-size: 1.2rem;
+  letter-spacing: -0.035em;
+}
+
+.actionCards {
+  margin-top: 20px;
+  display: grid;
+  gap: 9px;
+}
+
+.actionCards button,
+.actionCards a {
+  min-height: 82px;
+  padding: 14px 15px;
+  border: 1px solid #e7e9ed;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  background: #fafbfc;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actionCards > * > span {
+  color: #d90000;
+  font-size: 0.66rem;
+  font-weight: 900;
+}
+
+.actionCards strong {
+  color: #253149;
+  font-size: 0.78rem;
+}
+
+.actionCards p {
+  margin: 4px 0 0;
+  color: #878e9d;
+  font-size: 0.67rem;
+}
+
+.actionCards i {
+  color: #d90000;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+.permissionList {
+  margin-top: 20px;
+  display: grid;
+  gap: 9px;
+}
+
+.permissionList > div {
+  min-height: 49px;
+  padding: 0 13px;
+  border: 1px solid #e7e9ed;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fafbfc;
+}
+
+.permissionList span {
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 170, 103, 0.09);
+  color: #188354;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.permissionList p {
+  margin: 0;
+  color: #536075;
+  font-size: 0.69rem;
+  line-height: 1.4;
+}
+
+.permissionList .permissionRestricted span {
+  background: rgba(180, 35, 24, 0.075);
+  color: #a4372d;
+}
+
+.editorLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(290px, 0.65fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.profileFields {
+  margin-top: 22px;
+  display: grid;
+  gap: 17px;
+}
+
+.twoColumns,
+.colorFields,
+.imageFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.imageFields article {
+  min-height: 116px;
+  padding: 15px;
+  border: 1px solid #e2e5e9;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #fafbfc;
+}
+
+.profileDemoAvatar,
+.logoDemo {
+  width: 62px;
+  height: 62px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: #17233a;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.profileDemoAvatar {
+  border-radius: 50%;
+}
+
+.logoDemo {
+  background: #d90000;
+  font-size: 0.55rem;
+}
+
+.imageFields strong {
+  color: #28354c;
+  font-size: 0.75rem;
+}
+
+.imageFields p {
+  margin: 5px 0 0;
+  color: #858d9c;
+  font-size: 0.63rem;
+  line-height: 1.4;
+}
+
+.imageFields button {
+  min-height: 31px;
+  margin-top: 9px;
+  padding: 0 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #344057;
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.salesMode {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #e1e4e9;
+  border-radius: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
+.salesMode legend {
+  padding: 0 6px;
+  color: #25324a;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.salesMode label {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #e1e4e9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fafbfc;
+  font-size: 0.67rem;
+  cursor: pointer;
+}
+
+.salesMode input {
+  width: auto;
+  min-height: auto;
+}
+
+.colorFields label > span {
+  min-height: 50px;
+  padding: 0 12px;
+  border: 1px solid #dfe3e8;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #f7f8fa;
+  color: #747d8e;
+  font-size: 0.7rem;
+  font-weight: 650;
+}
+
+.colorFields input[type="color"] {
+  width: 29px;
+  height: 29px;
+  min-height: 29px;
+  padding: 0;
+  border: 0;
+}
+
+.editorFooter {
+  margin-top: 23px;
+  padding-top: 18px;
+  border-top: 1px solid #e6e8ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.editorFooter > span {
+  color: #858d9c;
+  font-size: 0.67rem;
+}
+
+.editorFooter .savedMessage {
+  color: #188354;
+  font-weight: 750;
+}
+
+.editorFooter > button {
+  min-height: 43px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 11px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.profilePreview {
+  min-height: 460px;
+  padding: 31px 25px;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 110px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(29, 43, 69, 0.14);
+  color: #ffffff;
+  text-align: center;
+}
+
+.profilePreview > small {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.previewAvatar {
+  width: 116px;
+  height: 116px;
+  margin-top: 33px;
+  border: 5px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #17233a;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.profilePreview h2 {
+  margin: 23px 0 0;
+  font-size: 1.65rem;
+}
+
+.profilePreview p {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.profilePreview > div {
+  width: 100%;
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.profilePreview > div span {
+  min-height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.09);
+  font-size: 0.66rem;
+  font-weight: 750;
+}
+
+.profilePreview > strong {
+  margin-top: auto;
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  font-size: 0.65rem;
+}
+
+.motorcycleHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.motorcycleHeading h2 {
+  margin: 7px 0 0;
+  color: #18253d;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+}
+
+.motorcycleHeading p {
+  max-width: 720px;
+  margin: 10px 0 0;
+  color: #7b8495;
+  font-size: 0.77rem;
+  line-height: 1.55;
+}
+
+.motorcycleHeading > div:last-child {
+  min-width: 115px;
+  padding: 14px;
+  border: 1px solid #e2e5e9;
+  border-radius: 14px;
+  display: grid;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.motorcycleHeading > div:last-child strong {
+  color: #d90000;
+  font-size: 1.55rem;
+}
+
+.motorcycleHeading > div:last-child span {
+  color: #858d9c;
+  font-size: 0.61rem;
+}
+
+.motorcycleDemoGrid {
+  margin-top: 23px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.motorcycleDemoGrid article {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #e1e4e9;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  background: #ffffff;
+}
+
+.motorcycleDemoGrid .motorcycleInactive {
+  background: #f7f8fa;
+  opacity: 0.62;
+}
+
+.motorcycleVisual {
+  height: 74px;
+  border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f3f5f7;
+}
+
+.motorcycleVisual span {
+  color: #d90000;
+  font-size: 0.48rem;
+  font-weight: 900;
+}
+
+.motorcycleVisual strong {
+  margin-top: 5px;
+  color: #243149;
+  font-size: 0.76rem;
+}
+
+.motorcycleInfo small {
+  color: #d90000;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.motorcycleInfo h3 {
+  margin: 5px 0 0;
+  overflow: hidden;
+  color: #253149;
+  font-size: 0.81rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.motorcycleInfo p {
+  margin: 4px 0 0;
+  color: #9198a5;
+  font-size: 0.61rem;
+}
+
+.toggleButton {
+  width: 42px;
+  height: 24px;
+  padding: 3px;
+  border: 0;
+  border-radius: 999px;
+  background: #cfd4dc;
+  cursor: pointer;
+}
+
+.motorcycleActive .toggleButton {
+  background: #1aaa67;
+}
+
+.toggleButton span {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: block;
+  background: #ffffff;
+  transition: transform 150ms ease;
+}
+
+.motorcycleActive .toggleButton span {
+  transform: translateX(18px);
+}
+
+@media (max-width: 1120px) {
+  .loginPage {
+    grid-template-columns: 1fr;
+  }
+
+  .loginBrand {
+    min-height: auto;
+    padding: 58px 34px;
+  }
+
+  .loginBenefits {
+    display: none;
+  }
+
+  .loginFormArea {
+    min-height: auto;
+    padding: 44px 20px 65px;
+  }
+
+  .overviewColumns,
+  .editorLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .profilePreview {
+    min-height: 390px;
+    position: relative;
+    top: auto;
+  }
+
+  .motorcycleDemoGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .clientApp {
+    display: block;
+  }
+
+  .clientSidebar {
+    transform: translateX(-105%);
+    transition: transform 190ms ease;
+  }
+
+  .clientSidebarOpen {
+    transform: translateX(0);
+  }
+
+  .clientMain {
+    grid-column: auto;
+  }
+
+  .menuButton {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid #dfe3e8;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #25324a;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .closeMenu {
+    width: 36px;
+    height: 36px;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+  .mobileBackdrop {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    background: rgba(11, 17, 29, 0.52);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 190ms ease;
+  }
+
+  .mobileBackdropVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .loginBrand {
+    padding: 45px 22px;
+  }
+
+  .loginBrand > h1 {
+    font-size: clamp(2.55rem, 13vw, 4rem);
+  }
+
+  .loginCard {
+    padding: 29px 21px;
+    border-radius: 22px;
+  }
+
+  .clientTopbar {
+    min-height: 78px;
+    padding: 0 13px;
+  }
+
+  .clientTopbar h1 {
+    font-size: 1.08rem;
+  }
+
+  .clientTopbar p {
+    max-width: 175px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .clientContent {
+    padding: 18px 11px 45px;
+  }
+
+  .clientWelcome {
+    padding: 24px 19px;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    border-radius: 19px;
+  }
+
+  .clientSummaryGrid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .clientPanel,
+  .editorPanel {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+
+  .twoColumns,
+  .colorFields,
+  .imageFields {
+    grid-template-columns: 1fr;
+  }
+
+  .salesMode {
+    display: grid;
+  }
+
+  .editorFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .editorFooter > button {
+    width: 100%;
+  }
+
+  .motorcycleHeading {
+    flex-direction: column;
+  }
+
+  .motorcycleHeading > div:last-child {
+    width: 100%;
+  }
+
+  .motorcycleDemoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .clientSidebar {
+    width: min(300px, 86vw);
+  }
+
+  .openCatalogButton {
+    font-size: 0;
+  }
+
+  .openCatalogButton::after {
+    content: "Catálogo ↗";
+    font-size: 0.62rem;
+  }
+}
+
+
+/* Protótipo 18.2 — assinatura e pagamentos */
+
+.subscriptionSidebarLink {
+  text-decoration: none;
+}
+
+.billingStatusBadge {
+  width: fit-content;
+  padding: 6px 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-size: 0.62rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.billingStatusPaid {
+  background: rgba(26, 170, 103, 0.1);
+  color: #188354;
+}
+
+.billingStatusPending {
+  background: rgba(214, 142, 0, 0.11);
+  color: #9a6500;
+}
+
+.billingStatusOverdue {
+  background: rgba(180, 35, 24, 0.09);
+  color: #a4372d;
+}
+
+.billingAdminPage {
+  min-height: 100vh;
+  background: #f4f6f9;
+  color: #172033;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.billingAdminTopbar {
+  min-height: 94px;
+  padding: 18px clamp(24px, 5vw, 70px);
+  border-bottom: 1px solid #e0e4e9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+}
+
+.billingAdminTopbar > div:first-child > span {
+  color: #d90000;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.billingAdminTopbar h1 {
+  margin: 5px 0 0;
+  color: #17233a;
+  font-size: 1.55rem;
+  letter-spacing: -0.04em;
+}
+
+.billingAdminTopbar p {
+  margin: 4px 0 0;
+  color: #7a8394;
+  font-size: 0.73rem;
+}
+
+.billingAdminTopbarActions {
+  display: flex;
+  gap: 9px;
+}
+
+.billingAdminTopbarActions a {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #26334a;
+  font-size: 0.69rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.billingAdminTopbarActions a:last-child {
+  border-color: #d90000;
+  background: #d90000;
+  color: #ffffff;
+}
+
+.billingAdminContent {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 32px clamp(18px, 4vw, 52px) 60px;
+}
+
+.billingAdminHero {
+  padding: 30px 32px;
+  border: 1px solid #e0e4e9;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  background:
+    radial-gradient(circle at 93% 0, rgba(217, 0, 0, 0.06), transparent 16rem),
+    #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.billingAdminHero > div:first-child > span {
+  color: #d90000;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.billingAdminHero h2 {
+  margin: 8px 0 0;
+  color: #17233a;
+  font-size: clamp(1.75rem, 3vw, 2.55rem);
+  letter-spacing: -0.05em;
+}
+
+.billingAdminHero p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: #737c8e;
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.billingAdminHero > div:last-child {
+  min-width: 145px;
+  padding: 17px;
+  border: 1px solid #e2e5e9;
+  border-radius: 16px;
+  display: grid;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.billingAdminHero > div:last-child strong {
+  color: #d90000;
+  font-size: 1.7rem;
+}
+
+.billingAdminHero > div:last-child span {
+  color: #858d9c;
+  font-size: 0.62rem;
+}
+
+.billingClientsGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.billingClientsGrid > button {
+  min-width: 0;
+  min-height: 82px;
+  padding: 13px 14px;
+  border: 1px solid #e1e4e9;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(29, 43, 69, 0.035);
+}
+
+.billingClientsGrid > button:hover,
+.billingClientsGrid .billingClientCardActive {
+  border-color: rgba(217, 0, 0, 0.28);
+  box-shadow: 0 10px 28px rgba(217, 0, 0, 0.07);
+}
+
+.billingClientsGrid > button > span {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17233a;
+  color: #ffffff;
+  font-size: 0.69rem;
+  font-weight: 900;
+}
+
+.billingClientsGrid > button > div {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.billingClientsGrid > button > div:nth-child(3) {
+  text-align: right;
+}
+
+.billingClientsGrid strong {
+  overflow: hidden;
+  color: #253149;
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.billingClientsGrid small {
+  color: #9299a6;
+  font-size: 0.61rem;
+}
+
+.billingAdminColumns {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(290px, 0.65fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.billingConfigurationPanel,
+.billingPreviewPanel {
+  padding: 26px;
+  border: 1px solid #e1e4e9;
+  border-radius: 21px;
+  background: #ffffff;
+  box-shadow: 0 10px 29px rgba(29, 43, 69, 0.04);
+}
+
+.billingPanelHeading,
+.billingConfigurationPanel .billingPanelHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.billingPanelHeading span,
+.billingPreviewPanel > span {
+  color: #d90000;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.billingPanelHeading h2 {
+  margin: 6px 0 0;
+  color: #18253d;
+  font-size: 1.24rem;
+}
+
+.billingPanelHeading > strong {
+  color: #9299a6;
+  font-size: 0.68rem;
+}
+
+.billingConfigurationFields {
+  margin-top: 22px;
+  display: grid;
+  gap: 17px;
+}
+
+.billingConfigurationFields > label,
+.billingFieldColumns label {
+  display: grid;
+  gap: 8px;
+  color: #26334a;
+  font-size: 0.73rem;
+  font-weight: 750;
+}
+
+.billingConfigurationFields input,
+.billingConfigurationFields select {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid #dfe3e8;
+  border-radius: 13px;
+  background: #f7f8fa;
+  color: #172033;
+  font: inherit;
+  outline: 0;
+}
+
+.billingConfigurationFields input:focus,
+.billingConfigurationFields select:focus {
+  border-color: rgba(217, 0, 0, 0.45);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(217, 0, 0, 0.07);
+}
+
+.moneyInput {
+  border: 1px solid #dfe3e8;
+  border-radius: 13px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  background: #f7f8fa;
+  overflow: hidden;
+}
+
+.moneyInput > span {
+  padding-left: 14px;
+  color: #727b8d;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.moneyInput input {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.billingFieldColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.billingSwitchField {
+  padding: 15px;
+  border: 1px solid #e2e5e9;
+  border-radius: 14px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fafbfc;
+}
+
+.billingSwitchField strong {
+  color: #26334a;
+  font-size: 0.74rem;
+}
+
+.billingSwitchField p {
+  margin: 5px 0 0;
+  color: #858d9c;
+  font-size: 0.64rem;
+  line-height: 1.45;
+}
+
+.billingSwitchField > button {
+  width: 46px;
+  height: 26px;
+  padding: 3px;
+  border: 0;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  background: #cfd4dc;
+  cursor: pointer;
+}
+
+.billingSwitchField > button span {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: block;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(29, 43, 69, 0.18);
+  transition: transform 150ms ease;
+}
+
+.billingSwitchField .billingSwitchActive {
+  background: #1aaa67;
+}
+
+.billingSwitchField .billingSwitchActive span {
+  transform: translateX(20px);
+}
+
+.billingAdminFooter {
+  margin-top: 23px;
+  padding-top: 18px;
+  border-top: 1px solid #e6e8ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.billingAdminFooter > button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #5f697c;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.billingAdminFooter > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.billingAdminFooter > div span {
+  color: #188354;
+  font-size: 0.65rem;
+  font-weight: 750;
+}
+
+.billingAdminFooter > div button {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 11px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.69rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.billingPreviewPanel {
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 100% 0, rgba(217, 0, 0, 0.08), transparent 15rem),
+    #17233a;
+  color: #ffffff;
+}
+
+.billingPreviewPanel > small {
+  margin-top: 34px;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.65rem;
+}
+
+.billingPreviewPanel h2 {
+  margin: 9px 0 0;
+  color: #ffffff;
+  font-size: 2.35rem;
+  letter-spacing: -0.05em;
+}
+
+.billingPreviewPanel > p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.68rem;
+}
+
+.billingPreviewStatus {
+  margin-top: 17px;
+}
+
+.billingPreviewPanel dl {
+  margin: 28px 0 0;
+  display: grid;
+  gap: 1px;
+}
+
+.billingPreviewPanel dl > div {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.billingPreviewPanel dt {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.65rem;
+}
+
+.billingPreviewPanel dd {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.67rem;
+  font-weight: 750;
+  text-align: right;
+}
+
+.billingPreviewPanel > a {
+  min-height: 43px;
+  margin-top: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 0.69rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.prototypeWarning {
+  margin-top: 18px;
+  padding: 15px 17px;
+  border: 1px solid #e0e4e8;
+  border-radius: 14px;
+  background: #f8f9fa;
+}
+
+.prototypeWarning strong {
+  color: #344057;
+  font-size: 0.72rem;
+}
+
+.prototypeWarning p {
+  margin: 5px 0 0;
+  color: #858d9c;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.subscriptionApp {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  background: #f4f6f9;
+  color: #172033;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.subscriptionSidebar {
+  width: 272px;
+  height: 100vh;
+  padding: 23px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0 auto 0 0;
+  background: #17233a;
+  color: #ffffff;
+}
+
+.subscriptionNavigation {
+  margin-top: 25px;
+  display: grid;
+  gap: 6px;
+}
+
+.subscriptionNavigation a {
+  min-height: 47px;
+  padding: 0 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.8rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.subscriptionNavigation a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.subscriptionNavigation .subscriptionNavigationActive {
+  background: #d90000;
+  box-shadow: 0 9px 21px rgba(217, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.subscriptionMain {
+  min-width: 0;
+  grid-column: 2;
+}
+
+.subscriptionTopbar {
+  min-height: 86px;
+  padding: 0 clamp(24px, 4vw, 52px);
+  border-bottom: 1px solid #e0e4e9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+}
+
+.subscriptionTopbar h1 {
+  margin: 0;
+  color: #18243b;
+  font-size: 1.42rem;
+  letter-spacing: -0.035em;
+}
+
+.subscriptionTopbar p {
+  margin: 4px 0 0;
+  color: #778092;
+  font-size: 0.76rem;
+}
+
+.subscriptionTopbar > div:last-child {
+  display: flex;
+  gap: 8px;
+}
+
+.subscriptionTopbar a {
+  min-height: 39px;
+  padding: 0 12px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #26334a;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.subscriptionContent {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 32px clamp(20px, 4vw, 48px) 55px;
+}
+
+.subscriptionHero {
+  padding: 31px 33px;
+  border: 1px solid #e0e4e9;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 350px);
+  align-items: center;
+  gap: 35px;
+  background:
+    radial-gradient(circle at 90% 5%, rgba(217, 0, 0, 0.06), transparent 17rem),
+    #ffffff;
+  box-shadow: 0 13px 36px rgba(29, 43, 69, 0.05);
+}
+
+.subscriptionHeroOverdue {
+  border-color: rgba(180, 35, 24, 0.2);
+  background:
+    radial-gradient(circle at 90% 5%, rgba(180, 35, 24, 0.09), transparent 17rem),
+    #ffffff;
+}
+
+.subscriptionHero > div:first-child > span {
+  color: #d90000;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.subscriptionHero h2 {
+  margin: 10px 0 0;
+  color: #17233a;
+  font-size: clamp(2.35rem, 5vw, 4.3rem);
+  letter-spacing: -0.065em;
+}
+
+.subscriptionHero > div:first-child > p {
+  margin: 8px 0 0;
+  color: #717a8d;
+  font-size: 0.8rem;
+}
+
+.subscriptionHeroMeta {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.subscriptionHeroMeta > div {
+  min-width: 132px;
+  padding: 12px 14px;
+  border: 1px solid #e4e7eb;
+  border-radius: 13px;
+  display: grid;
+  background: #fafbfc;
+}
+
+.subscriptionHeroMeta small {
+  color: #8a92a1;
+  font-size: 0.6rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.subscriptionHeroMeta strong {
+  margin-top: 5px;
+  color: #26334a;
+  font-size: 0.72rem;
+}
+
+.subscriptionPaymentCard {
+  padding: 22px;
+  border: 1px solid #e2e5e9;
+  border-radius: 18px;
+  display: grid;
+  background: #f8f9fa;
+}
+
+.subscriptionPaymentCard > span {
+  color: #7e8797;
+  font-size: 0.63rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.subscriptionPaymentCard > strong {
+  margin-top: 6px;
+  color: #17233a;
+  font-size: 1.45rem;
+}
+
+.subscriptionPaymentCard > p {
+  margin: 7px 0 18px;
+  color: #838b9b;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+.subscriptionPaymentCard button {
+  min-height: 43px;
+  border: 0;
+  border-radius: 11px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.69rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.subscriptionPaymentCard button + button {
+  margin-top: 8px;
+  border: 1px solid #dfe3e8;
+  background: #ffffff;
+  color: #26334a;
+}
+
+.subscriptionSuccess {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(26, 170, 103, 0.18);
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  background: rgba(26, 170, 103, 0.07);
+}
+
+.subscriptionSuccess strong {
+  color: #177c51;
+  font-size: 0.72rem;
+}
+
+.subscriptionSuccess p {
+  margin: 0;
+  color: #318063;
+  font-size: 0.67rem;
+}
+
+.subscriptionSuccess button {
+  border: 0;
+  background: transparent;
+  color: #177c51;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.subscriptionAlert {
+  margin-top: 16px;
+  padding: 15px 17px;
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: rgba(180, 35, 24, 0.055);
+}
+
+.subscriptionAlert > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subscriptionAlert > div > span {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(180, 35, 24, 0.1);
+  color: #a4372d;
+  font-weight: 900;
+}
+
+.subscriptionAlert strong {
+  color: #a4372d;
+  font-size: 0.74rem;
+}
+
+.subscriptionAlert p {
+  margin: 4px 0 0;
+  color: #9b5b55;
+  font-size: 0.66rem;
+}
+
+.subscriptionAlert > button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #a4372d;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.subscriptionColumns {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: 18px;
+}
+
+.subscriptionPanel {
+  margin-top: 18px;
+  padding: 26px;
+  border: 1px solid #e1e4e9;
+  border-radius: 21px;
+  background: #ffffff;
+  box-shadow: 0 10px 29px rgba(29, 43, 69, 0.04);
+}
+
+.subscriptionColumns .subscriptionPanel {
+  margin-top: 0;
+}
+
+.subscriptionPanelHeading span {
+  color: #d90000;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.subscriptionPanelHeading h2 {
+  margin: 6px 0 0;
+  color: #18253d;
+  font-size: 1.18rem;
+  letter-spacing: -0.035em;
+}
+
+.paymentMethods {
+  margin-top: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.paymentMethods > button {
+  min-height: 84px;
+  padding: 14px 15px;
+  border: 1px solid #e3e6ea;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: center;
+  gap: 13px;
+  background: #fafbfc;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.paymentMethods > button:hover {
+  border-color: rgba(217, 0, 0, 0.22);
+  background: rgba(217, 0, 0, 0.025);
+}
+
+.paymentMethodIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17233a;
+  color: #ffffff;
+  font-size: 0.59rem;
+  font-weight: 900;
+}
+
+.paymentMethods strong {
+  color: #253149;
+  font-size: 0.76rem;
+}
+
+.paymentMethods p {
+  margin: 4px 0 0;
+  color: #878e9d;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+.paymentMethods i {
+  color: #d90000;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+.savedPaymentMethod {
+  margin-top: 16px;
+  padding: 15px;
+  border: 1px dashed #dfe3e8;
+  border-radius: 13px;
+  display: grid;
+  background: #fafbfc;
+}
+
+.savedPaymentMethod span {
+  color: #8a92a1;
+  font-size: 0.6rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.savedPaymentMethod strong {
+  margin-top: 5px;
+  color: #26334a;
+  font-size: 0.76rem;
+}
+
+.savedPaymentMethod p {
+  margin: 5px 0 0;
+  color: #9299a6;
+  font-size: 0.62rem;
+  line-height: 1.45;
+}
+
+.subscriptionRules {
+  margin: 20px 0 0;
+  display: grid;
+}
+
+.subscriptionRules > div {
+  min-height: 48px;
+  border-bottom: 1px solid #eceef1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.subscriptionRules dt {
+  color: #858d9c;
+  font-size: 0.66rem;
+}
+
+.subscriptionRules dd {
+  margin: 0;
+  color: #26334a;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.paymentHistory {
+  margin-top: 20px;
+  border: 1px solid #e3e6ea;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.paymentHistoryHeader,
+.paymentHistory > div:not(.paymentHistoryHeader) {
+  min-height: 54px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.7fr 0.6fr;
+  align-items: center;
+  gap: 13px;
+}
+
+.paymentHistoryHeader {
+  min-height: 42px;
+  background: #f6f7f9;
+  color: #858d9c;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.paymentHistory > div:not(.paymentHistoryHeader) {
+  border-top: 1px solid #eceef1;
+  color: #5d687b;
+  font-size: 0.66rem;
+}
+
+.paymentModalBackdrop {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 16, 28, 0.62);
+  backdrop-filter: blur(6px);
+}
+
+.paymentModal {
+  width: min(500px, 100%);
+  max-height: calc(100vh - 40px);
+  padding: 29px;
+  border-radius: 23px;
+  position: relative;
+  overflow-y: auto;
+  background: #ffffff;
+  box-shadow: 0 25px 80px rgba(10, 16, 28, 0.3);
+}
+
+.paymentModalClose {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #e0e3e8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f7f8fa;
+  color: #5d687b;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.paymentModalEyebrow {
+  color: #d90000;
+  font-size: 0.63rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.paymentModal h2 {
+  margin: 7px 0 0;
+  color: #17233a;
+  font-size: 1.75rem;
+  letter-spacing: -0.04em;
+}
+
+.paymentModal > p {
+  margin: 10px 0 0;
+  color: #7b8495;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.fakeQrCode {
+  width: 190px;
+  height: 190px;
+  margin: 24px auto 0;
+  padding: 12px;
+  border: 8px solid #ffffff;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 2px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(29, 43, 69, 0.12);
+}
+
+.fakeQrCode i {
+  background: #17233a;
+}
+
+.fakeQrCode i:nth-child(3n),
+.fakeQrCode i:nth-child(5n + 1),
+.fakeQrCode i:nth-child(7n + 2) {
+  background: transparent;
+}
+
+.pixCopyField {
+  margin-top: 18px;
+  padding: 11px;
+  border: 1px solid #e1e4e9;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  background: #f7f8fa;
+}
+
+.pixCopyField span {
+  overflow: hidden;
+  color: #7d8595;
+  font-size: 0.59rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pixCopyField button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #26334a;
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.paymentModalPrimary {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 17px;
+  border: 0;
+  border-radius: 12px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.demoCardPreview {
+  min-height: 190px;
+  margin-top: 21px;
+  padding: 23px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 100% 0, rgba(255, 255, 255, 0.13), transparent 13rem),
+    linear-gradient(145deg, #17233a, #2d436d);
+  box-shadow: 0 17px 38px rgba(29, 43, 69, 0.2);
+  color: #ffffff;
+}
+
+.demoCardPreview small {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.demoCardPreview > strong {
+  margin-top: 45px;
+  font-size: 1rem;
+  letter-spacing: 0.11em;
+}
+
+.demoCardPreview > div {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.cardDemoFields {
+  margin-top: 18px;
+  display: grid;
+  gap: 13px;
+}
+
+.cardDemoFields label {
+  display: grid;
+  gap: 7px;
+  color: #26334a;
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+
+.cardDemoFields input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 11px;
+  background: #f7f8fa;
+  color: #172033;
+  font: inherit;
+  outline: 0;
+}
+
+.cardDemoFields > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+@media (max-width: 1050px) {
+  .billingClientsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .billingAdminColumns,
+  .subscriptionColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .billingPreviewPanel {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 900px) {
+  .subscriptionApp {
+    display: block;
+  }
+
+  .subscriptionSidebar {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    position: static;
+  }
+
+  .subscriptionSidebar .sidebarRestriction,
+  .subscriptionSidebar .logoutLink {
+    display: none;
+  }
+
+  .subscriptionSidebar .clientIdentity {
+    display: none;
+  }
+
+  .subscriptionNavigation {
+    margin-top: 14px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .subscriptionNavigation a {
+    min-height: 42px;
+    padding: 0 8px;
+    justify-content: center;
+    font-size: 0.65rem;
+    text-align: center;
+  }
+
+  .subscriptionMain {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .billingAdminTopbar {
+    padding: 15px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .billingAdminTopbarActions {
+    width: 100%;
+  }
+
+  .billingAdminTopbarActions a {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .billingAdminContent,
+  .subscriptionContent {
+    padding: 18px 11px 45px;
+  }
+
+  .billingAdminHero {
+    padding: 24px 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .billingAdminHero > div:last-child {
+    width: 100%;
+  }
+
+  .billingClientsGrid > button {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .billingClientsGrid > button > div:nth-child(3) {
+    display: none;
+  }
+
+  .billingConfigurationPanel,
+  .billingPreviewPanel,
+  .subscriptionPanel {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+
+  .billingFieldColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .billingAdminFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .billingAdminFooter > div {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .billingAdminFooter button {
+    width: 100%;
+  }
+
+  .subscriptionTopbar {
+    min-height: auto;
+    padding: 14px 13px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .subscriptionTopbar > div:last-child {
+    width: 100%;
+  }
+
+  .subscriptionTopbar a {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .subscriptionHero {
+    padding: 24px 19px;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    border-radius: 19px;
+  }
+
+  .subscriptionHeroMeta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .subscriptionHeroMeta > div:last-child {
+    grid-column: 1 / 3;
+  }
+
+  .subscriptionSuccess {
+    grid-template-columns: 1fr auto;
+  }
+
+  .subscriptionSuccess p {
+    grid-column: 1 / 3;
+  }
+
+  .subscriptionAlert {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .subscriptionAlert > button {
+    width: 100%;
+  }
+
+  .paymentHistory {
+    border: 0;
+    display: grid;
+    gap: 10px;
+    overflow: visible;
+  }
+
+  .paymentHistoryHeader {
+    display: none;
+  }
+
+  .paymentHistory > div:not(.paymentHistoryHeader) {
+    min-height: auto;
+    padding: 14px;
+    border: 1px solid #e3e6ea;
+    border-radius: 13px;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    background: #ffffff;
+  }
+
+  .paymentHistory > div:not(.paymentHistoryHeader) span:nth-child(2) {
+    grid-column: 1;
+  }
+
+  .paymentHistory > div:not(.paymentHistoryHeader) span:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .paymentHistory > div:not(.paymentHistoryHeader) strong {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .paymentModal {
+    padding: 25px 18px;
+  }
+
+  .subscriptionNavigation {
+    grid-template-columns: 1fr 1fr;
+  }
+}

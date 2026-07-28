@@ -55,7 +55,13 @@ export default function AdminDashboardPage() {
   const [greeting, setGreeting] = useState("Olá");
 
   useEffect(() => {
-    setGreeting(getGreeting());
+    const timeoutId = window.setTimeout(() => {
+      setGreeting(getGreeting());
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
   }, []);
 
   useEffect(() => {
