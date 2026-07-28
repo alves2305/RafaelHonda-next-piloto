@@ -296,6 +296,7 @@ export async function getClientMotorcycle(
   );
   const motorcycle =
     motorcycleIndex >= 0 ? catalog.motorcycles[motorcycleIndex] : null;
+
   const nextMotorcycle =
     motorcycle && catalog.motorcycles.length > 1
       ? catalog.motorcycles[
@@ -311,21 +312,30 @@ export async function getClientMotorcycle(
     (item) => item.slug === motorcycleSlug,
   );
 
-  const nextConsortiumMotorcycle =
+  const hasConsortiumNavigation =
     motorcycle &&
     motorcycle.planosConsorcio.length > 0 &&
     consortiumMotorcycleIndex >= 0 &&
-    consortiumMotorcycles.length > 1
-      ? consortiumMotorcycles[
-          (consortiumMotorcycleIndex + 1) %
-            consortiumMotorcycles.length
-        ]
-      : null;
+    consortiumMotorcycles.length > 1;
+
+  const previousConsortiumMotorcycle = hasConsortiumNavigation
+    ? consortiumMotorcycles[
+        (consortiumMotorcycleIndex - 1 + consortiumMotorcycles.length) %
+          consortiumMotorcycles.length
+      ]
+    : null;
+
+  const nextConsortiumMotorcycle = hasConsortiumNavigation
+    ? consortiumMotorcycles[
+        (consortiumMotorcycleIndex + 1) % consortiumMotorcycles.length
+      ]
+    : null;
 
   return {
     client: catalog.client,
     motorcycle,
     nextMotorcycle,
+    previousConsortiumMotorcycle,
     nextConsortiumMotorcycle,
   };
 }

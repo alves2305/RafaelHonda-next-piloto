@@ -10,8 +10,9 @@ import { SubpageHeader } from "@/components/SubpageHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
 import { getClientMotorcycle } from "@/lib/catalog";
 import { formatCurrency } from "@/lib/format";
+import { canOptimizePublicImage } from "@/lib/public-image";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 type ConsortiumPageProps = {
   params: Promise<{ cliente: string; moto: string }>;
@@ -47,11 +48,7 @@ export default async function ConsortiumPage({
     return <SuspendedProfile client={result.client} />;
   }
 
-  if (!result.client.vendeConsorcio) {
-    notFound();
-  }
-
-  if (!result.motorcycle) {
+  if (!result.client.vendeConsorcio || !result.motorcycle) {
     notFound();
   }
 
@@ -61,11 +58,12 @@ export default async function ConsortiumPage({
     notFound();
   }
 
+  const previousMotorcycle = result.previousConsortiumMotorcycle;
   const nextMotorcycle = result.nextConsortiumMotorcycle;
 
   return (
     <ProfileFrame client={result.client}>
-      <main className="page-container subpage-container">
+      <main className="page-container subpage-container consortium-page">
         <SubpageHeader
           client={result.client}
           backHref={`/${result.client.slug}/moto/${motorcycle.slug}`}
@@ -76,57 +74,46 @@ export default async function ConsortiumPage({
           <div className="plan-intro">
             <p className="eyebrow">Consórcio Honda</p>
             <h1>{motorcycle.nome}</h1>
-            <p>
-              Escolha o plano que cabe no seu planejamento e envie diretamente
-              para {result.client.nome}.
-            </p>
+
             <Image
               src={motorcycle.imagemUrl}
               alt={motorcycle.nome}
               width={700}
               height={460}
               priority
-              unoptimized
+              sizes="(max-width: 720px) 92vw, (max-width: 1180px) 48vw, 650px"
+              unoptimized={!canOptimizePublicImage(motorcycle.imagemUrl)}
             />
           </div>
 
           <div className="plan-card">
             {result.client.marcaDaguaUrl ? (
-              <Image
-                className="watermark"
-                src={result.client.marcaDaguaUrl}
-                alt=""
-                width={300}
-                height={140}
-                unoptimized
+              <div
+                className="watermark-pattern"
+                style={{
+                  backgroundImage: `url("${result.client.marcaDaguaUrl}")`,
+                }}
+                aria-hidden="true"
               />
             ) : null}
 
             <div className="plan-card-content">
-              <p className="eyebrow">Tabela centralizada</p>
               <h2>{motorcycle.tituloConsorcio}</h2>
 
-              {motorcycle.planosConsorcio.length > 0 ? (
-                <div className="installment-list">
-                  {motorcycle.planosConsorcio.map((plan) => (
-                    <div
-                      className={`installment-row ${
-                        plan.destaque ? "featured" : ""
-                      }`}
-                      key={plan.id}
-                    >
-                      <span>{plan.parcelas}x</span>
-                      <strong>{formatCurrency(plan.valorParcela)}</strong>
-                      {plan.destaque ? <small>Mais leve</small> : null}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="empty-state">
-                  <strong>Tabela em atualização.</strong>
-                  <p>Fale com o vendedor para consultar as condições.</p>
-                </div>
-              )}
+              <div className="installment-list">
+                {motorcycle.planosConsorcio.map((plan) => (
+                  <div
+                    className={`installment-row ${
+                      plan.destaque ? "featured" : ""
+                    }`}
+                    key={plan.id}
+                  >
+                    <span>{plan.parcelas}x</span>
+                    <strong>{formatCurrency(plan.valorParcela)}</strong>
+                    {plan.destaque ? <small>Mais leve</small> : null}
+                  </div>
+                ))}
+              </div>
 
               <p className="plan-note">
                 * Os valores podem sofrer alterações conforme a tabela do
@@ -136,32 +123,48 @@ export default async function ConsortiumPage({
           </div>
         </section>
 
-        {motorcycle.planosConsorcio.length > 0 ? (
-          <section className="form-section">
-            <ConsortiumForm
-              client={result.client}
-              motorcycle={motorcycle}
-              plans={motorcycle.planosConsorcio}
-            />
-          </section>
-        ) : null}
+        <section className="form-section">
+          <ConsortiumForm
+            client={result.client}
+            motorcycle={motorcycle}
+            plans={motorcycle.planosConsorcio}
+          />
+        </section>
 
-        {nextMotorcycle ? (
+        {previousMotorcycle || nextMotorcycle ? (
           <nav
             className="motorcycle-navigation"
             aria-label="Navegação entre motos"
           >
-            <Link
-              className="next-motorcycle-card"
-              href={`/${result.client.slug}/consorcio/${nextMotorcycle.slug}`}
-              aria-label={`Ver o consórcio da próxima moto: ${nextMotorcycle.nome}`}
-            >
-              <span>Próxima</span>
-              <strong>{nextMotorcycle.nome}</strong>
-              <span className="next-motorcycle-arrow" aria-hidden="true">
-                →
-              </span>
-            </Link>
+            {previousMotorcycle ? (
+              <Link
+                className="motorcycle-nav-card previous"
+                href={`/${result.client.slug}/consorcio/${previousMotorcycle.slug}`}
+                aria-label={`Ver o consórcio da moto anterior: ${previousMotorcycle.nome}`}
+                prefetch={false}
+              >
+                <span className="motorcycle-nav-arrow" aria-hidden="true">
+                  ←
+                </span>
+                <span className="motorcycle-nav-label">Anterior</span>
+                <strong>{previousMotorcycle.nome}</strong>
+              </Link>
+            ) : null}
+
+            {nextMotorcycle ? (
+              <Link
+                className="motorcycle-nav-card next"
+                href={`/${result.client.slug}/consorcio/${nextMotorcycle.slug}`}
+                aria-label={`Ver o consórcio da próxima moto: ${nextMotorcycle.nome}`}
+                prefetch={false}
+              >
+                <span className="motorcycle-nav-label">Próxima</span>
+                <strong>{nextMotorcycle.nome}</strong>
+                <span className="motorcycle-nav-arrow" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            ) : null}
           </nav>
         ) : null}
 

@@ -1,0 +1,64 @@
+CORREÇÃO 16.2 — RESTAURAÇÃO DOS AJUSTES VISUAIS DO CONSÓRCIO
+
+CAUSA
+
+Uma atualização posterior substituiu a página de consórcio por uma versão
+anterior. O CSS visual continuou no projeto, mas a página deixou de utilizar
+as classes e os dados necessários.
+
+CORREÇÕES RESTAURADAS
+
+- nome da moto imediatamente acima da imagem;
+- remoção do texto explicativo;
+- remoção de “Tabela centralizada”;
+- marca-d'água repetida no fundo da tabela;
+- botões Anterior e Próxima padronizados;
+- navegação apenas entre motos que possuem planos ativos de consórcio;
+- ajustes visuais de celular já existentes preservados.
+
+MELHORIAS NOVAS PRESERVADAS
+
+- cache do catálogo por 30 segundos;
+- otimização das imagens do Next.js;
+- sizes responsivos;
+- ausência de pré-carregamento excessivo;
+- bloqueio de páginas sem planos ativos;
+- modalidades por vendedor;
+- painel administrativo e Supabase centralizados.
+
+INSTALAÇÃO
+
+1. Extraia este ZIP na pasta principal.
+2. Confirme a substituição de somente dois arquivos:
+
+app/[cliente]/consorcio/[moto]/page.tsx
+lib/catalog.ts
+
+3. Não substitua catalog-refinements.css por uma versão antiga.
+4. Não execute SQL.
+5. Execute:
+
+npm run typecheck
+npm run lint
+npm run build
+
+6. Quando os três testes forem aprovados:
+
+git add .
+git commit -m "Restaura ajustes visuais da pagina de consorcio"
+git push origin main
+
+TESTE
+
+Abra:
+
+https://catalogo-honda.vercel.app/gd
+
+Entre nos planos de uma moto e confirme:
+
+- não aparece texto explicativo abaixo do nome;
+- não aparece “Tabela centralizada”;
+- marca-d'água fica repetida;
+- aparecem Anterior e Próxima;
+- os botões navegam somente por motos com planos;
+- a página continua rápida.
