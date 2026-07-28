@@ -53,7 +53,8 @@ export function MobileMotorcycleSwipe({
       return;
     }
 
-    const destination = direction === "previous" ? previous : next;
+    const destination =
+      direction === "previous" ? previous : next;
 
     if (!destination) {
       updateOffset(0);
@@ -67,14 +68,20 @@ export function MobileMotorcycleSwipe({
     const viewportWidth =
       typeof window === "undefined" ? 420 : window.innerWidth;
 
-    updateOffset(direction === "previous" ? viewportWidth : -viewportWidth);
+    updateOffset(
+      direction === "previous"
+        ? viewportWidth
+        : -viewportWidth,
+    );
 
     window.setTimeout(() => {
       router.push(destination.href);
     }, 210);
   }
 
-  function handleTouchStart(event: TouchEvent<HTMLDivElement>) {
+  function handleTouchStart(
+    event: TouchEvent<HTMLDivElement>,
+  ) {
     if (
       navigating ||
       !hasNavigation ||
@@ -95,10 +102,16 @@ export function MobileMotorcycleSwipe({
     updateOffset(0);
   }
 
-  function handleTouchMove(event: TouchEvent<HTMLDivElement>) {
+  function handleTouchMove(
+    event: TouchEvent<HTMLDivElement>,
+  ) {
     const start = startRef.current;
 
-    if (!start || navigating || event.touches.length !== 1) {
+    if (
+      !start ||
+      navigating ||
+      event.touches.length !== 1
+    ) {
       return;
     }
 
@@ -107,12 +120,17 @@ export function MobileMotorcycleSwipe({
     const deltaY = touch.clientY - start.y;
 
     if (!directionRef.current) {
-      if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) {
+      if (
+        Math.abs(deltaX) < 8 &&
+        Math.abs(deltaY) < 8
+      ) {
         return;
       }
 
       directionRef.current =
-        Math.abs(deltaX) > Math.abs(deltaY) ? "horizontal" : "vertical";
+        Math.abs(deltaX) > Math.abs(deltaY)
+          ? "horizontal"
+          : "vertical";
     }
 
     if (directionRef.current !== "horizontal") {
@@ -122,7 +140,8 @@ export function MobileMotorcycleSwipe({
     event.preventDefault();
     setDragging(true);
 
-    const hasDestination = deltaX > 0 ? Boolean(previous) : Boolean(next);
+    const hasDestination =
+      deltaX > 0 ? Boolean(previous) : Boolean(next);
     const resistance = hasDestination ? 1 : 0.22;
     const resistedDelta = deltaX * resistance;
     const limitedDelta = Math.max(
@@ -146,9 +165,15 @@ export function MobileMotorcycleSwipe({
 
     const completedSwipe =
       Math.abs(currentOffset) >= SWIPE_DISTANCE ||
-      (Math.abs(currentOffset) >= 36 && velocity >= SWIPE_VELOCITY);
+      (
+        Math.abs(currentOffset) >= 36 &&
+        velocity >= SWIPE_VELOCITY
+      );
 
-    if (directionRef.current === "horizontal" && completedSwipe) {
+    if (
+      directionRef.current === "horizontal" &&
+      completedSwipe
+    ) {
       if (currentOffset > 0 && previous) {
         navigateTo("previous");
       } else if (currentOffset < 0 && next) {
@@ -176,9 +201,9 @@ export function MobileMotorcycleSwipe({
   return (
     <div className={styles.shell}>
       <div
-        className={`${styles.content} ${dragging ? styles.dragging : ""} ${
-          navigating ? styles.navigating : ""
-        }`}
+        className={`${styles.content} ${
+          dragging ? styles.dragging : ""
+        } ${navigating ? styles.navigating : ""}`}
         style={{
           transform: `translate3d(${offset}px, 0, 0)`,
         }}
@@ -190,35 +215,50 @@ export function MobileMotorcycleSwipe({
         {children}
       </div>
 
-      {previous ? (
-        <button
-          className={`${styles.arrow} ${styles.previous}`}
-          type="button"
-          onClick={() => navigateTo("previous")}
-          disabled={navigating}
-          aria-label={`Abrir a moto anterior: ${previous.name}`}
-        >
-          <span aria-hidden="true">‹</span>
-        </button>
-      ) : null}
-
-      {next ? (
-        <button
-          className={`${styles.arrow} ${styles.next}`}
-          type="button"
-          onClick={() => navigateTo("next")}
-          disabled={navigating}
-          aria-label={`Abrir a próxima moto: ${next.name}`}
-        >
-          <span aria-hidden="true">›</span>
-        </button>
-      ) : null}
-
       {hasNavigation ? (
-        <div className={styles.hint} aria-hidden="true">
-          <span>←</span>
-          <strong>Arraste para trocar de moto</strong>
-          <span>→</span>
+        <div
+          className={styles.controls}
+          aria-label="Navegação entre motos"
+        >
+          {previous ? (
+            <button
+              className={styles.arrow}
+              type="button"
+              onClick={() => navigateTo("previous")}
+              disabled={navigating}
+              aria-label={`Abrir a moto anterior: ${previous.name}`}
+            >
+              <span aria-hidden="true">‹</span>
+            </button>
+          ) : (
+            <span
+              className={styles.arrowPlaceholder}
+              aria-hidden="true"
+            />
+          )}
+
+          <div className={styles.hint} aria-hidden="true">
+            <span>←</span>
+            <strong>Arraste para trocar de moto</strong>
+            <span>→</span>
+          </div>
+
+          {next ? (
+            <button
+              className={styles.arrow}
+              type="button"
+              onClick={() => navigateTo("next")}
+              disabled={navigating}
+              aria-label={`Abrir a próxima moto: ${next.name}`}
+            >
+              <span aria-hidden="true">›</span>
+            </button>
+          ) : (
+            <span
+              className={styles.arrowPlaceholder}
+              aria-hidden="true"
+            />
+          )}
         </div>
       ) : null}
     </div>

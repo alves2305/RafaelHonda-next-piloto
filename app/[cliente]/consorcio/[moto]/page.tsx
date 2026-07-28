@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -7,12 +6,12 @@ import { ConsortiumForm } from "@/components/ConsortiumForm";
 import { ContactSection } from "@/components/ContactSection";
 import { MobileMotorcycleSwipe } from "@/components/MobileMotorcycleSwipe";
 import swipeStyles from "@/components/MobileMotorcycleSwipe.module.css";
+import { MotorcycleVisualStage } from "@/components/MotorcycleVisualStage";
 import { ProfileFrame } from "@/components/ProfileFrame";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
 import { getClientMotorcycle } from "@/lib/catalog";
 import { formatCurrency } from "@/lib/format";
-import { canOptimizePublicImage } from "@/lib/public-image";
 
 export const revalidate = 30;
 
@@ -60,8 +59,10 @@ export default async function ConsortiumPage({
     notFound();
   }
 
-  const previousMotorcycle = result.previousConsortiumMotorcycle;
-  const nextMotorcycle = result.nextConsortiumMotorcycle;
+  const previousMotorcycle =
+    result.previousConsortiumMotorcycle;
+  const nextMotorcycle =
+    result.nextConsortiumMotorcycle;
 
   const previousDirection = previousMotorcycle
     ? {
@@ -91,14 +92,10 @@ export default async function ConsortiumPage({
             <p className="eyebrow">Consórcio Honda</p>
             <h1>{motorcycle.nome}</h1>
 
-            <Image
-              src={motorcycle.imagemUrl}
-              alt={motorcycle.nome}
-              width={700}
-              height={460}
-              priority
-              sizes="(max-width: 720px) 92vw, (max-width: 1180px) 48vw, 650px"
-              unoptimized={!canOptimizePublicImage(motorcycle.imagemUrl)}
+            <MotorcycleVisualStage
+              imageUrl={motorcycle.imagemUrl}
+              motorcycleName={motorcycle.nome}
+              variant="consortium"
             />
           </div>
 
@@ -121,23 +118,34 @@ export default async function ConsortiumPage({
                 <h2>{motorcycle.tituloConsorcio}</h2>
 
                 <div className="installment-list">
-                  {motorcycle.planosConsorcio.map((plan) => (
-                    <div
-                      className={`installment-row ${
-                        plan.destaque ? "featured" : ""
-                      }`}
-                      key={plan.id}
-                    >
-                      <span>{plan.parcelas}x</span>
-                      <strong>{formatCurrency(plan.valorParcela)}</strong>
-                      {plan.destaque ? <small>Mais leve</small> : null}
-                    </div>
-                  ))}
+                  {motorcycle.planosConsorcio.map(
+                    (plan) => (
+                      <div
+                        className={`installment-row ${
+                          plan.destaque
+                            ? "featured"
+                            : ""
+                        }`}
+                        key={plan.id}
+                      >
+                        <span>{plan.parcelas}x</span>
+                        <strong>
+                          {formatCurrency(
+                            plan.valorParcela,
+                          )}
+                        </strong>
+
+                        {plan.destaque ? (
+                          <small>Mais leve</small>
+                        ) : null}
+                      </div>
+                    ),
+                  )}
                 </div>
 
                 <p className="plan-note">
-                  * Os valores podem sofrer alterações conforme a tabela do
-                  consórcio.
+                  * Os valores podem sofrer alterações
+                  conforme a tabela do consórcio.
                 </p>
               </div>
             </div>
@@ -164,11 +172,18 @@ export default async function ConsortiumPage({
                 aria-label={`Ver o consórcio da moto anterior: ${previousMotorcycle.nome}`}
                 prefetch={false}
               >
-                <span className="motorcycle-nav-arrow" aria-hidden="true">
+                <span
+                  className="motorcycle-nav-arrow"
+                  aria-hidden="true"
+                >
                   ←
                 </span>
-                <span className="motorcycle-nav-label">Anterior</span>
-                <strong>{previousMotorcycle.nome}</strong>
+                <span className="motorcycle-nav-label">
+                  Anterior
+                </span>
+                <strong>
+                  {previousMotorcycle.nome}
+                </strong>
               </Link>
             ) : null}
 
@@ -179,9 +194,14 @@ export default async function ConsortiumPage({
                 aria-label={`Ver o consórcio da próxima moto: ${nextMotorcycle.nome}`}
                 prefetch={false}
               >
-                <span className="motorcycle-nav-label">Próxima</span>
+                <span className="motorcycle-nav-label">
+                  Próxima
+                </span>
                 <strong>{nextMotorcycle.nome}</strong>
-                <span className="motorcycle-nav-arrow" aria-hidden="true">
+                <span
+                  className="motorcycle-nav-arrow"
+                  aria-hidden="true"
+                >
                   →
                 </span>
               </Link>

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { ContactSection } from "@/components/ContactSection";
 import { FinancingForm } from "@/components/FinancingForm";
+import { MotorcycleVisualStage } from "@/components/MotorcycleVisualStage";
 import { ProfileFrame } from "@/components/ProfileFrame";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
@@ -77,13 +77,11 @@ export default async function FinancingPage({
             <p>{financing.descricao}</p>
           </div>
 
-          <Image
-            src={motorcycle.imagemUrl}
-            alt={motorcycle.nome}
-            width={700}
-            height={460}
-            priority
-            unoptimized
+          <MotorcycleVisualStage
+            imageUrl={motorcycle.imagemUrl}
+            motorcycleName={motorcycle.nome}
+            variant="financing"
+            mobileFirst
           />
         </section>
 
@@ -97,28 +95,44 @@ export default async function FinancingPage({
             <div className="step-card">
               <span>1</span>
               <h3>Preencha seus dados</h3>
-              <p>Informe os dados necessários para a consulta.</p>
+              <p>
+                Informe os dados necessários para a consulta.
+              </p>
             </div>
+
             <div className="step-card">
               <span>2</span>
               <h3>Receba a simulação</h3>
-              <p>O vendedor consulta as condições disponíveis.</p>
+              <p>
+                O vendedor consulta as condições disponíveis.
+              </p>
             </div>
+
             <div className="step-card">
               <span>3</span>
               <h3>Escolha com calma</h3>
-              <p>Compare as opções antes de tomar sua decisão.</p>
+              <p>
+                Compare as opções antes de tomar sua decisão.
+              </p>
             </div>
           </div>
         </section>
 
         <section className="form-section">
-          <FinancingForm client={result.client} motorcycle={motorcycle} />
+          <FinancingForm
+            client={result.client}
+            motorcycle={motorcycle}
+          />
+
           <p className="privacy-note">
-            Os dados são usados apenas para montar a mensagem no seu
-            dispositivo. O site não armazena este formulário.
+            Os dados são usados apenas para montar a mensagem
+            no seu dispositivo. O site não armazena este
+            formulário.
           </p>
-          <p className="analysis-note">{financing.observacao}</p>
+
+          <p className="analysis-note">
+            {financing.observacao}
+          </p>
         </section>
 
         <ContactSection client={result.client} />

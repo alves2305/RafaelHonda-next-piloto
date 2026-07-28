@@ -20,8 +20,7 @@
   pointer-events: none;
 }
 
-.arrow,
-.hint {
+.controls {
   display: none;
 }
 
@@ -31,9 +30,7 @@
 
 @media (max-width: 640px) {
   .shell {
-    margin-right: 3px;
-    margin-left: 3px;
-    padding-bottom: 30px;
+    min-width: 0;
   }
 
   .content {
@@ -43,23 +40,38 @@
     -webkit-user-select: none;
   }
 
-  .arrow {
+  .controls {
+    min-height: 48px;
+    margin-top: 9px;
+    padding: 0 2px;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .arrow,
+  .arrowPlaceholder {
     width: 42px;
     height: 42px;
+  }
+
+  .arrow {
     padding: 0;
     border: 1px solid
-      color-mix(in srgb, var(--brand-primary) 18%, #ffffff);
+      color-mix(
+        in srgb,
+        var(--brand-primary) 18%,
+        #ffffff
+      );
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: calc(50% - 34px);
-    z-index: 8;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.98);
     box-shadow:
-      0 10px 24px rgba(29, 43, 69, 0.16),
-      0 0 0 5px rgba(255, 255, 255, 0.5);
+      0 9px 22px rgba(29, 43, 69, 0.14),
+      0 0 0 4px rgba(255, 255, 255, 0.52);
     color: var(--brand-primary);
     cursor: pointer;
     animation: swipeArrowPulse 1.9s ease-in-out infinite;
@@ -83,36 +95,33 @@
     opacity: 0.55;
   }
 
-  .previous {
-    left: -9px;
-  }
-
-  .next {
-    right: -9px;
-    animation-delay: 220ms;
+  .arrowPlaceholder {
+    display: block;
   }
 
   .hint {
-    min-height: 24px;
-    margin-top: 7px;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 6px;
     color: var(--text-muted);
-    font-size: 0.64rem;
-    letter-spacing: 0.015em;
+    font-size: 0.62rem;
+    letter-spacing: 0.01em;
     text-align: center;
   }
 
   .hint span {
     color: var(--brand-primary);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 900;
   }
 
   .hint strong {
+    overflow: hidden;
     font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .desktopNavigation {
@@ -124,15 +133,19 @@
   0%,
   100% {
     box-shadow:
-      0 10px 24px rgba(29, 43, 69, 0.16),
-      0 0 0 5px rgba(255, 255, 255, 0.5);
+      0 9px 22px rgba(29, 43, 69, 0.14),
+      0 0 0 4px rgba(255, 255, 255, 0.52);
   }
 
   50% {
     box-shadow:
-      0 12px 27px rgba(29, 43, 69, 0.19),
-      0 0 0 8px
-        color-mix(in srgb, var(--brand-primary) 7%, transparent);
+      0 11px 25px rgba(29, 43, 69, 0.18),
+      0 0 0 7px
+        color-mix(
+          in srgb,
+          var(--brand-primary) 7%,
+          transparent
+        );
   }
 }
 
