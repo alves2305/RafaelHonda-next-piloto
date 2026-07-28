@@ -8,7 +8,7 @@ import { ProfileHeader } from "@/components/ProfileHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
 import { getCatalogByClientSlug } from "@/lib/catalog";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 type ClientPageProps = {
   params: Promise<{ cliente: string }>;
@@ -42,6 +42,20 @@ export default async function ClientPage({ params }: ClientPageProps) {
     return <SuspendedProfile client={catalog.client} />;
   }
 
+  const motorcycleCards = catalog.motorcycles.map((motorcycle) => ({
+    id: motorcycle.id,
+    slug: motorcycle.slug,
+    nome: motorcycle.nome,
+    categoria: motorcycle.categoria,
+    imagemUrl: motorcycle.imagemUrl,
+    hasConsortium:
+      catalog.client.vendeConsorcio &&
+      motorcycle.planosConsorcio.length > 0,
+    hasFinancing:
+      catalog.client.vendeFinanciamento &&
+      motorcycle.financiamento !== null,
+  }));
+
   return (
     <ProfileFrame client={catalog.client}>
       <main className="page-container">
@@ -49,9 +63,7 @@ export default async function ClientPage({ params }: ClientPageProps) {
 
         <MotorcycleCatalog
           clientSlug={catalog.client.slug}
-          motorcycles={catalog.motorcycles}
-          vendeConsorcio={catalog.client.vendeConsorcio}
-          vendeFinanciamento={catalog.client.vendeFinanciamento}
+          motorcycles={motorcycleCards}
         />
 
         <ContactSection client={catalog.client} />

@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { cache } from "react";
 
 import { demoCatalog } from "@/lib/demo-data";
@@ -11,6 +12,8 @@ import type {
   MotorcycleBenefit,
   MotorcycleDetail,
 } from "@/lib/types";
+
+const CATALOG_REVALIDATE_SECONDS = 30;
 
 type ClientRow = {
   id: string;
@@ -133,132 +136,149 @@ function throwQueryError(scope: string, error: { message: string } | null) {
   }
 }
 
-export const getCatalogByClientSlug = cache(
-  async (slug: string): Promise<ClientCatalog | null> => {
-    const supabase = getSupabaseClient();
+async function loadCatalogByClientSlug(
+  slug: string,
+): Promise<ClientCatalog | null> {
+  const supabase = getSupabaseClient();
 
-    if (!supabase) {
-      return slug === demoCatalog.client.slug ? demoCatalog : null;
-    }
+  if (!supabase) {
+    return slug === demoCatalog.client.slug ? demoCatalog : null;
+  }
 
-    const { data: clientData, error: clientError } = await supabase
-      .from("clientes")
+  const { data: clientData, error: clientError } = await supabase
+    .from("clientes")
+    .select(
+      "id,nome,slug,foto_url,foto_desktop_url,foto_posicao_x,foto_posicao_y,foto_desktop_posicao_x,foto_desktop_posicao_y,logo_url,whatsapp,instagram_url,slogan,cor_primaria,cor_secundaria,marca_dagua_url,vende_consorcio,vende_financiamento,ativo",
+    )
+    .eq("slug", slug)
+    .maybeSingle<ClientRow>();
+
+  throwQueryError("o perfil", clientError);
+
+  if (!clientData) {
+    return null;
+  }
+
+  const client = toClient(clientData);
+
+  if (!client.ativo) {
+    return { client, motorcycles: [] };
+  }
+
+  const { data: linkData, error: linkError } = await supabase
+    .from("cliente_motos")
+    .select("moto_id,ordem")
+    .eq("cliente_id", client.id)
+    .eq("ativo", true)
+    .order("ordem")
+    .returns<ClientMotorcycleRow[]>();
+
+  throwQueryError("as motos do perfil", linkError);
+
+  const links = linkData ?? [];
+  const motorcycleIds = links.map((link) => link.moto_id);
+
+  if (motorcycleIds.length === 0) {
+    return { client, motorcycles: [] };
+  }
+
+  const [
+    { data: motorcycleData, error: motorcycleError },
+    { data: planData, error: planError },
+    { data: financingData, error: financingError },
+  ] = await Promise.all([
+    supabase
+      .from("motos")
       .select(
-        "id,nome,slug,foto_url,foto_desktop_url,foto_posicao_x,foto_posicao_y,foto_desktop_posicao_x,foto_desktop_posicao_y,logo_url,whatsapp,instagram_url,slogan,cor_primaria,cor_secundaria,marca_dagua_url,vende_consorcio,vende_financiamento,ativo",
+        "id,slug,nome,categoria,imagem_url,selo,titulo_descricao,descricao,detalhes,beneficios,titulo_consorcio,ativo,ordem",
       )
-      .eq("slug", slug)
-      .maybeSingle<ClientRow>();
-
-    throwQueryError("o perfil", clientError);
-
-    if (!clientData) {
-      return null;
-    }
-
-    const client = toClient(clientData);
-
-    if (!client.ativo) {
-      return { client, motorcycles: [] };
-    }
-
-    const { data: linkData, error: linkError } = await supabase
-      .from("cliente_motos")
-      .select("moto_id,ordem")
-      .eq("cliente_id", client.id)
+      .in("id", motorcycleIds)
+      .eq("ativo", true)
+      .returns<MotorcycleRow[]>(),
+    supabase
+      .from("planos_consorcio")
+      .select("id,moto_id,parcelas,valor_parcela,destaque,ordem")
+      .in("moto_id", motorcycleIds)
       .eq("ativo", true)
       .order("ordem")
-      .returns<ClientMotorcycleRow[]>();
+      .returns<ConsortiumPlanRow[]>(),
+    supabase
+      .from("informacoes_financiamento")
+      .select("id,moto_id,titulo,descricao,observacao")
+      .in("moto_id", motorcycleIds)
+      .eq("ativo", true)
+      .returns<FinancingInfoRow[]>(),
+  ]);
 
-    throwQueryError("as motos do perfil", linkError);
+  throwQueryError("os dados das motos", motorcycleError);
+  throwQueryError("os planos de consórcio", planError);
+  throwQueryError("as informações de financiamento", financingError);
 
-    const links = linkData ?? [];
-    const motorcycleIds = links.map((link) => link.moto_id);
+  const linkOrder = new Map(
+    links.map((link) => [link.moto_id, link.ordem] as const),
+  );
 
-    if (motorcycleIds.length === 0) {
-      return { client, motorcycles: [] };
-    }
+  const plansByMotorcycle = new Map<string, ConsortiumPlan[]>();
 
-    const [
-      { data: motorcycleData, error: motorcycleError },
-      { data: planData, error: planError },
-      { data: financingData, error: financingError },
-    ] = await Promise.all([
-      supabase
-        .from("motos")
-        .select(
-          "id,slug,nome,categoria,imagem_url,selo,titulo_descricao,descricao,detalhes,beneficios,titulo_consorcio,ativo,ordem",
-        )
-        .in("id", motorcycleIds)
-        .eq("ativo", true)
-        .returns<MotorcycleRow[]>(),
-      supabase
-        .from("planos_consorcio")
-        .select("id,moto_id,parcelas,valor_parcela,destaque,ordem")
-        .in("moto_id", motorcycleIds)
-        .eq("ativo", true)
-        .order("ordem")
-        .returns<ConsortiumPlanRow[]>(),
-      supabase
-        .from("informacoes_financiamento")
-        .select("id,moto_id,titulo,descricao,observacao")
-        .in("moto_id", motorcycleIds)
-        .eq("ativo", true)
-        .returns<FinancingInfoRow[]>(),
-    ]);
+  for (const row of planData ?? []) {
+    const plans = plansByMotorcycle.get(row.moto_id) ?? [];
 
-    throwQueryError("os dados das motos", motorcycleError);
-    throwQueryError("os planos de consórcio", planError);
-    throwQueryError("as informações de financiamento", financingError);
+    plans.push({
+      id: row.id,
+      parcelas: row.parcelas,
+      valorParcela: Number(row.valor_parcela),
+      destaque: row.destaque,
+      ordem: row.ordem,
+    });
 
-    const linkOrder = new Map(
-      links.map((link) => [link.moto_id, link.ordem] as const),
-    );
+    plansByMotorcycle.set(row.moto_id, plans);
+  }
 
-    const plansByMotorcycle = new Map<string, ConsortiumPlan[]>();
-    for (const row of planData ?? []) {
-      const plans = plansByMotorcycle.get(row.moto_id) ?? [];
-      plans.push({
-        id: row.id,
-        parcelas: row.parcelas,
-        valorParcela: Number(row.valor_parcela),
-        destaque: row.destaque,
-        ordem: row.ordem,
-      });
-      plansByMotorcycle.set(row.moto_id, plans);
-    }
+  const financingByMotorcycle = new Map<string, FinancingInfo>();
 
-    const financingByMotorcycle = new Map<string, FinancingInfo>();
-    for (const row of financingData ?? []) {
-      financingByMotorcycle.set(row.moto_id, {
-        id: row.id,
-        titulo: row.titulo,
-        descricao: row.descricao,
-        observacao: row.observacao,
-      });
-    }
+  for (const row of financingData ?? []) {
+    financingByMotorcycle.set(row.moto_id, {
+      id: row.id,
+      titulo: row.titulo,
+      descricao: row.descricao,
+      observacao: row.observacao,
+    });
+  }
 
-    const motorcycles: Motorcycle[] = (motorcycleData ?? [])
-      .map((row) => ({
-        id: row.id,
-        slug: row.slug,
-        nome: row.nome,
-        categoria: row.categoria,
-        imagemUrl: row.imagem_url,
-        selo: row.selo,
-        tituloDescricao: row.titulo_descricao,
-        descricao: row.descricao,
-        detalhes: toDetailList(row.detalhes),
-        beneficios: toBenefitList(row.beneficios),
-        tituloConsorcio: row.titulo_consorcio,
-        ativo: row.ativo,
-        ordem: linkOrder.get(row.id) ?? row.ordem,
-        planosConsorcio: plansByMotorcycle.get(row.id) ?? [],
-        financiamento: financingByMotorcycle.get(row.id) ?? null,
-      }))
-      .sort((first, second) => first.ordem - second.ordem);
+  const motorcycles: Motorcycle[] = (motorcycleData ?? [])
+    .map((row) => ({
+      id: row.id,
+      slug: row.slug,
+      nome: row.nome,
+      categoria: row.categoria,
+      imagemUrl: row.imagem_url,
+      selo: row.selo,
+      tituloDescricao: row.titulo_descricao,
+      descricao: row.descricao,
+      detalhes: toDetailList(row.detalhes),
+      beneficios: toBenefitList(row.beneficios),
+      tituloConsorcio: row.titulo_consorcio,
+      ativo: row.ativo,
+      ordem: linkOrder.get(row.id) ?? row.ordem,
+      planosConsorcio: plansByMotorcycle.get(row.id) ?? [],
+      financiamento: financingByMotorcycle.get(row.id) ?? null,
+    }))
+    .sort((first, second) => first.ordem - second.ordem);
 
-    return { client, motorcycles };
+  return { client, motorcycles };
+}
+
+const getCatalogByClientSlugFromDataCache = unstable_cache(
+  loadCatalogByClientSlug,
+  ["public-catalog-by-client-slug-v2"],
+  {
+    revalidate: CATALOG_REVALIDATE_SECONDS,
+    tags: ["public-catalog"],
   },
+);
+
+export const getCatalogByClientSlug = cache((slug: string) =>
+  getCatalogByClientSlugFromDataCache(slug),
 );
 
 export async function getClientMotorcycle(

@@ -1,9 +1,12 @@
 import Image from "next/image";
 
 import { createWhatsAppUrl } from "@/lib/format";
+import { canOptimizePublicImage } from "@/lib/public-image";
 import type { ClientProfile } from "@/lib/types";
 
 export function ProfileHeader({ client }: { client: ClientProfile }) {
+  const desktopPhotoUrl = client.fotoDesktopUrl ?? client.fotoUrl;
+
   return (
     <header className="profile-header">
       <div className="brand-banner" aria-hidden="true" />
@@ -17,7 +20,8 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
             width={240}
             height={240}
             priority
-            unoptimized
+            sizes="(max-width: 700px) 190px, 16px"
+            unoptimized={!canOptimizePublicImage(client.fotoUrl)}
             style={{
               objectPosition: `${client.fotoPosicaoX}% ${client.fotoPosicaoY}%`,
             }}
@@ -25,12 +29,13 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
 
           <Image
             className="profile-photo profile-photo-desktop"
-            src={client.fotoDesktopUrl ?? client.fotoUrl}
+            src={desktopPhotoUrl}
             alt={`Foto de ${client.nome}`}
             width={560}
             height={440}
             priority
-            unoptimized
+            sizes="(max-width: 700px) 16px, (max-width: 1180px) 42vw, 520px"
+            unoptimized={!canOptimizePublicImage(desktopPhotoUrl)}
             style={{
               objectPosition: `${client.fotoDesktopPosicaoX}% ${client.fotoDesktopPosicaoY}%`,
             }}
@@ -45,7 +50,8 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
               alt="Logo da concessionária"
               width={230}
               height={90}
-              unoptimized
+              sizes="184px"
+              unoptimized={!canOptimizePublicImage(client.logoUrl)}
             />
           ) : null}
 

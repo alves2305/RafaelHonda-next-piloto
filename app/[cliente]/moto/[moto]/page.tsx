@@ -8,8 +8,9 @@ import { ProfileFrame } from "@/components/ProfileFrame";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
 import { getClientMotorcycle } from "@/lib/catalog";
+import { canOptimizePublicImage } from "@/lib/public-image";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 type MotorcyclePageProps = {
   params: Promise<{ cliente: string; moto: string }>;
@@ -71,6 +72,7 @@ export default async function MotorcyclePage({
                 <Link
                   className="button button-primary"
                   href={`/${result.client.slug}/consorcio/${motorcycle.slug}`}
+                  prefetch={false}
                 >
                   Ver planos de consórcio
                 </Link>
@@ -86,6 +88,7 @@ export default async function MotorcyclePage({
                       : "button-primary"
                   }`}
                   href={`/${result.client.slug}/financiamento/${motorcycle.slug}`}
+                  prefetch={false}
                 >
                   Simular financiamento
                 </Link>
@@ -101,7 +104,8 @@ export default async function MotorcyclePage({
               width={720}
               height={500}
               priority
-              unoptimized
+              sizes="(max-width: 720px) 90vw, (max-width: 1180px) 48vw, 620px"
+              unoptimized={!canOptimizePublicImage(motorcycle.imagemUrl)}
             />
           </div>
         </section>

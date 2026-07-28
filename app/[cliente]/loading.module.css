@@ -1,0 +1,204 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: 60px;
+  background: #f6f7f9;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e7e9ee;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.72),
+    transparent
+  );
+  animation: catalog-loading-shimmer 1.25s infinite;
+}
+
+.banner {
+  height: 164px;
+  border-radius: 0 0 28px 28px;
+  background: #df1f1f;
+}
+
+.profile {
+  width: min(1132px, calc(100% - 48px));
+  min-height: 360px;
+  margin: -80px auto 0;
+  padding: 28px 34px;
+  border-radius: 26px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(330px, 1.1fr);
+  align-items: center;
+  gap: 46px;
+  background: #fff;
+  box-shadow: 0 22px 64px rgba(29, 43, 69, 0.1);
+}
+
+.photo {
+  width: 100%;
+  height: 300px;
+  border-radius: 21px;
+}
+
+.profileText {
+  display: grid;
+  gap: 16px;
+}
+
+.logo {
+  width: 170px;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.title {
+  width: min(360px, 85%);
+  height: 48px;
+  border-radius: 12px;
+}
+
+.text {
+  width: min(520px, 100%);
+  height: 18px;
+  border-radius: 999px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.button {
+  width: 160px;
+  height: 46px;
+  border-radius: 999px;
+}
+
+.catalog {
+  width: min(1180px, calc(100% - 40px));
+  margin: 72px auto 0;
+}
+
+.heading {
+  width: min(420px, 75%);
+  height: 40px;
+  margin: 0 auto 30px;
+  border-radius: 12px;
+}
+
+.search {
+  width: min(680px, 100%);
+  height: 56px;
+  margin: 0 auto 34px;
+  border-radius: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.card {
+  padding: 26px;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.cardTitle {
+  width: 48%;
+  height: 30px;
+  border-radius: 9px;
+}
+
+.motorcycle {
+  width: 100%;
+  height: 235px;
+  margin: 18px 0;
+  border-radius: 18px;
+}
+
+.cardButton {
+  width: 100%;
+  height: 44px;
+  border-radius: 999px;
+}
+
+@keyframes catalog-loading-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 700px) {
+  .banner {
+    height: 116px;
+  }
+
+  .profile {
+    width: calc(100% - 24px);
+    min-height: 0;
+    margin-top: -55px;
+    padding: 22px 18px;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .photo {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  .profileText {
+    justify-items: center;
+  }
+
+  .title,
+  .text {
+    width: 88%;
+  }
+
+  .actions {
+    width: 100%;
+    display: grid;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .catalog {
+    width: calc(100% - 24px);
+    margin-top: 52px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid .card:nth-child(n + 3) {
+    display: none;
+  }
+
+  .motorcycle {
+    height: 205px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}

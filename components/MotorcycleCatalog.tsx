@@ -5,20 +5,26 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { normalizeSearch } from "@/lib/format";
-import type { Motorcycle } from "@/lib/types";
+import { canOptimizePublicImage } from "@/lib/public-image";
+
+export type MotorcycleCatalogItem = {
+  id: string;
+  slug: string;
+  nome: string;
+  categoria: string;
+  imagemUrl: string;
+  hasConsortium: boolean;
+  hasFinancing: boolean;
+};
 
 type MotorcycleCatalogProps = {
   clientSlug: string;
-  motorcycles: Motorcycle[];
-  vendeConsorcio: boolean;
-  vendeFinanciamento: boolean;
+  motorcycles: MotorcycleCatalogItem[];
 };
 
 export function MotorcycleCatalog({
   clientSlug,
   motorcycles,
-  vendeConsorcio,
-  vendeFinanciamento,
 }: MotorcycleCatalogProps) {
   const [query, setQuery] = useState("");
 
@@ -30,15 +36,12 @@ export function MotorcycleCatalog({
     );
   }, [motorcycles, query]);
 
-  const hasAnyConsortium =
-    vendeConsorcio &&
-    motorcycles.some(
-      (motorcycle) => motorcycle.planosConsorcio.length > 0,
-    );
-
-  const hasAnyFinancing =
-    vendeFinanciamento &&
-    motorcycles.some((motorcycle) => motorcycle.financiamento !== null);
+  const hasAnyConsortium = motorcycles.some(
+    (motorcycle) => motorcycle.hasConsortium,
+  );
+  const hasAnyFinancing = motorcycles.some(
+    (motorcycle) => motorcycle.hasFinancing,
+  );
 
   const catalogDescription =
     hasAnyConsortium && hasAnyFinancing
@@ -70,67 +73,61 @@ export function MotorcycleCatalog({
 
       {visibleMotorcycles.length > 0 ? (
         <div className="motorcycle-grid">
-          {visibleMotorcycles.map((motorcycle) => {
-            const hasConsortium =
-              vendeConsorcio &&
-              motorcycle.planosConsorcio.length > 0;
+          {visibleMotorcycles.map((motorcycle) => (
+            <article className="motorcycle-card" key={motorcycle.id}>
+              <div className="motorcycle-card-heading">
+                <p>{motorcycle.categoria.split(" • ")[0]}</p>
+                <h3>{motorcycle.nome}</h3>
+              </div>
 
-            const hasFinancing =
-              vendeFinanciamento &&
-              motorcycle.financiamento !== null;
+              <Image
+                className="motorcycle-card-image"
+                src={motorcycle.imagemUrl}
+                alt={motorcycle.nome}
+                width={560}
+                height={340}
+                sizes="(max-width: 700px) 88vw, (max-width: 1180px) 44vw, 520px"
+                unoptimized={!canOptimizePublicImage(motorcycle.imagemUrl)}
+              />
 
-            return (
-              <article className="motorcycle-card" key={motorcycle.id}>
-                <div className="motorcycle-card-heading">
-                  <p>{motorcycle.categoria.split(" • ")[0]}</p>
-                  <h3>{motorcycle.nome}</h3>
-                </div>
+              <div className="motorcycle-card-actions">
+                <Link
+                  className="button button-primary"
+                  href={`/${clientSlug}/moto/${motorcycle.slug}`}
+                  prefetch={false}
+                >
+                  Detalhes da moto
+                </Link>
 
-                <Image
-                  className="motorcycle-card-image"
-                  src={motorcycle.imagemUrl}
-                  alt={motorcycle.nome}
-                  width={560}
-                  height={340}
-                  unoptimized
-                />
-
-                <div className="motorcycle-card-actions">
+                {motorcycle.hasConsortium ? (
                   <Link
-                    className="button button-primary"
-                    href={`/${clientSlug}/moto/${motorcycle.slug}`}
+                    className="button button-light"
+                    href={`/${clientSlug}/consorcio/${motorcycle.slug}`}
+                    prefetch={false}
                   >
-                    Detalhes da moto
+                    Planos de consórcio
                   </Link>
+                ) : null}
 
-                  {hasConsortium ? (
-                    <Link
-                      className="button button-light"
-                      href={`/${clientSlug}/consorcio/${motorcycle.slug}`}
-                    >
-                      Planos de consórcio
-                    </Link>
-                  ) : null}
-
-                  {hasFinancing ? (
-                    <Link
-                      className={
-                        hasConsortium
-                          ? "text-link"
-                          : "button button-light"
-                      }
-                      href={`/${clientSlug}/financiamento/${motorcycle.slug}`}
-                    >
-                      Simular financiamento{" "}
-                      {hasConsortium ? (
-                        <span aria-hidden="true">→</span>
-                      ) : null}
-                    </Link>
-                  ) : null}
-                </div>
-              </article>
-            );
-          })}
+                {motorcycle.hasFinancing ? (
+                  <Link
+                    className={
+                      motorcycle.hasConsortium
+                        ? "text-link"
+                        : "button button-light"
+                    }
+                    href={`/${clientSlug}/financiamento/${motorcycle.slug}`}
+                    prefetch={false}
+                  >
+                    Simular financiamento{" "}
+                    {motorcycle.hasConsortium ? (
+                      <span aria-hidden="true">→</span>
+                    ) : null}
+                  </Link>
+                ) : null}
+              </div>
+            </article>
+          ))}
         </div>
       ) : (
         <div className="empty-state">
