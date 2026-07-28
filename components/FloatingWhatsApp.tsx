@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { createWhatsAppUrl } from "@/lib/format";
+import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import type { ClientProfile } from "@/lib/types";
 
 export function FloatingWhatsApp({
@@ -30,7 +30,10 @@ export function FloatingWhatsApp({
 
       <a
         className="whatsapp-widget-link"
-        href={createWhatsAppUrl(client.whatsapp)}
+        href={createGeneralWhatsAppUrl(
+          client.whatsapp,
+          client.nome,
+        )}
         target="_blank"
         rel="noreferrer"
         aria-label={`Falar com ${client.nome} no WhatsApp`}

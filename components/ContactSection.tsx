@@ -1,5 +1,5 @@
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { createWhatsAppUrl } from "@/lib/format";
+import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import type { ClientProfile } from "@/lib/types";
 
 function WhatsAppIcon() {
@@ -42,7 +42,13 @@ function InstagramIcon() {
         stroke="currentColor"
         strokeWidth="1.9"
       />
-      <circle cx="12" cy="12" r="3.75" stroke="currentColor" strokeWidth="1.9" />
+      <circle
+        cx="12"
+        cy="12"
+        r="3.75"
+        stroke="currentColor"
+        strokeWidth="1.9"
+      />
       <circle cx="17.25" cy="6.9" r="1.05" fill="currentColor" />
     </svg>
   );
@@ -63,7 +69,10 @@ export function ContactSection({ client }: { client: ClientProfile }) {
         <div className="contact-actions">
           <a
             className="button contact-button"
-            href={createWhatsAppUrl(client.whatsapp)}
+            href={createGeneralWhatsAppUrl(
+              client.whatsapp,
+              client.nome,
+            )}
             target="_blank"
             rel="noreferrer"
           >

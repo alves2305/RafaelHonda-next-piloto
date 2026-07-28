@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ContactSection } from "@/components/ContactSection";
+import { MotorcycleImageCarousel } from "@/components/MotorcycleImageCarousel";
 import { ProfileFrame } from "@/components/ProfileFrame";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
 import { getClientMotorcycle } from "@/lib/catalog";
-import { canOptimizePublicImage } from "@/lib/public-image";
+import { getMotorcycleGallery } from "@/lib/motorcycle-gallery";
 
 export const revalidate = 30;
 
@@ -48,6 +48,11 @@ export default async function MotorcyclePage({
   }
 
   const motorcycle = result.motorcycle;
+  const galleryImages = await getMotorcycleGallery(
+    motorcycle.id,
+    motorcycle.imagemUrl,
+    motorcycle.nome,
+  );
 
   return (
     <ProfileFrame client={result.client}>
@@ -60,9 +65,14 @@ export default async function MotorcyclePage({
         <section className="motorcycle-hero">
           <div className="motorcycle-hero-copy">
             {motorcycle.selo ? (
-              <span className="product-badge">{motorcycle.selo}</span>
+              <span className="product-badge">
+                {motorcycle.selo}
+              </span>
             ) : null}
-            <p className="eyebrow">{motorcycle.categoria}</p>
+
+            <p className="eyebrow">
+              {motorcycle.categoria}
+            </p>
             <h1>{motorcycle.nome}</h1>
             <p>{motorcycle.descricao}</p>
 
@@ -97,15 +107,14 @@ export default async function MotorcyclePage({
           </div>
 
           <div className="motorcycle-hero-visual">
-            <div className="visual-orbit" aria-hidden="true" />
-            <Image
-              src={motorcycle.imagemUrl}
-              alt={motorcycle.nome}
-              width={720}
-              height={500}
-              priority
-              sizes="(max-width: 720px) 90vw, (max-width: 1180px) 48vw, 620px"
-              unoptimized={!canOptimizePublicImage(motorcycle.imagemUrl)}
+            <div
+              className="visual-orbit"
+              aria-hidden="true"
+            />
+
+            <MotorcycleImageCarousel
+              images={galleryImages}
+              motorcycleName={motorcycle.nome}
             />
           </div>
         </section>
@@ -118,7 +127,10 @@ export default async function MotorcyclePage({
 
           <div className="details-grid">
             {motorcycle.detalhes.map((detail) => (
-              <div className="detail-card" key={detail.rotulo}>
+              <div
+                className="detail-card"
+                key={detail.rotulo}
+              >
                 <span>{detail.rotulo}</span>
                 <strong>{detail.valor}</strong>
               </div>
@@ -133,15 +145,20 @@ export default async function MotorcyclePage({
           </div>
 
           <div className="benefit-grid">
-            {motorcycle.beneficios.map((benefit, index) => (
-              <article className="benefit-card" key={benefit.titulo}>
-                <span className="benefit-number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3>{benefit.titulo}</h3>
-                <p>{benefit.descricao}</p>
-              </article>
-            ))}
+            {motorcycle.beneficios.map(
+              (benefit, index) => (
+                <article
+                  className="benefit-card"
+                  key={benefit.titulo}
+                >
+                  <span className="benefit-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{benefit.titulo}</h3>
+                  <p>{benefit.descricao}</p>
+                </article>
+              ),
+            )}
           </div>
         </section>
 

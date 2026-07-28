@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 
 import { getAdminSupabaseClient } from "@/lib/admin-supabase";
 
-type PreviewMode = "moto" | "consorcio" | "financiamento";
+type PreviewMode =
+  | "moto"
+  | "consorcio"
+  | "financiamento";
 
 type ClientRelation = {
   cliente_id: string;
@@ -39,13 +42,16 @@ export function MotorcyclePublicPreviewLink({
   motorcycleSlug,
   mode,
   children = "Visualizar página pública ↗",
+  includeGalleryLink = true,
 }: {
   motorcycleId: string;
   motorcycleSlug: string;
   mode: PreviewMode;
   children?: string;
+  includeGalleryLink?: boolean;
 }) {
-  const [clientSlug, setClientSlug] = useState<string | null>(null);
+  const [clientSlug, setClientSlug] =
+    useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -54,12 +60,14 @@ export function MotorcyclePublicPreviewLink({
       try {
         const supabase = getAdminSupabaseClient();
 
-        const { data: relationData, error: relationError } =
-          await supabase
-            .from("cliente_motos")
-            .select("cliente_id")
-            .eq("moto_id", motorcycleId)
-            .eq("ativo", true);
+        const {
+          data: relationData,
+          error: relationError,
+        } = await supabase
+          .from("cliente_motos")
+          .select("cliente_id")
+          .eq("moto_id", motorcycleId)
+          .eq("ativo", true);
 
         if (relationError) {
           throw relationError;
@@ -73,7 +81,10 @@ export function MotorcyclePublicPreviewLink({
           return;
         }
 
-        const { data: clientData, error: clientError } = await supabase
+        const {
+          data: clientData,
+          error: clientError,
+        } = await supabase
           .from("clientes")
           .select(
             "id,slug,ativo,vende_consorcio,vende_financiamento",
@@ -88,7 +99,9 @@ export function MotorcyclePublicPreviewLink({
 
         const eligibleClient = (
           (clientData ?? []) as ClientPreview[]
-        ).find((client) => clientSupportsMode(client, mode));
+        ).find((client) =>
+          clientSupportsMode(client, mode),
+        );
 
         if (active) {
           setClientSlug(eligibleClient?.slug ?? null);
@@ -108,16 +121,29 @@ export function MotorcyclePublicPreviewLink({
     };
   }, [mode, motorcycleId]);
 
+  const galleryLink =
+    mode === "moto" && includeGalleryLink ? (
+      <Link
+        href={`/admin/motos/${motorcycleId}/galeria`}
+      >
+        Galeria de fotos
+      </Link>
+    ) : null;
+
   if (!clientSlug) {
-    return null;
+    return galleryLink;
   }
 
   return (
-    <Link
-      href={`/${clientSlug}/${mode}/${motorcycleSlug}`}
-      target="_blank"
-    >
-      {children}
-    </Link>
+    <>
+      {galleryLink}
+
+      <Link
+        href={`/${clientSlug}/${mode}/${motorcycleSlug}`}
+        target="_blank"
+      >
+        {children}
+      </Link>
+    </>
   );
 }

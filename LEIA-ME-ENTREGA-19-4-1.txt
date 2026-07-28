@@ -1,0 +1,75 @@
+ENTREGA 19.4.1 — MENSAGEM AUTOMÁTICA DO WHATSAPP
+
+OBJETIVO
+
+Adicionar uma introdução somente aos botões gerais do WhatsApp.
+
+MENSAGEM GERADA
+
+Olá, NOME DO VENDEDOR! Vim pelo seu catálogo Honda e gostaria de fazer uma
+simulação. Pode me ajudar?
+
+BOTÕES ALTERADOS
+
+- Falar no WhatsApp do topo;
+- Falar no WhatsApp da seção final;
+- botão flutuante do WhatsApp.
+
+NÃO FORAM ALTERADOS
+
+- formulário de consórcio;
+- formulário de financiamento;
+- textos detalhados enviados por esses formulários;
+- Instagram;
+- navegação entre motos;
+- preços ou banco de dados.
+
+INSTALAÇÃO
+
+1. Confirme a branch:
+
+git branch --show-current
+
+Resultado:
+
+feature/painel-clientes
+
+2. Extraia este ZIP dentro da pasta principal do projeto.
+
+3. Confirme a substituição dos três componentes e a criação de lib/whatsapp.ts.
+
+TESTES
+
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd run build
+npm.cmd run dev
+
+TESTE MANUAL
+
+Abra o catálogo de um vendedor, por exemplo:
+
+http://localhost:3000/gd
+
+Clique nestes três locais:
+
+- Falar no WhatsApp no topo;
+- Falar no WhatsApp no final;
+- Estou online. Fale agora!
+
+Os três devem abrir o WhatsApp com a introdução preenchida.
+
+Depois teste um consórcio e um financiamento.
+
+Eles devem continuar enviando as mensagens detalhadas antigas, sem receber
+automaticamente a introdução genérica desta entrega.
+
+COMMIT
+
+Depois da aprovação:
+
+git add .
+git commit -m "Adiciona mensagem aos contatos gerais do WhatsApp"
+git push origin feature/painel-clientes
+
+Não faça merge na main e não crie tag.

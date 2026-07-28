@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { createWhatsAppUrl } from "@/lib/format";
+import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { canOptimizePublicImage } from "@/lib/public-image";
 import type { ClientProfile } from "@/lib/types";
 
@@ -67,7 +67,10 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
           <div className="profile-actions">
             <a
               className="button button-primary"
-              href={createWhatsAppUrl(client.whatsapp)}
+              href={createGeneralWhatsAppUrl(
+                client.whatsapp,
+                client.nome,
+              )}
               target="_blank"
               rel="noreferrer"
             >

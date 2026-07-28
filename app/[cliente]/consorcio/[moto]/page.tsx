@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 
 import { ConsortiumForm } from "@/components/ConsortiumForm";
 import { ContactSection } from "@/components/ContactSection";
+import { MobileMotorcycleSwipe } from "@/components/MobileMotorcycleSwipe";
+import swipeStyles from "@/components/MobileMotorcycleSwipe.module.css";
 import { ProfileFrame } from "@/components/ProfileFrame";
 import { SubpageHeader } from "@/components/SubpageHeader";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
@@ -61,6 +63,20 @@ export default async function ConsortiumPage({
   const previousMotorcycle = result.previousConsortiumMotorcycle;
   const nextMotorcycle = result.nextConsortiumMotorcycle;
 
+  const previousDirection = previousMotorcycle
+    ? {
+        href: `/${result.client.slug}/consorcio/${previousMotorcycle.slug}`,
+        name: previousMotorcycle.nome,
+      }
+    : null;
+
+  const nextDirection = nextMotorcycle
+    ? {
+        href: `/${result.client.slug}/consorcio/${nextMotorcycle.slug}`,
+        name: nextMotorcycle.nome,
+      }
+    : null;
+
   return (
     <ProfileFrame client={result.client}>
       <main className="page-container subpage-container consortium-page">
@@ -86,41 +102,46 @@ export default async function ConsortiumPage({
             />
           </div>
 
-          <div className="plan-card">
-            {result.client.marcaDaguaUrl ? (
-              <div
-                className="watermark-pattern"
-                style={{
-                  backgroundImage: `url("${result.client.marcaDaguaUrl}")`,
-                }}
-                aria-hidden="true"
-              />
-            ) : null}
+          <MobileMotorcycleSwipe
+            previous={previousDirection}
+            next={nextDirection}
+          >
+            <div className="plan-card">
+              {result.client.marcaDaguaUrl ? (
+                <div
+                  className="watermark-pattern"
+                  style={{
+                    backgroundImage: `url("${result.client.marcaDaguaUrl}")`,
+                  }}
+                  aria-hidden="true"
+                />
+              ) : null}
 
-            <div className="plan-card-content">
-              <h2>{motorcycle.tituloConsorcio}</h2>
+              <div className="plan-card-content">
+                <h2>{motorcycle.tituloConsorcio}</h2>
 
-              <div className="installment-list">
-                {motorcycle.planosConsorcio.map((plan) => (
-                  <div
-                    className={`installment-row ${
-                      plan.destaque ? "featured" : ""
-                    }`}
-                    key={plan.id}
-                  >
-                    <span>{plan.parcelas}x</span>
-                    <strong>{formatCurrency(plan.valorParcela)}</strong>
-                    {plan.destaque ? <small>Mais leve</small> : null}
-                  </div>
-                ))}
+                <div className="installment-list">
+                  {motorcycle.planosConsorcio.map((plan) => (
+                    <div
+                      className={`installment-row ${
+                        plan.destaque ? "featured" : ""
+                      }`}
+                      key={plan.id}
+                    >
+                      <span>{plan.parcelas}x</span>
+                      <strong>{formatCurrency(plan.valorParcela)}</strong>
+                      {plan.destaque ? <small>Mais leve</small> : null}
+                    </div>
+                  ))}
+                </div>
+
+                <p className="plan-note">
+                  * Os valores podem sofrer alterações conforme a tabela do
+                  consórcio.
+                </p>
               </div>
-
-              <p className="plan-note">
-                * Os valores podem sofrer alterações conforme a tabela do
-                consórcio.
-              </p>
             </div>
-          </div>
+          </MobileMotorcycleSwipe>
         </section>
 
         <section className="form-section">
@@ -133,13 +154,13 @@ export default async function ConsortiumPage({
 
         {previousMotorcycle || nextMotorcycle ? (
           <nav
-            className="motorcycle-navigation"
+            className={`${swipeStyles.desktopNavigation} motorcycle-navigation`}
             aria-label="Navegação entre motos"
           >
-            {previousMotorcycle ? (
+            {previousMotorcycle && previousDirection ? (
               <Link
                 className="motorcycle-nav-card previous"
-                href={`/${result.client.slug}/consorcio/${previousMotorcycle.slug}`}
+                href={previousDirection.href}
                 aria-label={`Ver o consórcio da moto anterior: ${previousMotorcycle.nome}`}
                 prefetch={false}
               >
@@ -151,10 +172,10 @@ export default async function ConsortiumPage({
               </Link>
             ) : null}
 
-            {nextMotorcycle ? (
+            {nextMotorcycle && nextDirection ? (
               <Link
                 className="motorcycle-nav-card next"
-                href={`/${result.client.slug}/consorcio/${nextMotorcycle.slug}`}
+                href={nextDirection.href}
                 aria-label={`Ver o consórcio da próxima moto: ${nextMotorcycle.nome}`}
                 prefetch={false}
               >
