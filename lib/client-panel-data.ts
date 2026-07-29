@@ -6,6 +6,10 @@ type ClientProfileRow = {
   slug: string;
   foto_url: string;
   foto_desktop_url: string | null;
+  foto_posicao_x: number;
+  foto_posicao_y: number;
+  foto_desktop_posicao_x: number;
+  foto_desktop_posicao_y: number;
   logo_url: string | null;
   whatsapp: string;
   instagram_url: string | null;
@@ -41,6 +45,10 @@ export type ClientPanelProfile = {
   slug: string;
   mobilePhotoUrl: string;
   desktopPhotoUrl: string | null;
+  mobilePhotoPositionX: number;
+  mobilePhotoPositionY: number;
+  desktopPhotoPositionX: number;
+  desktopPhotoPositionY: number;
   logoUrl: string | null;
   whatsapp: string;
   instagramUrl: string | null;
@@ -68,6 +76,14 @@ export type ClientPanelData = {
   motorcycles: ClientPanelMotorcycle[];
 };
 
+function normalizePosition(value: number | null | undefined) {
+  if (!Number.isFinite(value)) {
+    return 50;
+  }
+
+  return Math.min(100, Math.max(0, Math.round(value ?? 50)));
+}
+
 function toProfile(row: ClientProfileRow): ClientPanelProfile {
   return {
     id: row.id,
@@ -75,6 +91,14 @@ function toProfile(row: ClientProfileRow): ClientPanelProfile {
     slug: row.slug,
     mobilePhotoUrl: row.foto_url,
     desktopPhotoUrl: row.foto_desktop_url,
+    mobilePhotoPositionX: normalizePosition(row.foto_posicao_x),
+    mobilePhotoPositionY: normalizePosition(row.foto_posicao_y),
+    desktopPhotoPositionX: normalizePosition(
+      row.foto_desktop_posicao_x,
+    ),
+    desktopPhotoPositionY: normalizePosition(
+      row.foto_desktop_posicao_y,
+    ),
     logoUrl: row.logo_url,
     whatsapp: row.whatsapp,
     instagramUrl: row.instagram_url,
@@ -95,7 +119,7 @@ export async function loadClientPanelData(
   const { data: profileData, error: profileError } = await supabase
     .from("clientes")
     .select(
-      "id,nome,slug,foto_url,foto_desktop_url,logo_url,whatsapp,instagram_url,slogan,cor_primaria,cor_secundaria,marca_dagua_url,vende_consorcio,vende_financiamento,ativo",
+      "id,nome,slug,foto_url,foto_desktop_url,foto_posicao_x,foto_posicao_y,foto_desktop_posicao_x,foto_desktop_posicao_y,logo_url,whatsapp,instagram_url,slogan,cor_primaria,cor_secundaria,marca_dagua_url,vende_consorcio,vende_financiamento,ativo",
     )
     .eq("id", clientId)
     .maybeSingle<ClientProfileRow>();

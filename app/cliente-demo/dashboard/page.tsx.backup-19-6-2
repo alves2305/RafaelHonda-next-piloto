@@ -14,7 +14,6 @@ import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton"
 import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
 import { ClientProfileEditor } from "@/components/client-demo/ClientProfileEditor";
 import { ClientProfileImagesEditor } from "@/components/client-demo/ClientProfileImagesEditor";
-import { ClientPhotoPositionEditor } from "@/components/client-demo/ClientPhotoPositionEditor";
 import { ClientAnalyticsPanel } from "@/components/client-demo/ClientAnalyticsPanel";
 import {
   loadClientPanelData,
@@ -516,11 +515,6 @@ export default function ClientDashboardPage() {
                   />
 
                   <ClientProfileImagesEditor
-                    profile={profile}
-                    onSaved={loadData}
-                  />
-
-                  <ClientPhotoPositionEditor
                     profile={profile}
                     onSaved={loadData}
                   />
