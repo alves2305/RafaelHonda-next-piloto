@@ -13,7 +13,6 @@ import {
 import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton";
 import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
 import { ClientProfileEditor } from "@/components/client-demo/ClientProfileEditor";
-import { ClientProfileImagesEditor } from "@/components/client-demo/ClientProfileImagesEditor";
 import { ClientAnalyticsPanel } from "@/components/client-demo/ClientAnalyticsPanel";
 import {
   loadClientPanelData,
@@ -508,17 +507,10 @@ export default function ClientDashboardPage() {
               ) : null}
 
               {section === "profile" ? (
-                <>
-                  <ClientProfileEditor
-                    profile={profile}
-                    onSaved={loadData}
-                  />
-
-                  <ClientProfileImagesEditor
-                    profile={profile}
-                    onSaved={loadData}
-                  />
-                </>
+                <ClientProfileEditor
+                  profile={profile}
+                  onSaved={loadData}
+                />
               ) : null}
               {section === "motorcycles" ? (
                 <section className={styles.clientPanel}>
