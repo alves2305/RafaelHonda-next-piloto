@@ -20,7 +20,7 @@ export function ClientLogoutButton({
       const supabase = getClientSupabaseClient();
       await supabase.auth.signOut();
     } finally {
-      router.replace("/painel/login");
+      router.replace("/cliente-demo/login");
       router.refresh();
     }
   }
