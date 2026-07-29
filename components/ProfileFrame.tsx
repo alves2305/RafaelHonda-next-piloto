@@ -1,5 +1,9 @@
-import type { CSSProperties, ReactNode } from "react";
+import type {
+  CSSProperties,
+  ReactNode,
+} from "react";
 
+import { PublicCatalogAnalytics } from "@/components/PublicCatalogAnalytics";
 import type { ClientProfile } from "@/lib/types";
 
 type BrandStyle = CSSProperties & {
@@ -21,6 +25,14 @@ export function ProfileFrame({
 
   return (
     <div className="site-frame" style={style}>
+      {client.ativo ? (
+        <PublicCatalogAnalytics
+          clientId={client.id}
+          clientSlug={client.slug}
+          active={client.ativo}
+        />
+      ) : null}
+
       {children}
     </div>
   );

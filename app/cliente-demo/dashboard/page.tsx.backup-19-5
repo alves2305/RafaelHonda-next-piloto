@@ -12,7 +12,6 @@ import {
 
 import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton";
 import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
-import { ClientAnalyticsPanel } from "@/components/client-demo/ClientAnalyticsPanel";
 import {
   loadClientPanelData,
   type ClientPanelData,
@@ -400,7 +399,47 @@ export default function ClientDashboardPage() {
                     </article>
                   </section>
 
-                  <ClientAnalyticsPanel />
+                  <section
+                    className={dataStyles.analyticsPreview}
+                  >
+                    <div className={dataStyles.analyticsHeading}>
+                      <div>
+                        <span>Desempenho do catálogo</span>
+                        <h2>Visitas e motos mais acessadas</h2>
+                        <p>
+                          O espaço já está pronto. Os registros reais
+                          serão ativados na Entrega 19.5.
+                        </p>
+                      </div>
+
+                      <span
+                        className={dataStyles.nextDeliveryBadge}
+                      >
+                        Próxima entrega
+                      </span>
+                    </div>
+
+                    <div className={dataStyles.analyticsCards}>
+                      <article>
+                        <small>Visitas ao catálogo</small>
+                        <strong>—</strong>
+                        <p>Aguardando ativação das métricas</p>
+                      </article>
+
+                      <article>
+                        <small>Visitantes únicos</small>
+                        <strong>—</strong>
+                        <p>Identificação anônima e consentida</p>
+                      </article>
+
+                      <article>
+                        <small>Moto mais acessada</small>
+                        <strong>Em preparação</strong>
+                        <p>Ranking por período será exibido aqui</p>
+                      </article>
+                    </div>
+                  </section>
+
                   <div className={styles.overviewColumns}>
                     <section className={styles.clientPanel}>
                       <div className={styles.panelHeading}>

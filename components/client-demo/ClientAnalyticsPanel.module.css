@@ -1,0 +1,374 @@
+.panel {
+  margin-top: 18px;
+  padding: 26px;
+  border: 1px solid #e1e4e9;
+  border-radius: 21px;
+  background:
+    radial-gradient(
+      circle at 95% 0%,
+      rgba(217, 0, 0, 0.055),
+      transparent 18rem
+    ),
+    #ffffff;
+  box-shadow: 0 10px 29px rgba(29, 43, 69, 0.04);
+}
+
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.heading > div:first-child > span,
+.rankingHeading > div > span {
+  color: #d90000;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  margin: 7px 0 0;
+  color: #18253d;
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+}
+
+.heading p {
+  max-width: 590px;
+  margin: 8px 0 0;
+  color: #7c8595;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.periods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.periods button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid #e1e4e9;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #626d80;
+  font: inherit;
+  font-size: 0.59rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.periods .periodActive {
+  border-color: rgba(217, 0, 0, 0.18);
+  background: rgba(217, 0, 0, 0.07);
+  color: #c70000;
+}
+
+.periods button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.cards {
+  margin-top: 21px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.cards > article {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  display: grid;
+  align-content: center;
+  background: #fafbfc;
+}
+
+.cards small {
+  color: #7e8796;
+  font-size: 0.65rem;
+  font-weight: 750;
+}
+
+.cards > article > strong {
+  margin-top: 9px;
+  color: #26334a;
+  font-size: 1.7rem;
+  letter-spacing: -0.045em;
+}
+
+.cards p {
+  margin: 6px 0 0;
+  color: #9299a6;
+  font-size: 0.61rem;
+  line-height: 1.45;
+}
+
+.topCard > div {
+  min-width: 0;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topCard img {
+  width: 69px;
+  height: 52px;
+  padding: 3px;
+  border-radius: 10px;
+  flex: 0 0 auto;
+  background: #ffffff;
+  object-fit: contain;
+}
+
+.topCard > div > span {
+  min-width: 0;
+}
+
+.topCard > div strong {
+  display: block;
+  overflow: hidden;
+  color: #26334a;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details {
+  margin-top: 18px;
+  padding-top: 19px;
+  border-top: 1px solid #eaecf0;
+}
+
+.rankingHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.rankingHeading h3 {
+  margin: 5px 0 0;
+  color: #26334a;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.rankingHeading > small {
+  color: #858d9b;
+  font-size: 0.61rem;
+  text-align: right;
+}
+
+.ranking {
+  margin-top: 13px;
+  display: grid;
+  gap: 7px;
+}
+
+.ranking article {
+  min-width: 0;
+  padding: 9px 11px;
+  border: 1px solid #e6e9ed;
+  border-radius: 13px;
+  display: grid;
+  grid-template-columns:
+    30px 72px minmax(0, 1fr)
+    auto auto;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+}
+
+.position {
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(217, 0, 0, 0.07);
+  color: #d00000;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.ranking img {
+  width: 72px;
+  height: 48px;
+  padding: 2px;
+  border-radius: 9px;
+  background: #f4f5f7;
+  object-fit: contain;
+}
+
+.ranking article > div {
+  min-width: 0;
+}
+
+.ranking article > div strong {
+  display: block;
+  overflow: hidden;
+  color: #2b374d;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking article > div p {
+  margin: 4px 0 0;
+  color: #8d95a2;
+  font-size: 0.57rem;
+}
+
+.views {
+  display: grid;
+  text-align: right;
+}
+
+.views strong {
+  color: #27344b;
+  font-size: 0.78rem;
+}
+
+.views small {
+  margin-top: 1px;
+  font-size: 0.52rem;
+}
+
+.ranking article > a {
+  padding: 7px 9px;
+  border: 1px solid #e0e4e9;
+  border-radius: 8px;
+  color: #4e5a6e;
+  font-size: 0.56rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.loading,
+.error,
+.empty {
+  min-height: 145px;
+  margin-top: 18px;
+  border: 1px dashed #dce0e6;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fafbfc;
+  text-align: center;
+}
+
+.loading span {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #e3e6eb;
+  border-top-color: #d90000;
+  border-radius: 50%;
+  animation: metricsSpin 800ms linear infinite;
+}
+
+.loading p,
+.error p,
+.empty p {
+  max-width: 480px;
+  margin: 9px 15px 0;
+  color: #828b99;
+  font-size: 0.65rem;
+  line-height: 1.5;
+}
+
+.error strong,
+.empty strong {
+  color: #2b374d;
+  font-size: 0.77rem;
+}
+
+.error button {
+  min-height: 36px;
+  margin-top: 13px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.61rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.privacy {
+  margin: 15px 0 0;
+  color: #8a929f;
+  font-size: 0.58rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@keyframes metricsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .heading,
+  .rankingHeading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .periods {
+    justify-content: flex-start;
+  }
+
+  .rankingHeading > small {
+    text-align: left;
+  }
+}
+
+@media (max-width: 700px) {
+  .panel {
+    padding: 20px 15px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .periods {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .periods button {
+    width: 100%;
+  }
+
+  .ranking article {
+    grid-template-columns:
+      28px 62px minmax(0, 1fr) auto;
+  }
+
+  .ranking img {
+    width: 62px;
+  }
+
+  .ranking article > a {
+    grid-column: 2 / -1;
+    justify-self: end;
+  }
+}
