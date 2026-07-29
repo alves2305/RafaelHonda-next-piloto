@@ -1,0 +1,495 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 18px;
+}
+
+.editor,
+.preview {
+  border: 1px solid #e1e4e9;
+  border-radius: 21px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgba(29, 43, 69, 0.05);
+}
+
+.editor {
+  min-width: 0;
+  padding: 25px;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.heading > div > span,
+.colors > div:first-child > span {
+  color: #d90000;
+  font-size: 0.63rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  margin: 6px 0 0;
+  color: #1d2940;
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+}
+
+.heading p {
+  max-width: 610px;
+  margin: 8px 0 0;
+  color: #7b8494;
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.securityBadge {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(24, 131, 84, 0.08);
+  color: #17784e;
+  font-size: 0.6rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.lockedSummary {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.lockedSummary > div {
+  padding: 13px;
+  border: 1px solid #e5e8ed;
+  border-radius: 13px;
+  display: grid;
+  background: #f8f9fb;
+}
+
+.lockedSummary small {
+  color: #858e9c;
+  font-size: 0.6rem;
+  font-weight: 750;
+}
+
+.lockedSummary strong {
+  margin-top: 4px;
+  color: #28354b;
+  font-size: 0.75rem;
+}
+
+.lockedSummary span {
+  margin-top: 3px;
+  color: #989faa;
+  font-size: 0.55rem;
+}
+
+.fields {
+  margin-top: 21px;
+  display: grid;
+  gap: 15px;
+}
+
+.fields label,
+.colorGrid label {
+  display: grid;
+  gap: 7px;
+  color: #2c394f;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.fields input,
+.fields textarea,
+.colorGrid input[type="text"],
+.colorGrid input:not([type]) {
+  width: 100%;
+  border: 1px solid #dce1e7;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #1e2b40;
+  font: inherit;
+  font-size: 0.72rem;
+  outline: none;
+}
+
+.fields input {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.fields textarea {
+  min-height: 105px;
+  padding: 11px 12px;
+  resize: vertical;
+}
+
+.fields input:focus,
+.fields textarea:focus,
+.colorGrid input:focus {
+  border-color: rgba(217, 0, 0, 0.42);
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.055);
+}
+
+.fields small {
+  color: #949ba6;
+  font-size: 0.56rem;
+  font-weight: 500;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.divider {
+  height: 1px;
+  margin: 24px 0;
+  background: #e8eaee;
+}
+
+.salesModes {
+  padding: 0;
+  border: 0;
+}
+
+.salesModes legend {
+  color: #26334a;
+  font-size: 0.83rem;
+  font-weight: 850;
+}
+
+.salesModes > p {
+  margin: 7px 0 0;
+  color: #818a99;
+  font-size: 0.64rem;
+}
+
+.salesModes > div {
+  margin-top: 13px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.salesModes label {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #e0e4e9;
+  border-radius: 13px;
+  display: grid;
+  position: relative;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.salesModes input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.salesModes strong {
+  color: #344056;
+  font-size: 0.67rem;
+}
+
+.salesModes span {
+  margin-top: 5px;
+  color: #9097a3;
+  font-size: 0.57rem;
+  line-height: 1.4;
+}
+
+.salesModes .modeActive {
+  border-color: rgba(217, 0, 0, 0.3);
+  background: rgba(217, 0, 0, 0.045);
+  box-shadow: 0 0 0 2px rgba(217, 0, 0, 0.045);
+}
+
+.salesModes .modeActive strong {
+  color: #c80000;
+}
+
+.colors > div:first-child h3 {
+  margin: 5px 0 0;
+  color: #28354b;
+  font-size: 0.86rem;
+}
+
+.colorGrid {
+  margin-top: 13px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.colorGrid label > span {
+  min-height: 44px;
+  border: 1px solid #dce1e7;
+  border-radius: 11px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.colorGrid input[type="color"] {
+  width: 42px;
+  height: 44px;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.colorGrid input:not([type="color"]) {
+  min-width: 0;
+  padding: 0 10px;
+  border: 0;
+  border-left: 1px solid #e2e5ea;
+  border-radius: 0;
+}
+
+.imagesNotice {
+  margin-top: 22px;
+  padding: 13px;
+  border: 1px solid #e3e6eb;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fafbfc;
+}
+
+.profileImage {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: #eef1f4;
+}
+
+.profileImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagesNotice strong {
+  color: #2a374e;
+  font-size: 0.7rem;
+}
+
+.imagesNotice p {
+  margin: 5px 0 0;
+  color: #858d9a;
+  font-size: 0.59rem;
+  line-height: 1.45;
+}
+
+.error,
+.success {
+  margin: 15px 0 0;
+  padding: 11px 13px;
+  border-radius: 11px;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.error {
+  border: 1px solid rgba(180, 35, 24, 0.16);
+  background: rgba(180, 35, 24, 0.055);
+  color: #9e382f;
+}
+
+.success {
+  border: 1px solid rgba(24, 131, 84, 0.17);
+  background: rgba(24, 131, 84, 0.055);
+  color: #17784e;
+}
+
+.actions {
+  margin-top: 18px;
+  padding-top: 17px;
+  border-top: 1px solid #e7e9ed;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.actions button {
+  min-height: 41px;
+  padding: 0 14px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #4a5669;
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.actions .save {
+  border-color: #d90000;
+  background: #d90000;
+  color: #ffffff;
+}
+
+.actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.preview {
+  min-height: 430px;
+  padding: 24px;
+  position: sticky;
+  top: 18px;
+  overflow: hidden;
+  color: #ffffff;
+  text-align: center;
+}
+
+.preview::after {
+  content: "";
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  position: absolute;
+  right: -90px;
+  bottom: -110px;
+}
+
+.preview > small {
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.61rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.avatar {
+  width: 92px;
+  height: 92px;
+  margin: 25px auto 0;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo {
+  width: 120px;
+  height: 46px;
+  margin: 13px auto 0;
+  display: block;
+  position: relative;
+  z-index: 2;
+  object-fit: contain;
+}
+
+.preview h2 {
+  margin: 17px 0 0;
+  position: relative;
+  z-index: 2;
+  font-size: 1.28rem;
+  letter-spacing: -0.04em;
+}
+
+.preview > p {
+  margin: 9px 0 0;
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.67rem;
+  line-height: 1.5;
+}
+
+.preview > div {
+  margin-top: 19px;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  position: relative;
+  z-index: 2;
+}
+
+.preview > div span {
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.55rem;
+  font-weight: 750;
+}
+
+.preview > strong {
+  margin-top: 17px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  font-size: 0.68rem;
+}
+
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .preview {
+    min-height: 350px;
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .editor {
+    padding: 19px 15px;
+  }
+
+  .heading {
+    flex-direction: column;
+  }
+
+  .securityBadge {
+    align-self: flex-start;
+  }
+
+  .lockedSummary,
+  .twoColumns,
+  .colorGrid,
+  .salesModes > div {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

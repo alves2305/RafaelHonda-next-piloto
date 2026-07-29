@@ -12,7 +12,6 @@ import {
 
 import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton";
 import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
-import { ClientProfileEditor } from "@/components/client-demo/ClientProfileEditor";
 import { ClientAnalyticsPanel } from "@/components/client-demo/ClientAnalyticsPanel";
 import {
   loadClientPanelData,
@@ -82,6 +81,21 @@ function getSalesModeLabel(data: ClientPanelData | null) {
   }
 
   return "Consórcio";
+}
+
+function getInstagramLabel(value: string | null) {
+  if (!value) {
+    return "Não informado";
+  }
+
+  try {
+    const url = new URL(value);
+    const name = url.pathname.split("/").filter(Boolean)[0];
+
+    return name ? `@${name}` : value;
+  } catch {
+    return value;
+  }
 }
 
 export default function ClientDashboardPage() {
@@ -507,11 +521,218 @@ export default function ClientDashboardPage() {
               ) : null}
 
               {section === "profile" ? (
-                <ClientProfileEditor
-                  profile={profile}
-                  onSaved={loadData}
-                />
+                <section className={styles.editorLayout}>
+                  <div className={styles.editorPanel}>
+                    <div className={styles.panelHeading}>
+                      <div>
+                        <span>Dados carregados do Supabase</span>
+                        <h2>Informações do perfil</h2>
+                      </div>
+                    </div>
+
+                    <div className={styles.profileFields}>
+                      <label>
+                        Nome exibido
+                        <input
+                          value={profile.name}
+                          readOnly
+                        />
+                      </label>
+
+                      <div className={styles.twoColumns}>
+                        <label>
+                          WhatsApp
+                          <input
+                            value={profile.whatsapp}
+                            readOnly
+                          />
+                        </label>
+
+                        <label>
+                          Instagram
+                          <input
+                            value={
+                              getInstagramLabel(
+                                profile.instagramUrl,
+                              )
+                            }
+                            readOnly
+                          />
+                        </label>
+                      </div>
+
+                      <label>
+                        Slogan
+                        <textarea
+                          value={profile.slogan}
+                          readOnly
+                        />
+                      </label>
+
+                      <div className={styles.imageFields}>
+                        <article>
+                          <div
+                            className={
+                              dataStyles.realProfileImage
+                            }
+                          >
+                            <img
+                              src={profile.mobilePhotoUrl}
+                              alt={`Foto de ${profile.name}`}
+                            />
+                          </div>
+
+                          <div>
+                            <strong>Foto do perfil</strong>
+                            <p>
+                              Imagem mobile atualmente publicada.
+                            </p>
+                            <button type="button" disabled>
+                              Edição em preparação
+                            </button>
+                          </div>
+                        </article>
+
+                        <article>
+                          <div
+                            className={dataStyles.realLogoImage}
+                          >
+                            {profile.logoUrl ? (
+                              <img
+                                src={profile.logoUrl}
+                                alt={`Logo de ${profile.name}`}
+                              />
+                            ) : (
+                              <span>
+                                {getInitials(profile.name)}
+                              </span>
+                            )}
+                          </div>
+
+                          <div>
+                            <strong>Logo e marca-d&apos;água</strong>
+                            <p>
+                              Identidade visual atualmente cadastrada.
+                            </p>
+                            <button type="button" disabled>
+                              Edição em preparação
+                            </button>
+                          </div>
+                        </article>
+                      </div>
+
+                      <fieldset className={styles.salesMode}>
+                        <legend>
+                          Modalidade comercializada
+                        </legend>
+
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={
+                              profile.sellsConsortium
+                            }
+                            readOnly
+                            disabled
+                          />
+                          Consórcio
+                        </label>
+
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={
+                              profile.sellsFinancing
+                            }
+                            readOnly
+                            disabled
+                          />
+                          Financiamento
+                        </label>
+                      </fieldset>
+
+                      <div className={styles.colorFields}>
+                        <label>
+                          Cor principal
+                          <span>
+                            <input
+                              type="color"
+                              value={profile.primaryColor}
+                              readOnly
+                              disabled
+                            />
+                            {profile.primaryColor}
+                          </span>
+                        </label>
+
+                        <label>
+                          Cor secundária
+                          <span>
+                            <input
+                              type="color"
+                              value={
+                                profile.secondaryColor
+                              }
+                              readOnly
+                              disabled
+                            />
+                            {profile.secondaryColor}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className={styles.editorFooter}>
+                      <span>
+                        Dados reais. A edição segura será liberada
+                        em uma etapa separada.
+                      </span>
+
+                      <button type="button" disabled>
+                        Edição em preparação
+                      </button>
+                    </div>
+                  </div>
+
+                  <aside
+                    className={styles.profilePreview}
+                    style={{
+                      background: `linear-gradient(145deg, ${profile.primaryColor}, ${profile.secondaryColor})`,
+                    }}
+                  >
+                    <small>Prévia com dados reais</small>
+
+                    <span className={styles.previewAvatar}>
+                      {profile.mobilePhotoUrl ? (
+                        <img
+                          className={
+                            dataStyles.previewProfilePhoto
+                          }
+                          src={profile.mobilePhotoUrl}
+                          alt=""
+                        />
+                      ) : (
+                        getInitials(profile.name)
+                      )}
+                    </span>
+
+                    <h2>{profile.name}</h2>
+                    <p>{profile.slogan}</p>
+
+                    <div>
+                      <span>WhatsApp</span>
+                      <span>
+                        {profile.instagramUrl
+                          ? "Instagram"
+                          : "Sem Instagram"}
+                      </span>
+                    </div>
+
+                    <strong>{modeLabel}</strong>
+                  </aside>
+                </section>
               ) : null}
+
               {section === "motorcycles" ? (
                 <section className={styles.clientPanel}>
                   <div className={styles.motorcycleHeading}>
