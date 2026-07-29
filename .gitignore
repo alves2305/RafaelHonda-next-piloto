@@ -20,3 +20,13 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+
+# Arquivos temporarios das entregas
+*.backup-*
+/instalar-entrega-*.ps1
+/correcao-*.ps1
+/preparar-entrega-*.ps1
+/verificar-entrega-*.ps1
+/LEIA-ME-ENTREGA-*.txt
+/LEIA-ME-CORRECAO-*.txt
