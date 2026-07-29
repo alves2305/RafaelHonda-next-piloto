@@ -1,0 +1,507 @@
+.page {
+  display: grid;
+  gap: 17px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.summaryGrid article {
+  padding: 16px;
+  border: 1px solid #e1e5e9;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.summaryGrid span {
+  color: #858d99;
+  font-size: 0.57rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.summaryGrid strong {
+  margin-top: 7px;
+  display: block;
+  color: #243149;
+  font-size: 1.35rem;
+}
+
+.summaryGrid p {
+  margin: 4px 0 0;
+  color: #969da7;
+  font-size: 0.54rem;
+}
+
+.notice {
+  padding: 12px 14px;
+  border: 1px solid rgba(196, 126, 22, 0.16);
+  border-radius: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(196, 126, 22, 0.045);
+}
+
+.notice > span {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: #ba791a;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.notice strong {
+  color: #6f511e;
+  font-size: 0.66rem;
+}
+
+.notice p {
+  margin: 4px 0 0;
+  color: #8d7957;
+  font-size: 0.57rem;
+  line-height: 1.45;
+}
+
+.loading {
+  min-height: 250px;
+  border: 1px solid #e1e5e9;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  background: #ffffff;
+  text-align: center;
+}
+
+.loading > span {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #e2e5e9;
+  border-top-color: #d90000;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+.loading p {
+  margin: 10px 0 0;
+  color: #858e9a;
+  font-size: 0.62rem;
+}
+
+.loading button {
+  margin-top: 13px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 9px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.6rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+}
+
+.clientsPanel,
+.editor {
+  border: 1px solid #e1e5e9;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.clientsPanel {
+  padding: 17px;
+}
+
+.editor {
+  padding: 22px;
+}
+
+.panelHeading span,
+.editorHeading > div > span {
+  color: #d00000;
+  font-size: 0.55rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.panelHeading h2,
+.editorHeading h2 {
+  margin: 5px 0 0;
+  color: #29364c;
+  font-size: 0.88rem;
+}
+
+.search {
+  min-height: 41px;
+  margin-top: 14px;
+  padding: 0 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.search input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #394559;
+  font: inherit;
+  font-size: 0.61rem;
+  outline: none;
+}
+
+.clientList {
+  max-height: 590px;
+  margin-top: 11px;
+  display: grid;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.clientList button {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #e4e7eb;
+  border-radius: 11px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.clientList button > span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eef1f4;
+  color: #526074;
+  font-size: 0.56rem;
+  font-weight: 900;
+}
+
+.clientList button div {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.clientList button div:last-child {
+  text-align: right;
+}
+
+.clientList strong {
+  overflow: hidden;
+  color: #354157;
+  font-size: 0.61rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clientList small {
+  color: #9299a4;
+  font-size: 0.51rem;
+}
+
+.clientList .clientActive {
+  border-color: rgba(217, 0, 0, 0.24);
+  background: rgba(217, 0, 0, 0.035);
+}
+
+.clientList .clientActive > span {
+  background: #d90000;
+  color: #ffffff;
+}
+
+.editorHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.editorHeading p {
+  margin: 4px 0 0;
+  color: #9299a4;
+  font-size: 0.55rem;
+}
+
+.catalogActive,
+.catalogBlocked {
+  padding: 7px 9px;
+  border-radius: 999px;
+  font-size: 0.55rem;
+  font-weight: 850;
+}
+
+.catalogActive {
+  background: rgba(24, 131, 84, 0.08);
+  color: #17784e;
+}
+
+.catalogBlocked {
+  background: rgba(180, 35, 24, 0.08);
+  color: #a23a32;
+}
+
+.fields {
+  margin-top: 19px;
+  display: grid;
+  gap: 13px;
+}
+
+.fields label {
+  display: grid;
+  gap: 7px;
+  color: #344157;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.fields input,
+.fields select,
+.fields textarea {
+  width: 100%;
+  border: 1px solid #dce1e7;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #26334a;
+  font: inherit;
+  font-size: 0.64rem;
+  outline: none;
+}
+
+.fields input,
+.fields select {
+  min-height: 42px;
+  padding: 0 10px;
+}
+
+.fields textarea {
+  min-height: 96px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.fields input:focus,
+.fields select:focus,
+.fields textarea:focus {
+  border-color: rgba(217, 0, 0, 0.4);
+  box-shadow: 0 0 0 3px rgba(217, 0, 0, 0.05);
+}
+
+.fields small {
+  color: #959ca6;
+  font-size: 0.52rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.moneyInput {
+  min-height: 42px;
+  border: 1px solid #dce1e7;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 39px minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.moneyInput > span {
+  display: grid;
+  place-items: center;
+  background: #f0f2f5;
+  color: #667286;
+  font-size: 0.6rem;
+  font-weight: 850;
+}
+
+.moneyInput input {
+  min-width: 0;
+  border: 0;
+  border-left: 1px solid #dce1e7;
+  border-radius: 0;
+}
+
+.blockControl {
+  margin-top: 18px;
+  padding: 13px;
+  border: 1px solid #e1e5e9;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: #fafbfc;
+}
+
+.blockControl strong {
+  font-size: 0.65rem;
+}
+
+.blockControl p {
+  max-width: 490px;
+  margin: 5px 0 0;
+  color: #858e9a;
+  font-size: 0.55rem;
+  line-height: 1.45;
+}
+
+.blockControl button {
+  min-width: 98px;
+  min-height: 34px;
+  padding: 4px 8px 4px 5px;
+  border: 0;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #9e4038;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.54rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.blockControl button span {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  display: block;
+  background: #ffffff;
+}
+
+.blockControl .switchActive {
+  background: #1d8157;
+}
+
+.error,
+.success {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.61rem;
+}
+
+.error {
+  background: rgba(180, 35, 24, 0.06);
+  color: #9f3931;
+}
+
+.success {
+  background: rgba(24, 131, 84, 0.06);
+  color: #17784e;
+}
+
+.footer {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e7e9ed;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.footer button {
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #4b576a;
+  font: inherit;
+  font-size: 0.6rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.footer .save {
+  border-color: #d90000;
+  background: #d90000;
+  color: #ffffff;
+}
+
+.footer button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1050px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .clientList {
+    max-height: 320px;
+  }
+}
+
+@media (max-width: 650px) {
+  .summaryGrid,
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .editor {
+    padding: 18px 14px;
+  }
+
+  .editorHeading,
+  .blockControl {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .blockControl button {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .footer button {
+    width: 100%;
+  }
+}

@@ -125,11 +125,6 @@ const navigation = [
     icon: "clients" as const,
   },
   {
-    label: "Assinaturas",
-    href: "/admin/assinaturas",
-    icon: "plans" as const,
-  },
-  {
     label: "Motos",
     href: "/admin/motos",
     icon: "motorcycles" as const,
