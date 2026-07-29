@@ -15,7 +15,6 @@ import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
 import { ClientProfileEditor } from "@/components/client-demo/ClientProfileEditor";
 import { ClientProfileImagesEditor } from "@/components/client-demo/ClientProfileImagesEditor";
 import { ClientPhotoPositionEditor } from "@/components/client-demo/ClientPhotoPositionEditor";
-import { ClientMotorcycleVisibilityEditor } from "@/components/client-demo/ClientMotorcycleVisibilityEditor";
 import { ClientAnalyticsPanel } from "@/components/client-demo/ClientAnalyticsPanel";
 import {
   loadClientPanelData,
@@ -138,9 +137,6 @@ export default function ClientDashboardPage() {
 
   const profile = data?.profile ?? null;
   const motorcycles = data?.motorcycles ?? [];
-  const visibleMotorcyclesCount = motorcycles.filter(
-    (motorcycle) => motorcycle.visible,
-  ).length;
   const modeLabel = useMemo(
     () => getSalesModeLabel(data),
     [data],
@@ -531,11 +527,96 @@ export default function ClientDashboardPage() {
                 </>
               ) : null}
               {section === "motorcycles" ? (
-                <ClientMotorcycleVisibilityEditor
-                  profile={profile}
-                  motorcycles={motorcycles}
-                  onSaved={loadData}
-                />
+                <section className={styles.clientPanel}>
+                  <div className={styles.motorcycleHeading}>
+                    <div>
+                      <span className={styles.panelEyebrow}>
+                        Dados reais do catálogo
+                      </span>
+
+                      <h2>
+                        Modelos liberados para {profile.name}
+                      </h2>
+
+                      <p>
+                        Os modelos abaixo estão ativos na relação
+                        entre seu perfil e o catálogo central.
+                      </p>
+                    </div>
+
+                    <div>
+                      <strong>{motorcycles.length}</strong>
+                      <span>motos visíveis</span>
+                    </div>
+                  </div>
+
+                  {motorcycles.length > 0 ? (
+                    <div
+                      className={
+                        dataStyles.realMotorcycleGrid
+                      }
+                    >
+                      {motorcycles.map((motorcycle) => (
+                        <article key={motorcycle.id}>
+                          <div
+                            className={
+                              dataStyles.realMotorcycleImage
+                            }
+                          >
+                            <img
+                              src={motorcycle.imageUrl}
+                              alt={motorcycle.name}
+                            />
+
+                            {motorcycle.badge ? (
+                              <span>{motorcycle.badge}</span>
+                            ) : null}
+                          </div>
+
+                          <div
+                            className={
+                              dataStyles.realMotorcycleInfo
+                            }
+                          >
+                            <small>
+                              {motorcycle.category}
+                            </small>
+                            <h3>{motorcycle.name}</h3>
+                            <p>Visível no seu catálogo</p>
+                          </div>
+
+                          <Link
+                            href={`/${profile.slug}/${motorcycle.slug}`}
+                            target="_blank"
+                          >
+                            Abrir ↗
+                          </Link>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <div
+                      className={dataStyles.emptyMotorcycles}
+                    >
+                      <strong>Nenhuma moto liberada</strong>
+                      <p>
+                        Entre em contato com o administrador para
+                        configurar os modelos do seu catálogo.
+                      </p>
+                    </div>
+                  )}
+
+                  <div className={styles.editorFooter}>
+                    <span>
+                      A seleção segura pelo vendedor será criada
+                      depois das métricas.
+                    </span>
+
+                    <button type="button" disabled>
+                      Edição em preparação
+                    </button>
+                  </div>
+                </section>
               ) : null}
             </>
           ) : null}

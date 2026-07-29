@@ -170,7 +170,6 @@ async function loadCatalogByClientSlug(
     .select("moto_id,ordem")
     .eq("cliente_id", client.id)
     .eq("ativo", true)
-    .eq("vendedor_visivel", true)
     .order("ordem")
     .returns<ClientMotorcycleRow[]>();
 

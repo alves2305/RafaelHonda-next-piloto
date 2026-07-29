@@ -1,0 +1,102 @@
+ENTREGA 19.7 — CONTROLE SEGURO DAS MOTOS VISIVEIS
+
+ANTES DE INSTALAR
+
+Confirme:
+
+git branch --show-current
+
+Resultado obrigatório:
+
+feature/painel-clientes
+
+Também confirme que as entregas anteriores já estão salvas:
+
+git status
+
+INSTALACAO
+
+Extraia este ZIP dentro da pasta principal do projeto.
+
+O pacote substitui:
+
+lib/client-panel-data.ts
+
+E adiciona:
+
+components/client-demo/ClientMotorcycleVisibilityEditor.tsx
+components/client-demo/ClientMotorcycleVisibilityEditor.module.css
+
+Execute:
+
+powershell -ExecutionPolicy Bypass -File .\instalar-entrega-19-7.ps1
+
+O instalador cria:
+
+app\cliente-demo\dashboard\page.tsx.backup-19-7
+lib\catalog.ts.backup-19-7
+
+TESTE DO CODIGO
+
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd run build
+
+SUPABASE
+
+Abra:
+
+supabase/controle-motos-visiveis.sql
+
+Copie todo o conteúdo e execute no SQL Editor.
+
+Resultado esperado:
+
+cliente_motos.vendedor_visivel          OK
+atualizar_visibilidade_minhas_motos     OK
+
+Depois execute todo o conteúdo de:
+
+supabase/controle-motos-visiveis-verificacao.sql
+
+TESTE REAL
+
+npm.cmd run dev
+
+Entre em:
+
+http://localhost:3000/cliente-demo/login
+
+Abra Minhas motos.
+
+Teste:
+
+1. ocultar somente uma moto;
+2. clicar em Salvar;
+3. aguardar até 30 segundos;
+4. abrir http://localhost:3000/gd;
+5. confirmar que somente a moto escolhida desapareceu;
+6. confirmar que a moto continua listada no painel do vendedor como oculta;
+7. reativar essa moto;
+8. salvar novamente;
+9. confirmar que ela voltou ao catálogo;
+10. tentar ocultar todas e confirmar que o painel bloqueia.
+
+TESTE ADMINISTRATIVO
+
+Entre no painel administrativo e confirme que a moto ocultada pelo vendedor
+continua liberada para a GD Honda. O campo administrativo ativo não deve ser
+alterado.
+
+IMPORTANTE
+
+No SQL Editor, não execute apenas o nome do arquivo. Abra o arquivo, copie todo
+o conteúdo e cole no editor.
+
+COMMIT APOS APROVACAO
+
+git add .
+git commit -m "Libera controle seguro das motos visiveis"
+git push origin feature/painel-clientes
+
+Não faça merge na main e não crie tag.

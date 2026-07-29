@@ -25,6 +25,7 @@ type ClientProfileRow = {
 type ClientMotorcycleRow = {
   moto_id: string;
   ativo: boolean;
+  vendedor_visivel: boolean;
   ordem: number;
 };
 
@@ -69,6 +70,7 @@ export type ClientPanelMotorcycle = {
   imageUrl: string;
   badge: string | null;
   order: number;
+  visible: boolean;
 };
 
 export type ClientPanelData = {
@@ -134,7 +136,7 @@ export async function loadClientPanelData(
 
   const { data: relationData, error: relationError } = await supabase
     .from("cliente_motos")
-    .select("moto_id,ativo,ordem")
+    .select("moto_id,ativo,vendedor_visivel,ordem")
     .eq("cliente_id", clientId)
     .eq("ativo", true)
     .order("ordem");
@@ -169,18 +171,25 @@ export async function loadClientPanelData(
   );
 
   const orderedMotorcycles = motorcycles
-    .map<ClientPanelMotorcycle>((motorcycle) => ({
-      id: motorcycle.id,
-      slug: motorcycle.slug,
-      name: motorcycle.nome,
-      category: motorcycle.categoria,
-      imageUrl: motorcycle.imagem_url,
-      badge: motorcycle.selo,
-      order:
-        relationByMotorcycle.get(motorcycle.id)?.ordem ??
-        motorcycle.ordem ??
-        0,
-    }))
+    .map<ClientPanelMotorcycle>((motorcycle) => {
+      const relation = relationByMotorcycle.get(motorcycle.id);
+
+      return {
+        id: motorcycle.id,
+        slug: motorcycle.slug,
+        name: motorcycle.nome,
+        category: motorcycle.categoria,
+        imageUrl: motorcycle.imagem_url,
+        badge: motorcycle.selo,
+        order:
+          relation?.ordem ??
+          motorcycle.ordem ??
+          0,
+        visible:
+          relation?.vendedor_visivel ??
+          true,
+      };
+    })
     .sort(
       (first, second) =>
         first.order - second.order ||
