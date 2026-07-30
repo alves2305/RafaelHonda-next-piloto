@@ -369,6 +369,10 @@ export default function AdminClientsPage() {
                     Motos
                   </Link>
 
+                  <Link href={`/admin/clientes/${client.id}/acesso`}>
+                    Acesso
+                  </Link>
+
                   <Link href={`/${client.slug}`} target="_blank">
                     Abrir catálogo
                   </Link>
