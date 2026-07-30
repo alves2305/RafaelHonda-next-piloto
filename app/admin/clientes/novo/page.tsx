@@ -260,7 +260,7 @@ export default function NewClientPage() {
         throw insertError;
       }
 
-      router.replace(`/admin/clientes/${data.id}/motos`);
+      router.replace(`/admin/clientes/${data.id}/acesso`);
       router.refresh();
     } catch (insertError) {
       console.error(insertError);
@@ -292,7 +292,7 @@ export default function NewClientPage() {
         </button>
 
         <span className={styles.newClientStep}>
-          Etapa 1 de 2: dados do perfil
+          Etapa 1 de 3: dados do perfil
         </span>
       </div>
 

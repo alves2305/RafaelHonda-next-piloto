@@ -374,6 +374,17 @@ export default function EditClientPage() {
             </Link>
           ) : null}
 
+          
+{form.id ? (
+            
+<Link href={`/admin/clientes/${form.id}/acesso`}>
+              
+Acesso do vendedor
+            
+</Link>
+          
+) : null}
+
           {form.slug ? (
             <Link href={`/${form.slug}`} target="_blank">
               Abrir catálogo público ↗
