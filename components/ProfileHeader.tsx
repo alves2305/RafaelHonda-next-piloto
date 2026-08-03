@@ -1,9 +1,6 @@
 import Image from "next/image";
 
-import {
-  createGeneralWhatsAppUrl,
-  getWhatsAppCtaLabel,
-} from "@/lib/whatsapp";
+import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import { canOptimizePublicImage } from "@/lib/public-image";
 import type { ClientProfile } from "@/lib/types";
 
@@ -77,7 +74,7 @@ export function ProfileHeader({ client }: { client: ClientProfile }) {
               target="_blank"
               rel="noreferrer"
             >
-              {getWhatsAppCtaLabel(client.slug)}
+              Falar no WhatsApp
             </a>
 
             {client.instagramUrl ? (

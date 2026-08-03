@@ -3,10 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import {
-  createGeneralWhatsAppUrl,
-  hasWhatsAppAi,
-} from "@/lib/whatsapp";
+import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
 import type { ClientProfile } from "@/lib/types";
 
 export function FloatingWhatsApp({
@@ -15,7 +12,6 @@ export function FloatingWhatsApp({
   client: ClientProfile;
 }) {
   const [visible, setVisible] = useState(true);
-  const aiEnabled = hasWhatsAppAi(client.slug);
 
   if (!visible) {
     return null;
@@ -54,9 +50,7 @@ export function FloatingWhatsApp({
           }}
         />
 
-        <span>
-          {aiEnabled ? "Rafael IA online. Fale agora!" : "Estou online. Fale agora!"}
-        </span>
+        <span>Estou online. Fale agora!</span>
       </a>
     </div>
   );
