@@ -1,5 +1,9 @@
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
+import {
+  createGeneralWhatsAppUrl,
+  getWhatsAppCtaLabel,
+  hasWhatsAppAi,
+} from "@/lib/whatsapp";
 import type { ClientProfile } from "@/lib/types";
 
 function WhatsAppIcon() {
@@ -55,14 +59,17 @@ function InstagramIcon() {
 }
 
 export function ContactSection({ client }: { client: ClientProfile }) {
+  const aiEnabled = hasWhatsAppAi(client.slug);
+
   return (
     <>
       <section className="contact-section">
         <div className="contact-copy">
           <h2>Vamos tirar sua moto do papel?</h2>
           <p>
-            Entre em contato agora mesmo e descubra as melhores condições em
-            consórcio e financiamento Honda.
+            {aiEnabled
+              ? "Converse agora com a Rafael IA e descubra as melhores condições em consórcio e financiamento Honda."
+              : "Entre em contato agora mesmo e descubra as melhores condições em consórcio e financiamento Honda."}
           </p>
         </div>
 
@@ -77,7 +84,7 @@ export function ContactSection({ client }: { client: ClientProfile }) {
             rel="noreferrer"
           >
             <WhatsAppIcon />
-            Falar no WhatsApp
+            {getWhatsAppCtaLabel(client.slug)}
           </a>
 
           {client.instagramUrl ? (
