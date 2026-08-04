@@ -5,8 +5,10 @@ import { ContactSection } from "@/components/ContactSection";
 import { MotorcycleCatalog } from "@/components/MotorcycleCatalog";
 import { ProfileFrame } from "@/components/ProfileFrame";
 import { ProfileHeader } from "@/components/ProfileHeader";
+import { RafaelAiChat } from "@/components/RafaelAiChat";
 import { SuspendedProfile } from "@/components/SuspendedProfile";
 import { getCatalogByClientSlug } from "@/lib/catalog";
+import { createGeneralWhatsAppUrl } from "@/lib/whatsapp";
 
 export const revalidate = 30;
 
@@ -67,6 +69,14 @@ export default async function ClientPage({ params }: ClientPageProps) {
         />
 
         <ContactSection client={catalog.client} />
+        {catalog.client.slug === "rafael" ? (
+          <RafaelAiChat
+            whatsappUrl={createGeneralWhatsAppUrl(
+              catalog.client.whatsapp,
+              catalog.client.nome,
+            )}
+          />
+        ) : null}
       </main>
     </ProfileFrame>
   );
