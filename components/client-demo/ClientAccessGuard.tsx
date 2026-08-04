@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   createContext,
   type ReactNode,
@@ -7,7 +8,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   loadCurrentClientAccess,
@@ -43,6 +44,7 @@ export function useClientAccess() {
 
 export function ClientAccessGuard({ children }: { children: ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const supabaseConfigured = isClientSupabaseConfigured();
   const [state, setState] = useState<AccessState>(() =>
     supabaseConfigured
@@ -103,12 +105,24 @@ export function ClientAccessGuard({ children }: { children: ReactNode }) {
           return;
         }
 
-        if (!access.accessAllowed) {
+        if (!access.userActive) {
           setState({
             status: "blocked",
             access,
             message:
               "Seu acesso ao painel está suspenso. Entre em contato com o administrador.",
+          });
+          return;
+        }
+
+        const isSubscriptionPage = pathname === "/painel/assinatura";
+
+        if (!access.clientActive && !isSubscriptionPage) {
+          setState({
+            status: "blocked",
+            access,
+            message:
+              "Seu catálogo está suspenso. Acesse a assinatura para consultar ou regularizar a mensalidade.",
           });
           return;
         }
@@ -146,7 +160,7 @@ export function ClientAccessGuard({ children }: { children: ReactNode }) {
       active = false;
       subscription.unsubscribe();
     };
-  }, [router, supabaseConfigured]);
+  }, [pathname, router, supabaseConfigured]);
 
   async function signOut() {
     try {
@@ -172,6 +186,9 @@ export function ClientAccessGuard({ children }: { children: ReactNode }) {
   }
 
   if (state.status === "blocked") {
+    const canRegularize =
+      state.access.userActive && !state.access.clientActive;
+
     return (
       <main className={styles.accessPage}>
         <section className={styles.accessCard}>
@@ -179,6 +196,11 @@ export function ClientAccessGuard({ children }: { children: ReactNode }) {
           <span className={styles.blockedBadge}>Acesso suspenso</span>
           <h1>{state.access.clientName}</h1>
           <p>{state.message}</p>
+          {canRegularize ? (
+            <Link href="/painel/assinatura">
+              Abrir minha assinatura
+            </Link>
+          ) : null}
           <button type="button" onClick={signOut}>
             Voltar para o login
           </button>

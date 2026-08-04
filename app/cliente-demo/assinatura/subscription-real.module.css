@@ -363,6 +363,40 @@
   line-height: 1.45;
 }
 
+.paymentFeedback {
+  margin-top: 15px;
+  padding: 13px 15px;
+  border-radius: 14px;
+}
+
+.paymentFeedback strong {
+  font-size: 0.68rem;
+}
+
+.paymentFeedback p {
+  margin: 5px 0 0;
+  font-size: 0.58rem;
+  line-height: 1.45;
+}
+
+.paymentFeedbackSuccess {
+  border: 1px solid rgba(31, 132, 82, 0.18);
+  background: rgba(31, 132, 82, 0.06);
+  color: #276a48;
+}
+
+.paymentFeedbackError {
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  background: rgba(180, 35, 24, 0.06);
+  color: #87443e;
+}
+
+.paymentFeedbackInfo {
+  border: 1px solid rgba(36, 101, 176, 0.18);
+  background: rgba(36, 101, 176, 0.06);
+  color: #345f8f;
+}
+
 .columns {
   margin-top: 17px;
   display: grid;
@@ -419,10 +453,10 @@
   text-align: right;
 }
 
-.paymentDisabled {
+.paymentBox {
   margin-top: 16px;
   padding: 20px 15px;
-  border: 1px dashed #d7dce2;
+  border: 1px solid #e0e4e9;
   border-radius: 14px;
   display: grid;
   justify-items: center;
@@ -430,28 +464,58 @@
   text-align: center;
 }
 
-.paymentDisabled > span {
+.paymentIcon {
   width: 46px;
   height: 46px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #e9edf1;
-  color: #596579;
+  background: #17243a;
+  color: #ffffff;
   font-size: 0.67rem;
   font-weight: 900;
 }
 
-.paymentDisabled strong {
+.paymentBox strong {
   margin-top: 10px;
-  font-size: 0.7rem;
+  font-size: 0.78rem;
 }
 
-.paymentDisabled p {
+.paymentBox p {
   margin: 7px 0 0;
-  color: #87909c;
+  color: #788291;
   font-size: 0.57rem;
   line-height: 1.5;
+}
+
+.paymentBox small {
+  margin-top: 9px;
+  color: #8a929e;
+  font-size: 0.52rem;
+}
+
+.paymentButton {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 15px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #d90000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.paymentButton:hover:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+.paymentButton:disabled {
+  background: #b9c0c9;
+  cursor: not-allowed;
 }
 
 .note {

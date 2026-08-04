@@ -30,3 +30,9 @@ Thumbs.db
 /verificar-entrega-*.ps1
 /LEIA-ME-ENTREGA-*.txt
 /LEIA-ME-CORRECAO-*.txt
+
+# Pacotes e scripts locais usados somente durante a instalação
+/ajuste-*-files/
+/corrigir-*.js
+/instalar-ajuste-*.ps1
+/INSTALAR.md

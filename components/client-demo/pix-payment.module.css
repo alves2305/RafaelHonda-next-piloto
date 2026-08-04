@@ -1,0 +1,155 @@
+.pixButton,
+.copyButton,
+.whatsappButton {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 15px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 850;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pixButton,
+.copyButton {
+  background: #198f60;
+  color: #ffffff;
+}
+
+.pixButton:disabled {
+  background: #b9c0c9;
+  cursor: not-allowed;
+}
+
+.inlineError {
+  width: 100%;
+  margin: 8px 0 0;
+  color: #9b4038;
+  font-size: 0.56rem;
+  line-height: 1.4;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: 20px;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 18, 31, 0.72);
+  overflow-y: auto;
+}
+
+.modal {
+  width: min(470px, 100%);
+  padding: 25px;
+  border-radius: 20px;
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  color: #27344b;
+  text-align: center;
+}
+
+.close {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  background: #edf0f3;
+  color: #25324a;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.label {
+  color: #198f60;
+  font-size: 0.61rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.modal h2 {
+  margin: 7px 0 0;
+  font-size: 1.35rem;
+}
+
+.modal > p {
+  margin: 8px auto 0;
+  max-width: 370px;
+  color: #758091;
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.qr {
+  width: fit-content;
+  margin: 17px auto 0;
+  padding: 9px;
+  border: 1px solid #e2e6ea;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.qr img {
+  display: block;
+  width: min(260px, 70vw);
+  height: auto;
+}
+
+.codeLabel {
+  margin-top: 15px;
+  display: grid;
+  gap: 7px;
+  color: #3d495e;
+  font-size: 0.6rem;
+  font-weight: 850;
+  text-align: left;
+}
+
+.codeLabel textarea {
+  width: 100%;
+  min-height: 82px;
+  padding: 10px;
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  resize: none;
+  color: #536074;
+  font: inherit;
+  font-size: 0.52rem;
+  line-height: 1.4;
+}
+
+.whatsappButton {
+  margin-top: 10px;
+  background: #17243a;
+  color: #ffffff;
+}
+
+.missingWhatsapp {
+  margin-top: 10px !important;
+  color: #8a5e58 !important;
+}
+
+.modal > small {
+  margin-top: 12px;
+  display: block;
+  color: #8a929f;
+  font-size: 0.53rem;
+  text-transform: capitalize;
+}
+
+@media (max-width: 580px) {
+  .modal {
+    padding: 22px 16px;
+  }
+}

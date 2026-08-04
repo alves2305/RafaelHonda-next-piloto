@@ -4,12 +4,17 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { ClientLogoutButton } from "@/components/client-demo/ClientLogoutButton";
+import { PixPaymentButton } from "@/components/client-demo/PixPaymentButton";
 import { useClientAccess } from "@/components/client-demo/ClientAccessGuard";
 import { getClientSupabaseClient } from "@/lib/client-supabase";
 
 import styles from "@/app/cliente-demo/assinatura/subscription-real.module.css";
 
 type SubscriptionStatus = "pago" | "pendente" | "atrasado";
+type PaymentFeedback = {
+  kind: "success" | "error" | "info";
+  message: string;
+} | null;
 
 type SubscriptionData = {
   clientId: string;
@@ -117,12 +122,47 @@ function normalizeSubscription(value: unknown): SubscriptionData {
   };
 }
 
+async function getSessionToken() {
+  const supabase = getClientSupabaseClient();
+  const {
+    data: { session },
+    error,
+  } = await supabase.auth.getSession();
+
+  if (error || !session?.access_token) {
+    throw new Error("Sua sessão expirou. Entre novamente no painel.");
+  }
+
+  return session.access_token;
+}
+
+async function readApiResponse(response: Response) {
+  const data = (await response.json().catch(() => ({}))) as {
+    success?: boolean;
+    message?: string;
+    checkoutUrl?: string;
+    paid?: boolean;
+  };
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Não foi possível concluir esta operação.",
+    );
+  }
+
+  return data;
+}
+
 export default function ClientSubscriptionPage() {
   const access = useClientAccess();
   const [subscription, setSubscription] =
     useState<SubscriptionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [creatingPayment, setCreatingPayment] = useState(false);
+  const [confirmingPayment, setConfirmingPayment] = useState(false);
+  const [paymentFeedback, setPaymentFeedback] =
+    useState<PaymentFeedback>(null);
 
   const loadSubscription = useCallback(async () => {
     setLoading(true);
@@ -167,6 +207,124 @@ export default function ClientSubscriptionPage() {
     };
   }, [loadSubscription]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const orderNsu = params.get("order_nsu");
+    const transactionNsu = params.get("transaction_nsu");
+    const slug = params.get("slug");
+    const receiptUrl = params.get("receipt_url");
+
+    if (!orderNsu || !transactionNsu || !slug) {
+      return;
+    }
+
+    let active = true;
+
+    async function confirmPayment() {
+      setConfirmingPayment(true);
+      setPaymentFeedback({
+        kind: "info",
+        message: "Confirmando seu pagamento com a InfinitePay...",
+      });
+
+      try {
+        const token = await getSessionToken();
+        const response = await fetch(
+          "/api/painel/pagamentos/infinitepay/confirmar",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              orderNsu,
+              transactionNsu,
+              slug,
+              receiptUrl,
+            }),
+          },
+        );
+
+        const data = await readApiResponse(response);
+
+        if (!active) {
+          return;
+        }
+
+        setPaymentFeedback({
+          kind: "success",
+          message:
+            data.message ||
+            "Pagamento confirmado. Sua assinatura foi atualizada.",
+        });
+
+        await loadSubscription();
+      } catch (confirmationError) {
+        console.error(confirmationError);
+
+        if (active) {
+          setPaymentFeedback({
+            kind: "error",
+            message:
+              confirmationError instanceof Error
+                ? confirmationError.message
+                : "Não foi possível confirmar o pagamento.",
+          });
+        }
+      } finally {
+        if (active) {
+          setConfirmingPayment(false);
+          window.history.replaceState({}, "", "/painel/assinatura");
+        }
+      }
+    }
+
+    void confirmPayment();
+
+    return () => {
+      active = false;
+    };
+  }, [loadSubscription]);
+
+  async function startPayment() {
+    setCreatingPayment(true);
+    setPaymentFeedback(null);
+
+    try {
+      const token = await getSessionToken();
+      const response = await fetch(
+        "/api/painel/pagamentos/infinitepay/checkout",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await readApiResponse(response);
+
+      if (!data.checkoutUrl?.startsWith("https://")) {
+        throw new Error(
+          "O endereço de pagamento retornado é inválido.",
+        );
+      }
+
+      window.location.assign(data.checkoutUrl);
+    } catch (paymentError) {
+      console.error(paymentError);
+      setPaymentFeedback({
+        kind: "error",
+        message:
+          paymentError instanceof Error
+            ? paymentError.message
+            : "Não foi possível abrir o pagamento.",
+      });
+      setCreatingPayment(false);
+    }
+  }
+
   const statusClass = useMemo(() => {
     if (subscription?.status === "pago") {
       return styles.statusPaid;
@@ -185,6 +343,12 @@ export default function ClientSubscriptionPage() {
     .slice(0, 2)
     .map((part) => part.charAt(0).toUpperCase())
     .join("");
+
+  const paymentBusy = creatingPayment || confirmingPayment;
+  const canPay =
+    Boolean(subscription) &&
+    subscription?.status !== "pago" &&
+    Number(subscription?.monthlyAmount ?? 0) > 0;
 
   return (
     <div className={styles.app}>
@@ -228,7 +392,7 @@ export default function ClientSubscriptionPage() {
         <header className={styles.topbar}>
           <div>
             <h1>Minha assinatura</h1>
-            <p>Acompanhe a configuração real da sua mensalidade.</p>
+            <p>Acompanhe e pague a mensalidade do seu catálogo.</p>
           </div>
 
           <div>
@@ -300,7 +464,7 @@ export default function ClientSubscriptionPage() {
                   <strong>
                     {subscription.catalogActive
                       ? "Ativo e publicado"
-                      : "Bloqueado manualmente"}
+                      : "Bloqueado"}
                   </strong>
                   <p>/{subscription.clientSlug}</p>
                 </aside>
@@ -312,10 +476,31 @@ export default function ClientSubscriptionPage() {
                   <div>
                     <strong>Mensalidade marcada como atrasada</strong>
                     <p>
-                      A regularização é confirmada manualmente pelo
-                      administrador. Nenhuma cobrança automática foi ativada.
+                      Cartões são confirmados automaticamente. O Pix direto é
+                      confirmado manualmente pelo administrador.
                     </p>
                   </div>
+                </section>
+              ) : null}
+
+              {paymentFeedback ? (
+                <section
+                  className={`${styles.paymentFeedback} ${
+                    paymentFeedback.kind === "success"
+                      ? styles.paymentFeedbackSuccess
+                      : paymentFeedback.kind === "error"
+                        ? styles.paymentFeedbackError
+                        : styles.paymentFeedbackInfo
+                  }`}
+                >
+                  <strong>
+                    {paymentFeedback.kind === "success"
+                      ? "Pagamento atualizado"
+                      : paymentFeedback.kind === "error"
+                        ? "Atenção"
+                        : "Processando"}
+                  </strong>
+                  <p>{paymentFeedback.message}</p>
                 </section>
               ) : null}
 
@@ -356,16 +541,53 @@ export default function ClientSubscriptionPage() {
                 <aside className={styles.panel}>
                   <div className={styles.panelHeading}>
                     <span>Pagamento</span>
-                    <h2>Integração ainda desativada</h2>
+                    <h2>
+                      {subscription.status === "pago"
+                        ? "Mensalidade confirmada"
+                        : "Escolha como pagar"}
+                    </h2>
                   </div>
 
-                  <div className={styles.paymentDisabled}>
-                    <span>R$</span>
-                    <strong>Sem cobrança automática</strong>
+                  <div className={styles.paymentBox}>
+                    <span className={styles.paymentIcon}>
+                      {subscription.status === "pago" ? "✓" : "R$"}
+                    </span>
+                    <strong>
+                      {subscription.status === "pago"
+                        ? "Pagamento recebido"
+                        : formatCurrency(subscription.monthlyAmount)}
+                    </strong>
                     <p>
-                      Pix e cartão serão integrados somente em uma fase
-                      posterior. Não informe dados bancários neste sistema.
+                      {subscription.status === "pago"
+                        ? "Esta referência já está regularizada."
+                        : "Pague rapidamente por Pix direto ou use o cartão no checkout seguro da InfinitePay."}
                     </p>
+
+                    <PixPaymentButton
+                      disabled={!canPay || paymentBusy}
+                    />
+
+                    <button
+                      className={styles.paymentButton}
+                      type="button"
+                      disabled={!canPay || paymentBusy}
+                      onClick={() => void startPayment()}
+                    >
+                      {confirmingPayment
+                        ? "Confirmando pagamento..."
+                        : creatingPayment
+                          ? "Abrindo cartão..."
+                          : subscription.status === "pago"
+                            ? "Mensalidade paga"
+                            : "Pagar com cartão"}
+                    </button>
+
+                    {subscription.status !== "pago" ? (
+                      <small>
+                        Pix: confirmação manual. Cartão: confirmação automática
+                        pela InfinitePay.
+                      </small>
+                    ) : null}
                   </div>
 
                   {subscription.note ? (
@@ -378,11 +600,12 @@ export default function ClientSubscriptionPage() {
               </div>
 
               <section className={styles.security}>
-                <strong>O que está protegido nesta etapa</strong>
+                <strong>Pagamento protegido</strong>
                 <p>
-                  O vendedor não consegue alterar valor, status, vencimento,
-                  bloqueio ou dados de outros clientes. Também não há campos
-                  para número de cartão, CVV ou chave Pix.
+                  O valor é definido pelo administrador. Cartão, CVV e dados
+                  bancários são preenchidos somente no ambiente da InfinitePay.
+                  Antes de marcar como pago, o servidor confirma o pedido, o
+                  vendedor e o valor diretamente com a operadora.
                 </p>
               </section>
             </>
