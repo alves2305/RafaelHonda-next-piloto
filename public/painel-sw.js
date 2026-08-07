@@ -19,4 +19,9 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// O painel é intencionalmente online: respostas autenticadas não são salvas em cache.
+// Atende ao requisito de instalação sem armazenar respostas autenticadas.
+self.addEventListener("fetch", (event) => {
+  event.respondWith(fetch(event.request));
+});
+
+// O painel é intencionalmente online: nenhum dado é salvo em cache.

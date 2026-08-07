@@ -40,11 +40,16 @@
 }
 
 .installCard > button {
-  min-height: 43px;
-  border: 1px solid #17233a;
+  min-height: 48px;
+  padding: 0 15px;
+  border: 0;
   border-radius: 11px;
-  background: #ffffff;
-  color: #17233a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #17233a;
+  color: #ffffff;
   font: inherit;
   font-size: 0.73rem;
   font-weight: 850;
@@ -52,8 +57,12 @@
 }
 
 .installCard > button:hover {
-  background: #17233a;
-  color: #ffffff;
+  background: #223455;
+}
+
+.installCard > button > span {
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .instructions {

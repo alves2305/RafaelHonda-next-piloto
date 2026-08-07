@@ -17,6 +17,7 @@ export function PanelInstallPrompt() {
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [isInstalled, setIsInstalled] = useState(false);
   const [isIos, setIsIos] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
 
   useEffect(() => {
     const displayMode = window.matchMedia("(display-mode: standalone)");
@@ -55,12 +56,17 @@ export function PanelInstallPrompt() {
 
   async function handleInstall() {
     if (!installPrompt) {
+      setShowInstructions(true);
       return;
     }
 
     await installPrompt.prompt();
-    await installPrompt.userChoice;
+    const choice = await installPrompt.userChoice;
     setInstallPrompt(null);
+
+    if (choice.outcome === "dismissed") {
+      setShowInstructions(true);
+    }
   }
 
   if (isInstalled) {
@@ -82,21 +88,25 @@ export function PanelInstallPrompt() {
         </div>
       </div>
 
-      {installPrompt ? (
-        <button type="button" onClick={() => void handleInstall()}>
-          Instalar aplicativo
-        </button>
-      ) : isIos ? (
-        <p className={styles.instructions}>
-          No Safari, toque em <strong>Compartilhar</strong> e depois em
-          <strong> Adicionar à Tela de Início</strong>.
-        </p>
-      ) : (
-        <p className={styles.instructions}>
-          Abra o menu do navegador e escolha <strong>Instalar aplicativo</strong>
-          ou <strong>Adicionar à tela inicial</strong>.
-        </p>
-      )}
+      <button type="button" onClick={() => void handleInstall()}>
+        <span aria-hidden="true">↓</span>
+        Instalar painel no celular
+      </button>
+
+      {showInstructions ? (
+        isIos ? (
+          <p className={styles.instructions}>
+            No Safari, toque em <strong>Compartilhar</strong> e depois em
+            <strong> Adicionar à Tela de Início</strong>.
+          </p>
+        ) : (
+          <p className={styles.instructions}>
+            Toque nos <strong>três pontinhos ⋮</strong> do navegador e escolha
+            <strong> Instalar aplicativo</strong> ou
+            <strong> Adicionar à tela inicial</strong>.
+          </p>
+        )
+      ) : null}
     </div>
   );
 }
