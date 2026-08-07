@@ -1,0 +1,93 @@
+.installCard {
+  padding: 15px;
+  border: 1px solid #dfe4eb;
+  border-radius: 15px;
+  display: grid;
+  gap: 13px;
+  background: #f7f9fc;
+}
+
+.installHeading {
+  display: grid;
+  grid-template-columns: 37px 1fr;
+  gap: 11px;
+  align-items: center;
+}
+
+.installHeading > span {
+  width: 37px;
+  height: 37px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: #17233a;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.installHeading strong {
+  display: block;
+  color: #25324a;
+  font-size: 0.76rem;
+}
+
+.installHeading p,
+.instructions {
+  margin: 4px 0 0;
+  color: #747e90;
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.installCard > button {
+  min-height: 43px;
+  border: 1px solid #17233a;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #17233a;
+  font: inherit;
+  font-size: 0.73rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.installCard > button:hover {
+  background: #17233a;
+  color: #ffffff;
+}
+
+.instructions {
+  margin: 0;
+  padding-top: 11px;
+  border-top: 1px solid #e2e6ec;
+}
+
+.installed {
+  padding: 12px 14px;
+  border: 1px solid #bee6d0;
+  border-radius: 13px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #f0fbf5;
+  color: #1b7d4c;
+}
+
+.installed > span {
+  font-weight: 900;
+}
+
+.installed p {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.installed strong {
+  font-size: 0.73rem;
+}
+
+.installed small {
+  color: #56836a;
+  font-size: 0.65rem;
+}

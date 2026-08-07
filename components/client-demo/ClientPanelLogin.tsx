@@ -9,6 +9,7 @@ import {
   getClientSupabaseClient,
   isClientSupabaseConfigured,
 } from "@/lib/client-supabase";
+import { PanelInstallPrompt } from "@/components/client-demo/PanelInstallPrompt";
 
 import styles from "@/app/cliente-demo/cliente-demo.module.css";
 
@@ -261,6 +262,8 @@ export default function ClientDemoLoginPage() {
             <span>{submitting ? "Entrando..." : "Entrar no painel"}</span>
             <strong aria-hidden="true">{submitting ? "…" : "→"}</strong>
           </button>
+
+          <PanelInstallPrompt />
 
           <div className={styles.demoNotice}>
             <strong>Primeira etapa real</strong>
